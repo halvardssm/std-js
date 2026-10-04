@@ -13,6 +13,8 @@
     "@std/io": "jsr:@std/io@^0",
     "@std/json": "jsr:@std/json@^1",
     "@std/path": "jsr:@std/path@^1",
+    "@std/streams": "jsr:@std/streams@^1",
+    "@std/text": "jsr:@std/text@^1",
     "@std/toml": "jsr:@std/toml@^1",
     "@std/xml": "jsr:@std/xml@^0",
     "@deno/wasmbuild": "jsr:@deno/wasmbuild@^0",

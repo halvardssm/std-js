@@ -3,6 +3,7 @@
   "name": "@stdext/cli",
   "exports": {
     ".": "./mod.ts",
-    "./parse-args": "./parse_args.ts"
+    "./parse-args": "./parse_args.ts",
+    "./command": "./command.ts"
   }
 }
