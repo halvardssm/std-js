@@ -1,4 +1,4 @@
-import { toBytes } from "@std/streams/to-bytes";
+import { toBytes } from "@std/streams";
 
 export const LOCAL_SIGNATURE = 0x04034b50;
 export const CENTRAL_SIGNATURE = 0x02014b50;
