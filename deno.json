@@ -33,6 +33,7 @@
   },
   "workspace": [
     "./assert",
+    "./cli",
     "./collections",
     "./crypto",
     "./database",

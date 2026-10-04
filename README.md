@@ -45,6 +45,8 @@ console.log(dump(buffer));
 
 - [assert](https://jsr.io/@stdext/assert): The assert package, contains
   validators and assertions
+- [cli](https://jsr.io/@stdext/cli): The cli package contains helpers for
+  building command line applications
 - [collections](https://jsr.io/@stdext/collections): The collections package
   contains commonly used utilities and structures
 - [crypto](https://jsr.io/@stdext/crypto): The crypto package contains utility
