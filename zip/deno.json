@@ -1,0 +1,9 @@
+{
+  "version": "0.0.1",
+  "name": "@stdext/zip",
+  "exports": {
+    ".": "./mod.ts",
+    "./zip": "./zip.ts",
+    "./unzip": "./unzip.ts"
+  }
+}

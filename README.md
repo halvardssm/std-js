@@ -4,8 +4,7 @@
 [![codecov](https://codecov.io/gh/halvardssm/std-js/graph/badge.svg?token=T1JEMGF8VW)](https://codecov.io/gh/halvardssm/std-js)
 [![ci](https://github.com/halvardssm/std-js/actions/workflows/ci.yml/badge.svg)](https://github.com/halvardssm/std-js/actions/workflows/ci.yml)
 
-An extension of the
-[Deno Standard Library](https://github.com/denoland/std).
+An extension of the [Deno Standard Library](https://github.com/denoland/std).
 
 Multiple languages such as Rust, Go and PHP offer a standard library, which
 allows the reduction of third-party libraries. This project is used to extend

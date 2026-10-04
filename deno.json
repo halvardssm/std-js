@@ -45,7 +45,8 @@
     "./lexer",
     "./types",
     "./validation",
-    "./xml"
+    "./xml",
+    "./zip"
   ],
   "exclude": [
     "./_wasm/target",
