@@ -1,5 +1,5 @@
 {
-  "version": "0.1.1",
+  "version": "0.1.2",
   "name": "@stdx/json",
   "description": "Helpers for JSON parsing, querying (JSONPath), JSON Schema and processing, extending @std/json.",
   "exports": {

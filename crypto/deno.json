@@ -1,5 +1,5 @@
 {
-  "version": "0.2.0",
+  "version": "0.2.1",
   "name": "@stdx/crypto",
   "description": "Password hashing (argon2, bcrypt, scrypt), hmac, hotp, totp, scram and secret generator. Extending @std/crypto.",
   "exports": {

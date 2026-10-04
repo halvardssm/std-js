@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0",
+  "version": "0.1.1",
   "name": "@stdx/lexer",
   "description": "General purpose lexers and tokenizers.",
   "exports": {

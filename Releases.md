@@ -5,13 +5,13 @@
 - fix(assert): Added message as option argument to asserts, and added object
   asserts
 
-#### @stdx/cli 0.0.2 (patch)
+#### @stdx/cli 0.1.2 (patch)
 
 - feat(cli): added further options to command
 - feat(cli): added command
 - feat(cli): Added cli module with parseArgs
 
-#### @stdx/collections 0.1.0 (minor)
+#### @stdx/collections 0.3.0 (minor)
 
 - feat(collections)!: fix DeferredStack release, add clear and abortable pop
 - feat(collections): add deferred stack
@@ -24,7 +24,7 @@
 - fix(crypto): Fixed errors due to changes in deno types
 - chore(crypto): change ts-ignore to ts-expect-error
 
-#### @stdx/database 0.1.0 (minor)
+#### @stdx/database 0.3.0 (minor)
 
 - feat(database): added docs and examples
 - feat(database)!: refactored code
@@ -45,15 +45,15 @@
 
 - feat(encoding): add binary reader and writer
 
-#### @stdx/event 0.1.1 (patch)
+#### @stdx/event 0.1.3 (patch)
 
 - feat(event): added docs and tests
 
-#### @stdx/ffi 0.0.2 (patch)
+#### @stdx/ffi 0.1.2 (patch)
 
 - feat(ffi): added docs and tests
 
-#### @stdx/fs 0.0.2 (patch)
+#### @stdx/fs 0.1.2 (patch)
 
 - feat(fs): added docs and tests
 
@@ -69,7 +69,7 @@
   type helpers
 - feat(types): added type and improved documentation
 
-#### @stdx/validation 0.1.2 (patch)
+#### @stdx/validation 0.1.4 (patch)
 
 - feat(validation): added more helpers
 - feat(validation): refactor validation
@@ -81,7 +81,7 @@
 - fix(validation): Improved docs and tests
 - chore(validation): Added jsdoc and improved readme - thanks AI
 
-#### @stdx/zip 0.0.2 (patch)
+#### @stdx/zip 0.1.2 (patch)
 
 - feat(zip): add zip and unzip for archives and directories
 - fix(zip): replace with std

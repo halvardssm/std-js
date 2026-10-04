@@ -1,5 +1,5 @@
 {
-  "version": "0.1.2",
+  "version": "0.1.3",
   "name": "@stdx/xml",
   "description": "XML parsing, serialization, stringify, building and XSD validation. A drop-in extension of @std/xml that also works as a Standard Schema v1 validator.",
   "exports": {
