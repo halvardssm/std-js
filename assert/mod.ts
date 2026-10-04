@@ -8,7 +8,7 @@
  *
  * @example
  * ```ts
- * import { assertIsNumber, isString } from "@stdext/assert";
+ * import { assertIsNumber, isString } from "@stdx/assert";
  * import { assert } from "@std/assert";
  *
  * const value: unknown = "hello";

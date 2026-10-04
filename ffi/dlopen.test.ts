@@ -197,7 +197,7 @@ Deno.test("getCachePath", async (t) => {
       denoWithWritableBuild.build = { ...originalBuild, os: "linux" };
 
       const result = await getCachePath();
-      assertEquals(result, join(tempDir, ".cache/deno/stdext_dlopen_cache"));
+      assertEquals(result, join(tempDir, ".cache/deno/stdx_dlopen_cache"));
     } finally {
       // Restore environment
       if (originalDenoDir) {

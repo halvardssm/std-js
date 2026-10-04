@@ -3,12 +3,12 @@
  *
  * The hashes are PHC strings (`$scrypt$ln=17,r=8,p=1$...`) that embed the options and salt, so
  * {@linkcode verify} reads them from the hash. Prefer the
- * algorithm-agnostic versions in `@stdext/crypto/hash` unless you need
+ * algorithm-agnostic versions in `@stdx/crypto/hash` unless you need
  * scrypt-specific options.
  *
  * @example
  * ```ts
- * import { hash, verify } from "@stdext/crypto/hash/scrypt";
+ * import { hash, verify } from "@stdx/crypto/hash/scrypt";
  * import { assert } from "@std/assert";
  *
  * const h = hash("password", { logN: 10 });
@@ -36,7 +36,7 @@ export type { ScryptOptions };
  *
  * @example
  * ```ts
- * import { hash } from "@stdext/crypto/hash/scrypt";
+ * import { hash } from "@stdx/crypto/hash/scrypt";
  *
  * const h = hash("password", { logN: 10 });
  * ```
@@ -59,7 +59,7 @@ export function hash(data: string, options: ScryptOptions = {}): string {
  *
  * @example
  * ```ts
- * import { hash, verify } from "@stdext/crypto/hash/scrypt";
+ * import { hash, verify } from "@stdx/crypto/hash/scrypt";
  * import { assert, assertFalse } from "@std/assert";
  *
  * const h = hash("password", { logN: 10 });

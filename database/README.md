@@ -1,4 +1,4 @@
-# @stdext/database
+# @stdx/database
 
 The database package contains a standard interface for SQL databases, and
 drivers implementing it for SQLite and Postgres. It draws inspiration from
@@ -8,7 +8,7 @@ Applications use one of the [drivers](#drivers), which all share the same
 interface:
 
 ```ts
-import { SqliteClient } from "@stdext/database/drivers/sqlite";
+import { SqliteClient } from "@stdx/database/drivers/sqlite";
 
 await using client = new SqliteClient(":memory:");
 await client.execute("CREATE TABLE users (id INTEGER, name TEXT)");
@@ -41,12 +41,12 @@ connection: `DriverConnection`, with its `DriverRows`, `DriverStatement` and
 `DriverTransaction`. The client level adds pooling, nested transactions, SQL
 templates, lazy results, prepared statement caching, events and options. Driver
 authors verify their implementation with the conformance suites of
-[`@stdext/database/sql/testing`](./sql/README.md#testing); no base classes are
+[`@stdx/database/sql/testing`](./sql/README.md#testing); no base classes are
 required.
 
 #### SQLite
 
-`@stdext/database/drivers/sqlite`, backed by the built-in `node:sqlite` module.
+`@stdx/database/drivers/sqlite`, backed by the built-in `node:sqlite` module.
 The connection URL is a file path, a `file:` URL, or `:memory:`. Parameters use
 `?` placeholders, or `:name`, `@name` and `$name` placeholders with a record.
 
@@ -61,7 +61,7 @@ The connection URL is a file path, a `file:` URL, or `:memory:`. Parameters use
   reports the `rowid` of inserted rows as `lastInsertId`.
 
 ```ts
-import { SqliteClient } from "@stdext/database/drivers/sqlite";
+import { SqliteClient } from "@stdx/database/drivers/sqlite";
 
 await using client = new SqliteClient(":memory:");
 await client.execute("CREATE TABLE users (id INTEGER, name TEXT)");
@@ -71,7 +71,7 @@ console.log(await client.query("SELECT * FROM users").toRecords());
 
 #### Postgres
 
-`@stdext/database/drivers/postgres`, implemented in TypeScript on top of the
+`@stdx/database/drivers/postgres`, implemented in TypeScript on top of the
 Postgres frontend/backend protocol, and requires the `net` permission. It
 supports SCRAM-SHA-256, MD5 and cleartext password authentication, TLS,
 streaming results, prepared statements, and cancelling queries with an
@@ -93,7 +93,7 @@ streaming results, prepared statements, and cancelling queries with an
   and arrays of these. Override the parsers with `connectionOptions.parsers`.
 
 ```ts ignore
-import { PostgresClient } from "@stdext/database/drivers/postgres";
+import { PostgresClient } from "@stdx/database/drivers/postgres";
 
 await using client = new PostgresClient("postgres://user@localhost:5432/db", {
   connectionOptions: { password: "secret" },
@@ -108,9 +108,9 @@ console.log(
 );
 ```
 
-The Postgres tests run against a live server when `STDEXT_POSTGRES_URL` is set:
+The Postgres tests run against a live server when `STDX_POSTGRES_URL` is set:
 
 ```sh
 docker run -d -p 54329:5432 -e POSTGRES_PASSWORD=postgres postgres:17
-STDEXT_POSTGRES_URL=postgres://postgres:postgres@localhost:54329/postgres deno task test
+STDX_POSTGRES_URL=postgres://postgres:postgres@localhost:54329/postgres deno task test
 ```

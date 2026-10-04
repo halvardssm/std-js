@@ -32,7 +32,7 @@
  */
 
 import type { StandardSchemaV1 } from "@standard-schema/spec";
-import type { JSONSchema } from "@stdext/json/json-schema/2020-12";
+import type { JSONSchema } from "@stdx/json/json-schema/2020-12";
 import {
   type CombinedSchemaV1,
   type CommonOptions,

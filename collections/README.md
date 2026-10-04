@@ -1,4 +1,4 @@
-# @stdext/collections
+# @stdx/collections
 
 The collections package contains commonly used utilities and structures.
 
@@ -11,7 +11,7 @@ until one is available. It is useful for resource pools, such as connection
 pools.
 
 ```ts
-import { DeferredStack } from "@stdext/collections";
+import { DeferredStack } from "@stdx/collections";
 
 const deferred = new DeferredStack<number>({
   maxSize: 1,

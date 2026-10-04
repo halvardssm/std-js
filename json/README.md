@@ -1,4 +1,4 @@
-# @stdext/json
+# @stdx/json
 
 Extends [@std/json](https://jsr.io/@std/json)
 
@@ -12,8 +12,8 @@ processing
 JSONPath ([RFC9535](https://datatracker.ietf.org/doc/html/rfc9535))
 
 ```ts
-import { JSONPath } from "@stdext/json";
-// or: import { JSONPath } from "@stdext/json/jsonpath";
+import { JSONPath } from "@stdx/json";
+// or: import { JSONPath } from "@stdx/json/jsonpath";
 
 const jp = new JSONPath({ a: "b" });
 jp.query("$.a"); // ["b"]
@@ -24,7 +24,7 @@ jp.query("$.a"); // ["b"]
 JSON Schema ([see](https://json-schema.org))
 
 ```ts
-import type { JSONSchema } from "@stdext/json/json-schema/2020-12";
+import type { JSONSchema } from "@stdx/json/json-schema/2020-12";
 
 const schema: JSONSchema = {
   $schema: "https://json-schema.org/draft/2020-12/schema",

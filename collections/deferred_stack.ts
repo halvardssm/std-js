@@ -39,7 +39,7 @@ export type DeferredStackPopOptions = {
  *
  * @example
  * ```ts
- * import { DeferredStack } from "@stdext/collections";
+ * import { DeferredStack } from "@stdx/collections";
  *
  * const deferred = new DeferredStack<number>({ maxSize: 1 });
  * deferred.add(1);

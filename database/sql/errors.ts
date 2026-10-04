@@ -5,8 +5,8 @@
  *
  * @example
  * ```ts
- * import { DatabaseError } from "@stdext/database/sql";
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
+ * import { DatabaseError } from "@stdx/database/sql";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
  *
  * try {
  *   await new SqliteClient(":memory:").execute("THIS IS NOT VALID SQL");
@@ -31,8 +31,8 @@ export class DatabaseError extends Error {
  *
  * @example
  * ```ts
- * import { ConnectionError } from "@stdext/database/sql";
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
+ * import { ConnectionError } from "@stdx/database/sql";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
  *
  * await using client = new SqliteClient(":memory:");
  * await client.close();
@@ -53,8 +53,8 @@ export class ConnectionError extends DatabaseError {}
  *
  * @example
  * ```ts
- * import { QueryError } from "@stdext/database/sql";
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
+ * import { QueryError } from "@stdx/database/sql";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
  *
  * await using client = new SqliteClient(":memory:");
  * try {
@@ -74,8 +74,8 @@ export class QueryError extends DatabaseError {}
  *
  * @example
  * ```ts
- * import { TransactionError } from "@stdext/database/sql";
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
+ * import { TransactionError } from "@stdx/database/sql";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
  *
  * await using client = new SqliteClient(":memory:");
  * const tx = await client.beginTransaction();

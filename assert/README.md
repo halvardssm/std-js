@@ -1,4 +1,4 @@
-# @stdext/assert
+# @stdx/assert
 
 Extends [@std/assert](https://jsr.io/@std/assert)
 
@@ -7,7 +7,7 @@ The assert package, contains validators and assertions
 ## Example
 
 ```ts
-import { assertIsString, isString } from "@stdext/assert";
+import { assertIsString, isString } from "@stdx/assert";
 
 const someVar: unknown = "hello";
 

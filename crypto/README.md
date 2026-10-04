@@ -1,4 +1,4 @@
-# @stdext/crypto
+# @stdx/crypto
 
 Extends [@std/crypto](https://jsr.io/@std/crypto)
 
@@ -36,7 +36,7 @@ The following algorithms are provided:
 - Scrypt
 
 ```ts
-import { AlgorithmName, hash, verify } from "@stdext/crypto/hash";
+import { AlgorithmName, hash, verify } from "@stdx/crypto/hash";
 
 // By name, using default options
 const h = hash("argon2", "password");
@@ -55,7 +55,7 @@ Hashes can also be imported individually, although this should not be needed if
 tree shaking is available in your build process.
 
 ```ts
-import { hash, verify } from "@stdext/crypto/hash/argon2";
+import { hash, verify } from "@stdx/crypto/hash/argon2";
 
 const h = hash("password", { memoryCost: 8192 });
 verify("password", h);
@@ -66,7 +66,7 @@ verify("password", h);
 Keyed-hash message authentication codes, using the Web Crypto API.
 
 ```ts
-import { hmac } from "@stdext/crypto/hmac";
+import { hmac } from "@stdx/crypto/hmac";
 
 const mac = await hmac("SHA-256", "key", "message");
 ```
@@ -78,7 +78,7 @@ The client side of the Salted Challenge Response Authentication Mechanism
 in for example Postgres, MongoDB, Kafka, IMAP and XMPP.
 
 ```ts ignore
-import { ScramClient } from "@stdext/crypto/scram";
+import { ScramClient } from "@stdx/crypto/scram";
 
 const scram = new ScramClient({ user: "user", password: "pencil" });
 // Send scram.mechanism and scram.clientFirst() to the server
@@ -90,8 +90,8 @@ await scram.verify(serverFinal);
 ### HOTP (HMAC One-Time Password)
 
 ```ts
-import { generateHotp, verifyHotp } from "@stdext/crypto/hotp";
-import { generateSecret } from "@stdext/crypto/utils";
+import { generateHotp, verifyHotp } from "@stdx/crypto/hotp";
+import { generateSecret } from "@stdx/crypto/utils";
 
 const secret = generateSecret();
 const hotp = await generateHotp(secret, 42);
@@ -106,8 +106,8 @@ await verifyHotp(hotp8, secret, 42, options);
 ### TOTP (Time-based One-Time Password)
 
 ```ts
-import { generateTotp, verifyTotp } from "@stdext/crypto/totp";
-import { generateSecret } from "@stdext/crypto/utils";
+import { generateTotp, verifyTotp } from "@stdx/crypto/totp";
+import { generateSecret } from "@stdx/crypto/utils";
 
 const secret = generateSecret();
 const totp = await generateTotp(secret);
@@ -122,7 +122,7 @@ await verifyTotp(totpAt, secret, options);
 ### Utils
 
 ```ts
-import { generateSecretBytes } from "@stdext/crypto/utils";
+import { generateSecretBytes } from "@stdx/crypto/utils";
 const secretBytes = generateSecretBytes();
 // You can select your own encoding
 const encodedSecret = secretBytes.toBase64();

@@ -1,4 +1,4 @@
-# @stdext/event
+# @stdx/event
 
 Extends [@std/event](https://jsr.io/@std/event)
 

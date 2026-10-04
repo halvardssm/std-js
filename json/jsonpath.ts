@@ -19,7 +19,7 @@ export type JSONPathResult<Value = JsonValue> = WasmJSONPathResult<Value>;
  *
  * @example
  * ```ts
- * import { JSONPath } from "@stdext/json/jsonpath";
+ * import { JSONPath } from "@stdx/json/jsonpath";
  * import { assertEquals } from "@std/assert";
  *
  * const jp = new JSONPath({ a: "b", c: [1, 2, 3] });
@@ -57,7 +57,7 @@ export class JSONPath {
    *
    * @example
    * ```ts
-   * import { JSONPath } from "@stdext/json/jsonpath";
+   * import { JSONPath } from "@stdx/json/jsonpath";
    * import { assertEquals } from "@std/assert";
    *
    * const jp = new JSONPath({ a: "b" });
@@ -81,7 +81,7 @@ export class JSONPath {
    *
    * @example
    * ```ts
-   * import { JSONPath } from "@stdext/json/jsonpath";
+   * import { JSONPath } from "@stdx/json/jsonpath";
    * import { assertEquals } from "@std/assert";
    *
    * const jp = new JSONPath({ a: "b", c: [1, 2, 3] });

@@ -1,6 +1,6 @@
 {
   "version": "0.1.1",
-  "name": "@stdext/assert",
+  "name": "@stdx/assert",
   "exports": {
     ".": "./mod.ts",
     "./is_number": "./is_number.ts",

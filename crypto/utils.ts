@@ -11,7 +11,7 @@ import { encodeBase32 } from "@std/encoding/base32";
  *
  * @example
  * ```ts
- * import { generateSecretBytes } from "@stdext/crypto/utils";
+ * import { generateSecretBytes } from "@stdx/crypto/utils";
  * import { assert } from "@std/assert";
  *
  * const secret = generateSecretBytes(20);
@@ -42,8 +42,8 @@ export function generateSecretBytes(length: number = 20): Uint8Array {
  *
  * @example
  * ```ts
- * import { generateSecret } from "@stdext/crypto/utils";
- * import { generateTotp } from "@stdext/crypto/totp";
+ * import { generateSecret } from "@stdx/crypto/utils";
+ * import { generateTotp } from "@stdx/crypto/totp";
  * import { assert } from "@std/assert";
  *
  * const secret = generateSecret();

@@ -3,7 +3,7 @@
  *
  * @example
  * ```ts
- * import { generateHotp, verifyHotp } from "@stdext/crypto/hotp";
+ * import { generateHotp, verifyHotp } from "@stdx/crypto/hotp";
  * import { assert } from "@std/assert";
  *
  * const key = "OCOMBLGUREYUXFQJIL75FQFCKYFCKLQP";
@@ -64,7 +64,7 @@ export function counterToBuffer(counter: number): Uint8Array {
 /**
  * Generates an HMAC-SHA1 hash of the key and data.
  *
- * @deprecated Use {@linkcode hmac} from `@stdext/crypto/hmac` instead:
+ * @deprecated Use {@linkcode hmac} from `@stdx/crypto/hmac` instead:
  * `hmac("SHA-1", key, data)`.
  *
  * @ignore
@@ -140,7 +140,7 @@ export function equalOtp(a: string, b: string): boolean {
  *
  * @example
  * ```ts
- * import { generateHotp } from "@stdext/crypto/hotp";
+ * import { generateHotp } from "@stdx/crypto/hotp";
  * import { assertEquals } from "@std/assert";
  *
  * // Same key and counter always produce the same value.
@@ -183,7 +183,7 @@ export async function generateHotp(
  *
  * @example
  * ```ts
- * import { verifyHotp } from "@stdext/crypto/hotp";
+ * import { verifyHotp } from "@stdx/crypto/hotp";
  * import { assert, assertFalse } from "@std/assert";
  *
  * assert(await verifyHotp("187492", "OCOMBLGUREYUXFQJIL75FQFCKYFCKLQP", 0));

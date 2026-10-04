@@ -1,4 +1,4 @@
-# @stdext/validation
+# @stdx/validation
 
 Schemas that implement both [Standard Schema](https://standardschema.dev/) and
 [Standard JSON Schema](https://standardschema.dev/#json-schema), and a small,
@@ -8,7 +8,7 @@ fully typed factory to build them.
   libraries, OpenAPI generators.
 - `createSchema` infers the input type, output type and kind from the options.
 - Schemas nest by calling one schema's `validate` from another's, sync or async.
-- It uses `@stdext/validation` as vendor identifier.
+- It uses `@stdx/validation` as vendor identifier.
 
 ## Helper functions
 
@@ -32,7 +32,7 @@ schemas `true` (accepts everything) and `false` (rejects everything).
 
 ```ts
 import { z } from "@zod/zod";
-import { parse, string, toJSONSchema, validate } from "@stdext/validation";
+import { parse, string, toJSONSchema, validate } from "@stdx/validation";
 
 const User = z.object({ name: z.string() });
 
@@ -99,7 +99,7 @@ import {
   type Schema,
   string,
   validate,
-} from "@stdext/validation";
+} from "@stdx/validation";
 
 const user = object({
   name: string(),
@@ -139,7 +139,7 @@ inherited members like methods and getters, and returns the value itself, so its
 identity and prototype are kept. With `isValid` it makes a type guard:
 
 ```ts
-import { boolean, func, isValid, optional, shape } from "@stdext/validation";
+import { boolean, func, isValid, optional, shape } from "@stdx/validation";
 
 const closable = shape({
   closed: boolean(),
@@ -197,7 +197,7 @@ Options that are not valid, such as `minLength: -1` or `minItems` greater than
 `maxItems`, throw a `TypeError` when the schema is created.
 
 ```ts
-import { array, integer, object, string, validate } from "@stdext/validation";
+import { array, integer, object, string, validate } from "@stdx/validation";
 
 const user = object({
   name: string({ minLength: 1, message: "Name is required" }),
@@ -215,7 +215,7 @@ validate(user, { name: "", email: "x", age: -1, tags: [], extra: 1 });
 the schema:
 
 ```ts
-import { createSchema } from "@stdext/validation";
+import { createSchema } from "@stdx/validation";
 
 const string = createSchema("string", {
   validate: (value) =>
@@ -250,7 +250,7 @@ Standard JSON Schema at once.
 Read the types with the standard's helpers:
 
 ```ts
-import { createSchema } from "@stdext/validation";
+import { createSchema } from "@stdx/validation";
 import type { StandardSchemaV1 } from "@standard-schema/spec";
 
 const length = createSchema("length", {
@@ -276,7 +276,7 @@ A schema is async when `validate` returns a promise. Nothing else changes: the
 types are inferred through the promise.
 
 ```ts
-import { createSchema } from "@stdext/validation";
+import { createSchema } from "@stdx/validation";
 
 const taken = new Set(["admin"]);
 const isTaken = (name: string) => Promise.resolve(taken.has(name));
@@ -300,7 +300,7 @@ schema, or you can reuse its `validate` directly. A container validates its
 items with the item schema and prefixes the issue paths:
 
 ```ts
-import { type CombinedSchemaV1, createSchema } from "@stdext/validation";
+import { type CombinedSchemaV1, createSchema } from "@stdx/validation";
 import type { StandardSchemaV1 } from "@standard-schema/spec";
 
 function list<TItem extends CombinedSchemaV1>(item: TItem) {
@@ -354,7 +354,7 @@ Schema of what the schema accepts and `output` of what it produces; they only
 differ for schemas that transform their input.
 
 ```ts
-import { createSchema } from "@stdext/validation";
+import { createSchema } from "@stdx/validation";
 
 const age = createSchema("age", {
   validate: (value) =>

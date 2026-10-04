@@ -3,12 +3,12 @@
  *
  * The hashes are PHC strings (`$2b$12$...`) that embed the options and salt, so
  * {@linkcode verify} reads them from the hash. Prefer the
- * algorithm-agnostic versions in `@stdext/crypto/hash` unless you need
+ * algorithm-agnostic versions in `@stdx/crypto/hash` unless you need
  * bcrypt-specific options.
  *
  * @example
  * ```ts
- * import { hash, verify } from "@stdext/crypto/hash/bcrypt";
+ * import { hash, verify } from "@stdx/crypto/hash/bcrypt";
  * import { assert } from "@std/assert";
  *
  * const h = hash("password", { cost: 4 });
@@ -36,7 +36,7 @@ export type { BcryptOptions };
  *
  * @example
  * ```ts
- * import { hash } from "@stdext/crypto/hash/bcrypt";
+ * import { hash } from "@stdx/crypto/hash/bcrypt";
  *
  * const h = hash("password", { cost: 4 });
  * ```
@@ -59,7 +59,7 @@ export function hash(data: string, options: BcryptOptions = {}): string {
  *
  * @example
  * ```ts
- * import { hash, verify } from "@stdext/crypto/hash/bcrypt";
+ * import { hash, verify } from "@stdx/crypto/hash/bcrypt";
  * import { assert, assertFalse } from "@std/assert";
  *
  * const h = hash("password", { cost: 4 });

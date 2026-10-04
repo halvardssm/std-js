@@ -70,7 +70,7 @@ Deno.test("createSchema", async (t) => {
   await t.step("builds a Standard Schema and a Standard JSON Schema", () => {
     assertEquals(string.kind, "string");
     assertEquals(string["~standard"].version, 1);
-    assertEquals(string["~standard"].vendor, "@stdext/validation");
+    assertEquals(string["~standard"].vendor, "@stdx/validation");
     assertEquals(string["~standard"].validate("a"), { value: "a" });
     assertEquals(string["~standard"].validate(1), expectedString);
     assertEquals(

@@ -3,7 +3,7 @@
  *
  * @example
  * ```ts
- * import { generateTotp, verifyTotp } from "@stdext/crypto/totp";
+ * import { generateTotp, verifyTotp } from "@stdx/crypto/totp";
  * import { assert } from "@std/assert";
  *
  * const key = "OCOMBLGUREYUXFQJIL75FQFCKYFCKLQP";
@@ -76,7 +76,7 @@ function getCounter(options: TotpOptions | undefined): number {
  *
  * @example
  * ```ts
- * import { generateTotp } from "@stdext/crypto/totp";
+ * import { generateTotp } from "@stdx/crypto/totp";
  * import { assertEquals } from "@std/assert";
  *
  * // Same key and time always produce the same value.
@@ -111,7 +111,7 @@ export async function generateTotp(
  *
  * @example
  * ```ts
- * import { verifyTotp } from "@stdext/crypto/totp";
+ * import { verifyTotp } from "@stdx/crypto/totp";
  * import { assert, assertFalse } from "@std/assert";
  *
  * const key = "OCOMBLGUREYUXFQJIL75FQFCKYFCKLQP";

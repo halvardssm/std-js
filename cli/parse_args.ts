@@ -105,7 +105,7 @@ export interface ParseArgsOptions<
  *
  * @example
  * ```ts
- * import { parseArgs } from "@stdext/cli/parse-args";
+ * import { parseArgs } from "@stdx/cli/parse-args";
  * import { assertEquals, assertThrows } from "@std/assert";
  *
  * const options = { string: ["name"], boolean: ["verbose"], required: ["name"] };

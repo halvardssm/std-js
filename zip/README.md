@@ -1,4 +1,4 @@
-# @stdext/zip
+# @stdx/zip
 
 The zip package contains helpers for creating and extracting zip archives, with
 no dependencies other than the Deno runtime.
@@ -11,7 +11,7 @@ two, which covers practically all archives in use. Encryption and ZIP64 (more
 than 65535 entries, or sizes above 4 GiB) are not supported, and throw.
 
 ```ts
-import { unzip, zip } from "@stdext/zip";
+import { unzip, zip } from "@stdx/zip";
 
 const archive = await zip([
   { path: "hello.txt", data: "Hello, world!" },

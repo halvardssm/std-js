@@ -3,12 +3,12 @@
  *
  * The hashes are PHC strings (`$argon2id$v=19$m=19456,t=2,p=1$...`) that embed the options and salt, so
  * {@linkcode verify} reads them from the hash. Prefer the
- * algorithm-agnostic versions in `@stdext/crypto/hash` unless you need
+ * algorithm-agnostic versions in `@stdx/crypto/hash` unless you need
  * argon2-specific options.
  *
  * @example
  * ```ts
- * import { hash, verify } from "@stdext/crypto/hash/argon2";
+ * import { hash, verify } from "@stdx/crypto/hash/argon2";
  * import { assert } from "@std/assert";
  *
  * const h = hash("password", { algorithm: "argon2i", memoryCost: 8192, timeCost: 1 });
@@ -39,7 +39,7 @@ export type { Argon2Algorithm, Argon2Options };
  *
  * @example
  * ```ts
- * import { hash } from "@stdext/crypto/hash/argon2";
+ * import { hash } from "@stdx/crypto/hash/argon2";
  *
  * const h = hash("password", { algorithm: "argon2i", memoryCost: 8192, timeCost: 1 });
  * ```
@@ -62,7 +62,7 @@ export function hash(data: string, options: Argon2Options = {}): string {
  *
  * @example
  * ```ts
- * import { hash, verify } from "@stdext/crypto/hash/argon2";
+ * import { hash, verify } from "@stdx/crypto/hash/argon2";
  * import { assert, assertFalse } from "@std/assert";
  *
  * const h = hash("password", { algorithm: "argon2i", memoryCost: 8192, timeCost: 1 });

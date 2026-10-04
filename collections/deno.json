@@ -1,6 +1,6 @@
 {
   "version": "0.1.0",
-  "name": "@stdext/collections",
+  "name": "@stdx/collections",
   "exports": {
     ".": "./mod.ts",
     "./deferred-stack": "./deferred_stack.ts"

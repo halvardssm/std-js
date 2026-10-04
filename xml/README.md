@@ -1,4 +1,4 @@
-# @stdext/xml
+# @stdx/xml
 
 Extends [@std/xml](https://jsr.io/@std/xml)
 
@@ -18,7 +18,7 @@ and throws `@std/xml`'s `XmlSyntaxError` for malformed input. `XML.safeParse`
 never throws — every problem is an issue.
 
 ```ts
-import { XML } from "@stdext/xml";
+import { XML } from "@stdx/xml";
 
 const doc = XML.parse(`<root id="1"><child>hello</child></root>`);
 
@@ -43,7 +43,7 @@ Parser options are `@std/xml`'s `ParseOptions` (`ignoreWhitespace`,
 `ignoreComments`, `ignoreDeclaration`):
 
 ```ts
-import { XML } from "@stdext/xml";
+import { XML } from "@stdx/xml";
 
 const doc = XML.parse(`<root><!-- c -->\n  <x/>\n</root>`, {
   ignoreComments: true,
@@ -58,8 +58,8 @@ built programmatically instead of parsed. The node types (`XmlElement`,
 `XmlTextNode`, `XmlCommentNode`, `XmlCDataNode`) are `@std/xml`'s:
 
 ```ts
-import { XML } from "@stdext/xml";
-import type { XmlElement, XmlTextNode } from "@stdext/xml";
+import { XML } from "@stdx/xml";
+import type { XmlElement, XmlTextNode } from "@stdx/xml";
 
 const child: XmlElement = {
   type: "element",
@@ -91,7 +91,7 @@ many documents. Release it deterministically with `using`, or let garbage
 collection do it.
 
 ```ts
-import { XMLValidator } from "@stdext/xml";
+import { XMLValidator } from "@stdx/xml";
 
 using validator = new XMLValidator(`<xs:schema
   xmlns:xs="http://www.w3.org/2001/XMLSchema">
@@ -106,7 +106,7 @@ validator.validate("<age>-5</age>"); // { issues: [...] }
 const tree = validator.parse("<age>25</age>");
 
 // Documents accept a validator directly
-import { XML } from "@stdext/xml";
+import { XML } from "@stdx/xml";
 XML.parse("<age>25</age>").validate(validator); // { value: ... }
 ```
 
@@ -118,7 +118,7 @@ input; issues carry `path` (element names + sibling indices) and std-style
 `line`/`column` when a position is known.
 
 ```ts
-import { xml } from "@stdext/xml";
+import { xml } from "@stdx/xml";
 
 const schema = xml(`<xs:schema
   xmlns:xs="http://www.w3.org/2001/XMLSchema">

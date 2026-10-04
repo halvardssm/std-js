@@ -1,6 +1,6 @@
 {
   "version": "0.2.0",
-  "name": "@stdext/crypto",
+  "name": "@stdx/crypto",
   "exports": {
     "./hash": "./hash.ts",
     "./hash/argon2": "./hash/argon2.ts",

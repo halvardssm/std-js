@@ -1,5 +1,5 @@
 /**
- * The `@stdext/types` package.
+ * The `@stdx/types` package.
  *
  * Utility types missing from TypeScript's built-ins: property modifiers
  * (`PartialBy`, `RequiredBy`, ...), map flips, value extraction and a
@@ -7,7 +7,7 @@
  *
  * @example
  * ```ts
- * import type { PartialBy, ValueOf } from "@stdext/types";
+ * import type { PartialBy, ValueOf } from "@stdx/types";
  *
  * type Person = { name: string; age: number };
  * type PersonDraft = PartialBy<Person, "age">; // { name: string; age?: number }
@@ -24,7 +24,7 @@
  *
  * @example
  * ```ts
- * import type { FlipMap } from "@stdext/types";
+ * import type { FlipMap } from "@stdx/types";
  *
  * type Ages = { alice: 30, bob: 40 };
  * type Names = FlipMap<Ages>; // { 30: "alice", 40: "bob" }
@@ -43,7 +43,7 @@ export type FlipMap<T extends Record<keyof T, keyof any>> = {
  *
  * @example
  * ```ts
- * import type { PartialBy } from "@stdext/types";
+ * import type { PartialBy } from "@stdx/types";
  *
  * type A = { a: string; b: string };
  * type B = PartialBy<A, "b">; // { a: string; b?: string }
@@ -58,7 +58,7 @@ export type PartialBy<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
  *
  * @example
  * ```ts
- * import type { RequiredBy } from "@stdext/types";
+ * import type { RequiredBy } from "@stdx/types";
  *
  * type A = { a?: string; b?: string };
  * type B = RequiredBy<A, "b">; // { a?: string; b: string }
@@ -75,7 +75,7 @@ export type RequiredBy<T, K extends keyof T> =
  *
  * @example
  * ```ts
- * import type { RequiredPartialBy } from "@stdext/types";
+ * import type { RequiredPartialBy } from "@stdx/types";
  *
  * type A = { a: string; b?: string; c?: string };
  * type B = RequiredPartialBy<A, "b">; // { a?: string; b: string; c?: string }
@@ -95,7 +95,7 @@ export type RequiredPartialBy<T, K extends keyof T> =
  *
  * @example
  * ```ts
- * import type { ReadonlyBy } from "@stdext/types";
+ * import type { ReadonlyBy } from "@stdx/types";
  *
  * type A = { a: string; b: string };
  * type B = ReadonlyBy<A, "a">; // { readonly a: string; b: string }
@@ -112,7 +112,7 @@ export type ReadonlyBy<T, K extends keyof T> =
  *
  * @example
  * ```ts
- * import type { Writeable } from "@stdext/types";
+ * import type { Writeable } from "@stdx/types";
  *
  * type A = { readonly a: string };
  * type B = Writeable<A>; // { a: string }
@@ -128,7 +128,7 @@ export type Writeable<T> = { -readonly [P in keyof T]: T[P] };
  *
  * @example
  * ```ts
- * import type { WriteableBy } from "@stdext/types";
+ * import type { WriteableBy } from "@stdx/types";
  *
  * type A = { readonly a: string; readonly b: string };
  * type B = WriteableBy<A, "a">; // { a: string; readonly b: string }
@@ -146,7 +146,7 @@ export type WriteableBy<T, K extends keyof T> =
  *
  * @example With a type
  * ```ts
- * import type { ValueOf } from "@stdext/types";
+ * import type { ValueOf } from "@stdx/types";
  *
  * type A = { a: "hello"; b: "world" };
  * type B = ValueOf<A>; // "hello" | "world"
@@ -156,7 +156,7 @@ export type WriteableBy<T, K extends keyof T> =
  *
  * @example With a const object
  * ```ts
- * import type { ValueOf } from "@stdext/types";
+ * import type { ValueOf } from "@stdx/types";
  *
  * const a = { a: "hello", b: "world" } as const;
  * type B = ValueOf<typeof a>; // "hello" | "world"
@@ -175,7 +175,7 @@ export type ValueOf<T> = T[keyof T];
  *
  * @example As a parameter
  * ```ts
- * import type { AnyConstructor } from "@stdext/types";
+ * import type { AnyConstructor } from "@stdx/types";
  *
  * class Foo {}
  *
@@ -188,7 +188,7 @@ export type ValueOf<T> = T[keyof T];
  *
  * @example For other types
  * ```ts
- * import type { AnyConstructor } from "@stdext/types";
+ * import type { AnyConstructor } from "@stdx/types";
  *
  * class Foo {
  *   constructor(_name: string) {}

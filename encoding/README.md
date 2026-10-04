@@ -1,4 +1,4 @@
-# @stdext/encoding
+# @stdx/encoding
 
 Extends [@std/encoding](https://jsr.io/@std/encoding)
 
@@ -13,7 +13,7 @@ messages of network protocols: signed and unsigned integers, big integers and
 floats in big or little endian byte order, raw bytes and UTF-8 strings.
 
 ```ts
-import { BinaryReader, BinaryWriter } from "@stdext/encoding/binary";
+import { BinaryReader, BinaryWriter } from "@stdx/encoding/binary";
 
 const writer = new BinaryWriter({ endian: "big" });
 writer.uint8(1).int32(-2).cstring("hello").float64(1.5, "little");

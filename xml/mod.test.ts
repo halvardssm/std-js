@@ -9,7 +9,7 @@ import { XML, xml, XMLValidator } from "./mod.ts";
 import type { ParseOptions, StringifyOptions, XmlDocument } from "@std/xml";
 import { getDotPath, SchemaError } from "@standard-schema/utils";
 import type { StandardSchemaV1 } from "@standard-schema/spec";
-import { validate as v } from "@stdext/validation";
+import { validate as v } from "@stdx/validation";
 
 // ---------------------------------------------------------------------------
 // Helpers (thin class-API adapters, so the fixtures below stay declarative)
@@ -497,7 +497,7 @@ Deno.test("validator > invalid schema throws on construction", () => {
 Deno.test("standard > xml() returns a v1 entity", () => {
   const schema = xml(AGE_XSD);
   assertEquals(schema["~standard"].version, 1);
-  assertEquals(schema["~standard"].vendor, "@stdext/xml");
+  assertEquals(schema["~standard"].vendor, "@stdx/xml");
   assert(typeof schema["~standard"].validate === "function");
 });
 

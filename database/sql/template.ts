@@ -11,8 +11,8 @@ import { QueryError } from "./errors.ts";
  *
  * @example
  * ```ts
- * import { sql } from "@stdext/database/sql";
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
+ * import { sql } from "@stdx/database/sql";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
  *
  * await using client = new SqliteClient(":memory:");
  * await client.execute(sql`CREATE TABLE users (id INTEGER, name TEXT)`);
@@ -37,7 +37,7 @@ export function sql(
  *
  * @example
  * ```ts
- * import { isSqlTemplate, sql } from "@stdext/database/sql";
+ * import { isSqlTemplate, sql } from "@stdx/database/sql";
  * import { assert, assertFalse } from "@std/assert";
  *
  * assert(isSqlTemplate(sql`SELECT 1`));
@@ -66,7 +66,7 @@ export function isSqlTemplate(value: unknown): value is SqlTemplate {
  *
  * @example
  * ```ts
- * import { renderStatement, sql } from "@stdext/database/sql";
+ * import { renderStatement, sql } from "@stdx/database/sql";
  * import { assertEquals } from "@std/assert";
  *
  * const id = 1;

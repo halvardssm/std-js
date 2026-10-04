@@ -815,17 +815,17 @@ Deno.test("runCommand helpOnEmpty", async (t) => {
 Deno.test("runCommand reads the environment", async (t) => {
   const command = defineCommand({
     name: "x",
-    options: { v: { type: "string", env: "STDEXT_CLI_TEST_VAR" } },
+    options: { v: { type: "string", env: "STDX_CLI_TEST_VAR" } },
     run: ({ flags, stdout }) => stdout(String(flags.v)),
   });
 
   await t.step("from the process", async () => {
     const out: string[] = [];
-    Deno.env.set("STDEXT_CLI_TEST_VAR", "from-process");
+    Deno.env.set("STDX_CLI_TEST_VAR", "from-process");
     try {
       await runCommand(command, [], { stdout: (line) => out.push(line) });
     } finally {
-      Deno.env.delete("STDEXT_CLI_TEST_VAR");
+      Deno.env.delete("STDX_CLI_TEST_VAR");
     }
     assertEquals(out, ["from-process"]);
   });
@@ -837,7 +837,7 @@ Deno.test("runCommand reads the environment", async (t) => {
     }";
       const command = defineCommand({
         name: "x",
-        options: { v: { type: "string", env: "STDEXT_CLI_TEST_VAR" } },
+        options: { v: { type: "string", env: "STDX_CLI_TEST_VAR" } },
         run: ({ flags, stdout }) => stdout(String(flags.v)),
       });
       Deno.exit(await runCommand(command, []));

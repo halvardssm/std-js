@@ -15,7 +15,7 @@ import type { ClientEventTarget, Eventable } from "./events.ts";
  *
  * @example
  * ```ts
- * import type { ParameterType } from "@stdext/database/sql";
+ * import type { ParameterType } from "@stdx/database/sql";
  *
  * // The types that JavaScript runtimes bind natively.
  * const values: ParameterType[] = [
@@ -50,7 +50,7 @@ export type ParameterType =
  *
  * @example
  * ```ts
- * import type { QueryParameters } from "@stdext/database/sql";
+ * import type { QueryParameters } from "@stdx/database/sql";
  *
  * // Positional parameters, for databases with `?` or `$1` placeholders.
  * const positional: QueryParameters = ["Alice", 1];
@@ -70,7 +70,7 @@ export type QueryParameters =
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
  *
  * await using client = new SqliteClient(":memory:");
  * await client.execute("CREATE TABLE users (id INTEGER PRIMARY KEY)");
@@ -107,7 +107,7 @@ export interface ExecuteResult {
  *
  * @example
  * ```ts
- * import { sql } from "@stdext/database/sql";
+ * import { sql } from "@stdx/database/sql";
  * import { assertEquals } from "@std/assert";
  *
  * const id = 1;
@@ -136,8 +136,8 @@ export interface SqlTemplate {
  *
  * @example
  * ```ts
- * import { sql } from "@stdext/database/sql";
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
+ * import { sql } from "@stdx/database/sql";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
  *
  * await using client = new SqliteClient(":memory:");
  * await client.execute("CREATE TABLE users (id INTEGER, name TEXT)");
@@ -158,8 +158,8 @@ export type Statement = string | SqlTemplate;
  *
  * @example
  * ```ts
- * import type { ConnectionOptions } from "@stdext/database/sql";
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
+ * import type { ConnectionOptions } from "@stdx/database/sql";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
  *
  * // The standard option, and a driver specific one.
  * const options: ConnectionOptions = {
@@ -187,7 +187,7 @@ export interface ConnectionOptions {
  *
  * @example
  * ```ts
- * import { SqliteDriver } from "@stdext/database/drivers/sqlite";
+ * import { SqliteDriver } from "@stdx/database/drivers/sqlite";
  *
  * const driver = new SqliteDriver();
  * await using connection = await driver.connect(":memory:");
@@ -216,7 +216,7 @@ export interface DriverQueryOptions {
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
  *
  * await using client = new SqliteClient(":memory:", {
  *   // Merged into every query of the client.
@@ -258,7 +258,7 @@ export interface QueryOptions extends DriverQueryOptions {
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
  *
  * await using client = new SqliteClient(":memory:");
  * // SqliteTransactionOptions, extended by the driver:
@@ -277,7 +277,7 @@ export interface TransactionOptions {
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
  *
  * // A pool of four connections that closes connections after a minute idle.
  * await using client = new SqliteClient(":memory:", {
@@ -328,8 +328,8 @@ export interface PoolOptions {
  *
  * @example
  * ```ts
- * import type { ClientOptions } from "@stdext/database/sql";
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
+ * import type { ClientOptions } from "@stdx/database/sql";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
  *
  * const options: ClientOptions = {
  *   connectionOptions: { connectTimeout: 5000 },
@@ -378,8 +378,8 @@ export interface ClientOptions<
  *
  * @example
  * ```ts
- * import type { Dialect } from "@stdext/database/sql";
- * import { SqliteDriver } from "@stdext/database/drivers/sqlite";
+ * import type { Dialect } from "@stdx/database/sql";
+ * import { SqliteDriver } from "@stdx/database/drivers/sqlite";
  *
  * // A driver for a database with `?` placeholders.
  * const dialect: Dialect = new SqliteDriver().dialect;
@@ -415,8 +415,8 @@ export interface Dialect {
  *
  * @example
  * ```ts
- * import { SqliteDriver } from "@stdext/database/drivers/sqlite";
- * import { assertIsDriver } from "@stdext/database/sql";
+ * import { SqliteDriver } from "@stdx/database/drivers/sqlite";
+ * import { assertIsDriver } from "@stdx/database/sql";
  *
  * const driver = new SqliteDriver();
  * assertIsDriver(driver);
@@ -463,8 +463,8 @@ export interface Driver<
  *
  * @example
  * ```ts
- * import { SqliteDriver } from "@stdext/database/drivers/sqlite";
- * import { assertIsDriverConnection } from "@stdext/database/sql";
+ * import { SqliteDriver } from "@stdx/database/drivers/sqlite";
+ * import { assertIsDriverConnection } from "@stdx/database/sql";
  *
  * const driver = new SqliteDriver();
  * await using connection = await driver.connect(":memory:");
@@ -535,7 +535,7 @@ export interface DriverConnection<
  *
  * @example
  * ```ts
- * import { SqliteDriver } from "@stdext/database/drivers/sqlite";
+ * import { SqliteDriver } from "@stdx/database/drivers/sqlite";
  *
  * const driver = new SqliteDriver();
  * await using connection = await driver.connect(":memory:");
@@ -561,7 +561,7 @@ export interface DriverRows extends AsyncIterable<unknown[]>, AsyncDisposable {
  *
  * @example
  * ```ts
- * import { SqliteDriver } from "@stdext/database/drivers/sqlite";
+ * import { SqliteDriver } from "@stdx/database/drivers/sqlite";
  *
  * const driver = new SqliteDriver();
  * await using connection = await driver.connect(":memory:");
@@ -605,7 +605,7 @@ export interface DriverStatement extends AsyncDisposable {
  *
  * @example
  * ```ts
- * import { SqliteDriver } from "@stdext/database/drivers/sqlite";
+ * import { SqliteDriver } from "@stdx/database/drivers/sqlite";
  *
  * const driver = new SqliteDriver();
  * await using connection = await driver.connect(":memory:");
@@ -645,7 +645,7 @@ export interface DriverTransaction extends AsyncDisposable {
  *
  * @example
  * ```ts
- * import { SqliteDriver } from "@stdext/database/drivers/sqlite";
+ * import { SqliteDriver } from "@stdx/database/drivers/sqlite";
  *
  * const driver = new SqliteDriver();
  * await using connection = await driver.connect(":memory:");
@@ -683,7 +683,7 @@ export interface DriverSavepoint extends AsyncDisposable {
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
  *
  * await using client = new SqliteClient(":memory:");
  * await client.execute("CREATE TABLE users (id INTEGER, name TEXT)");
@@ -732,7 +732,7 @@ export interface ResultObject<
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
  *
  * await using client = new SqliteClient(":memory:");
  * await client.execute("CREATE TABLE users (id INTEGER, name TEXT)");
@@ -773,7 +773,7 @@ export interface ResultIterableContext<
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
  *
  * await using client = new SqliteClient(":memory:");
  * console.log(client.connected); // false
@@ -811,7 +811,7 @@ export interface Connectable extends AsyncDisposable {
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
  *
  * await using client = new SqliteClient(":memory:");
  * await client.ping(); // rejects with a ConnectionError when not alive
@@ -833,9 +833,9 @@ export interface Pingable {
  *
  * @example
  * ```ts
- * import type { Dialectable, Queryable } from "@stdext/database/sql";
- * import { sql } from "@stdext/database/sql";
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
+ * import type { Dialectable, Queryable } from "@stdx/database/sql";
+ * import { sql } from "@stdx/database/sql";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
  *
  * // A tool generating dialect specific SQL, such as RETURNING.
  * function returning(db: Queryable & Dialectable, id: number) {
@@ -866,8 +866,8 @@ export interface Dialectable {
  *
  * @example
  * ```ts
- * import type { Queryable } from "@stdext/database/sql";
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
+ * import type { Queryable } from "@stdx/database/sql";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
  *
  * // A migration tool only depends on the Queryable capability, so that it
  * // works with any implementation.
@@ -929,8 +929,8 @@ export interface Queryable {
  *
  * @example
  * ```ts
- * import type { Preparable, PreparedStatement } from "@stdext/database/sql";
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
+ * import type { Preparable, PreparedStatement } from "@stdx/database/sql";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
  *
  * // A tool depending on the Preparable capability only.
  * async function countBy(db: Preparable, table: string): Promise<number> {
@@ -953,7 +953,7 @@ export interface Preparable {
    *
    * @example
    * ```ts
-   * import { SqliteClient } from "@stdext/database/drivers/sqlite";
+   * import { SqliteClient } from "@stdx/database/drivers/sqlite";
    *
    * await using client = new SqliteClient(":memory:");
    * await client.execute("CREATE TABLE users (id INTEGER, name TEXT)");
@@ -972,7 +972,7 @@ export interface Preparable {
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
  *
  * await using client = new SqliteClient(":memory:");
  * await client.execute("CREATE TABLE users (id INTEGER, name TEXT)");
@@ -1019,8 +1019,8 @@ export interface PreparedStatement extends AsyncDisposable {
  *
  * @example
  * ```ts
- * import type { Transactionable } from "@stdext/database/sql";
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
+ * import type { Transactionable } from "@stdx/database/sql";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
  *
  * // A tool depending on the Transactionable capability only: the callback
  * // commits on success, and rolls back and rethrows on errors.
@@ -1047,7 +1047,7 @@ export interface Transactionable {
    *
    * @example
    * ```ts
-   * import { SqliteClient } from "@stdext/database/drivers/sqlite";
+   * import { SqliteClient } from "@stdx/database/drivers/sqlite";
    *
    * await using client = new SqliteClient(":memory:");
    * await client.execute("CREATE TABLE users (id INTEGER, name TEXT)");
@@ -1072,7 +1072,7 @@ export interface Transactionable {
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
  *
  * await using client = new SqliteClient(":memory:");
  * await client.execute("CREATE TABLE users (id INTEGER, name TEXT)");
@@ -1122,7 +1122,7 @@ export interface Transaction
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
  *
  * await using client = new SqliteClient(":memory:");
  * await client.execute("CREATE TABLE users (id INTEGER)");
@@ -1153,7 +1153,7 @@ export interface Poolable {
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
  *
  * await using client = new SqliteClient(":memory:");
  * await client.execute("CREATE TABLE users (id INTEGER, name TEXT)");
@@ -1208,8 +1208,8 @@ export interface Connection
  *
  * @example
  * ```ts
- * import type { Client } from "@stdext/database/sql";
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
+ * import type { Client } from "@stdx/database/sql";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
  *
  * // Tools can depend on the Client interface, with every implementation.
  * const client: Client = new SqliteClient(":memory:");

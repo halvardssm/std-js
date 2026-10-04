@@ -1,7 +1,7 @@
 import { ensureDir, exists } from "@std/fs";
-import { cacheFile, type CacheFileOptions, denoCacheDir } from "@stdext/fs";
+import { cacheFile, type CacheFileOptions, denoCacheDir } from "@stdx/fs";
 import { dirname, join, resolve } from "@std/path";
-import { unzipDir } from "@stdext/zip/unzip";
+import { unzipDir } from "@stdx/zip/unzip";
 
 /**
  * Options for dlopen function
@@ -58,7 +58,7 @@ export type CacheOptions = CacheFileOptions & {
  *
  * @example
  * ```ts ignore
- * import { dlopen } from "@stdext/ffi/dlopen";
+ * import { dlopen } from "@stdx/ffi/dlopen";
  *
  * const dylib = await dlopen(
  *   {
@@ -198,7 +198,7 @@ export async function getCachePath(path?: string): Promise<string> {
 
   const denoCacheDirPath = await denoCacheDir();
 
-  return join(denoCacheDirPath, "stdext_dlopen_cache");
+  return join(denoCacheDirPath, "stdx_dlopen_cache");
 }
 
 /**

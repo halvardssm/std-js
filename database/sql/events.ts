@@ -1,5 +1,5 @@
 import type { Client } from "./core.ts";
-import { CustomEvent, CustomEventTarget } from "@stdext/event";
+import { CustomEvent, CustomEventTarget } from "@stdx/event";
 import type { DatabaseError } from "./errors.ts";
 
 /**
@@ -13,8 +13,8 @@ import type { DatabaseError } from "./errors.ts";
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
- * import type { ClientEvent, ClientEventType } from "@stdext/database/sql";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
+ * import type { ClientEvent, ClientEventType } from "@stdx/database/sql";
  *
  * await using client = new SqliteClient(":memory:");
  * client.eventTarget.addEventListener(
@@ -44,8 +44,8 @@ export type ClientEventType =
  *
  * @example
  * ```ts
- * import type { EventDetail } from "@stdext/database/sql";
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
+ * import type { EventDetail } from "@stdx/database/sql";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
  *
  * await using client = new SqliteClient(":memory:");
  * // Every event carries the client that dispatched it.
@@ -70,9 +70,9 @@ export interface EventDetail<IClient = Client> {
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
- * import { QueryError } from "@stdext/database/sql";
- * import type { ClientEvent, ErrorEventDetail } from "@stdext/database/sql";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
+ * import { QueryError } from "@stdx/database/sql";
+ * import type { ClientEvent, ErrorEventDetail } from "@stdx/database/sql";
  *
  * await using client = new SqliteClient(":memory:");
  * client.eventTarget.addEventListener("error", (event) => {
@@ -96,8 +96,8 @@ export interface ErrorEventDetail<IClient = Client>
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
- * import { ClientEvent } from "@stdext/database/sql";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
+ * import { ClientEvent } from "@stdx/database/sql";
  *
  * const events: ClientEvent[] = [];
  * await using client = new SqliteClient(":memory:");
@@ -119,7 +119,7 @@ export class ClientEvent<
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
  *
  * await using client = new SqliteClient(":memory:");
  * let connects = 0;
@@ -141,8 +141,8 @@ export class ClientEventTarget<
  *
  * @example
  * ```ts
- * import type { Eventable } from "@stdext/database/sql";
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
+ * import type { Eventable } from "@stdx/database/sql";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
  *
  * // Tools can depend on the events without depending on a client class.
  * function logEvents(db: Eventable): void {

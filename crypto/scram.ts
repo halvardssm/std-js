@@ -7,7 +7,7 @@
  *
  * @example
  * ```ts
- * import { ScramClient } from "@stdext/crypto/scram";
+ * import { ScramClient } from "@stdx/crypto/scram";
  *
  * const scram = new ScramClient({ hash: "SHA-256", user: "user", password: "pencil" });
  * // 1. Send `scram.mechanism` and `scram.clientFirst()` to the server
@@ -99,7 +99,7 @@ function escapeName(name: string): string {
  *
  * @example RFC 7677 test vector
  * ```ts
- * import { ScramClient } from "@stdext/crypto/scram";
+ * import { ScramClient } from "@stdx/crypto/scram";
  * import { assertEquals } from "@std/assert";
  *
  * const scram = new ScramClient({

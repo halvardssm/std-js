@@ -148,7 +148,7 @@ export type AnyCommand = Command<any, any>;
  *
  * @example
  * ```ts
- * import { defineCommand } from "@stdext/cli/command";
+ * import { defineCommand } from "@stdx/cli/command";
  * import { assertEquals } from "@std/assert";
  *
  * const serve = defineCommand({
@@ -249,7 +249,7 @@ function versions(path: ReadonlyArray<AnyCommand>): string[] {
  *
  * @example
  * ```ts
- * import { defineCommand, renderHelp } from "@stdext/cli/command";
+ * import { defineCommand, renderHelp } from "@stdx/cli/command";
  * import { assert } from "@std/assert";
  *
  * const cli = defineCommand({ name: "tool", description: "Does things" });
@@ -376,7 +376,7 @@ const FALSE = ["0", "false", "no", "off"];
  *
  * @example
  * ```ts
- * import { defineCommand, runCommand } from "@stdext/cli/command";
+ * import { defineCommand, runCommand } from "@stdx/cli/command";
  * import { assertEquals } from "@std/assert";
  *
  * const cli = defineCommand({
