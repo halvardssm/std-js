@@ -1,11 +1,11 @@
-# @stdext/lexer
+# @stdx/lexer
 
 The lexer package contains general purpose lexers/tokenizers.
 
 ## Example
 
 ```ts
-import { StringTokenizer } from "@stdext/lexer";
+import { StringTokenizer } from "@stdx/lexer";
 
 const t = new StringTokenizer({
   data: "ab1",

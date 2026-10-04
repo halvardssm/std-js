@@ -13,7 +13,7 @@ import { isObject } from "./is_object.ts";
  *
  * @example
  * ```ts
- * import { isRecord } from "@stdext/assert";
+ * import { isRecord } from "@stdx/assert";
  * import { assert, assertFalse } from "@std/assert";
  *
  * assert(isRecord({}));
@@ -49,7 +49,7 @@ export function isRecord(value: unknown): value is Record<string, unknown> {
  *
  * @example
  * ```ts
- * import { assertIsRecord } from "@stdext/assert";
+ * import { assertIsRecord } from "@stdx/assert";
  * import { assertThrows } from "@std/assert";
  *
  * assertIsRecord({ key: "value" });

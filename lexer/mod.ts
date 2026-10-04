@@ -1,11 +1,11 @@
 /**
- * The `@stdext/lexer` package.
+ * The `@stdx/lexer` package.
  *
  * Lexing utilities: a general purpose {@linkcode StringTokenizer}.
  *
  * @example
  * ```ts
- * import { StringTokenizer } from "@stdext/lexer";
+ * import { StringTokenizer } from "@stdx/lexer";
  * import { assertEquals } from "@std/assert";
  *
  * const t = new StringTokenizer({

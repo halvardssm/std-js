@@ -3,7 +3,7 @@
  *
  * @module
  */
-import { DeferredStack, type DeferredStackElement } from "@stdext/collections";
+import { DeferredStack, type DeferredStackElement } from "@stdx/collections";
 import type {
   Client,
   ClientOptions,
@@ -246,7 +246,7 @@ interface PreparedStatementCalls {
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
  *
  * await using client = new SqliteClient(":memory:");
  * await client.execute("CREATE TABLE users (id INTEGER, name TEXT)");
@@ -349,7 +349,7 @@ interface TransactionContext {
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
  *
  * await using client = new SqliteClient(":memory:");
  * await client.execute("CREATE TABLE users (id INTEGER, name TEXT)");
@@ -543,7 +543,7 @@ export class SqlTransaction implements Transaction {
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
  *
  * await using client = new SqliteClient(":memory:");
  * await client.execute("CREATE TABLE users (id INTEGER, name TEXT)");
@@ -924,8 +924,8 @@ export class SqlConnection implements Connection {
  *
  * @example
  * ```ts
- * import { SqlClient } from "@stdext/database/sql";
- * import { SqliteDriver } from "@stdext/database/drivers/sqlite";
+ * import { SqlClient } from "@stdx/database/sql";
+ * import { SqliteDriver } from "@stdx/database/drivers/sqlite";
  *
  * await using client = new SqlClient(new SqliteDriver(), ":memory:");
  * await client.execute("CREATE TABLE users (id INTEGER, name TEXT)");

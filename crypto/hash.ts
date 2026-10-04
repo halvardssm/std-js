@@ -12,7 +12,7 @@
  * created with.
  *
  * ```ts
- * import { hash, verify } from "@stdext/crypto/hash";
+ * import { hash, verify } from "@stdx/crypto/hash";
  * import { assert } from "@std/assert";
  *
  * // By name, using default options:
@@ -84,7 +84,7 @@ function getAlgorithm(algorithm: AlgorithmIdentifier): Algorithm {
  *
  * @example
  * ```ts
- * import { hash } from "@stdext/crypto/hash";
+ * import { hash } from "@stdx/crypto/hash";
  * import { assertMatch } from "@std/assert";
  *
  * // Argon2 with default options:
@@ -126,7 +126,7 @@ export function hash(algorithm: AlgorithmIdentifier, data: string): string {
  *
  * @example
  * ```ts
- * import { hash, verify } from "@stdext/crypto/hash";
+ * import { hash, verify } from "@stdx/crypto/hash";
  * import { assert, assertFalse } from "@std/assert";
  *
  * const h = hash("bcrypt", "password");

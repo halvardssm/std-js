@@ -5,7 +5,7 @@
  *
  * @example
  * ```ts
- * import { BinaryReader, BinaryWriter } from "@stdext/encoding/binary";
+ * import { BinaryReader, BinaryWriter } from "@stdx/encoding/binary";
  * import { assertEquals } from "@std/assert";
  *
  * const writer = new BinaryWriter();
@@ -63,7 +63,7 @@ const decoder = new TextDecoder();
  *
  * @example Writing a length prefixed message
  * ```ts
- * import { BinaryWriter } from "@stdext/encoding/binary";
+ * import { BinaryWriter } from "@stdx/encoding/binary";
  * import { assertEquals } from "@std/assert";
  *
  * const writer = new BinaryWriter();
@@ -252,7 +252,7 @@ export class BinaryWriter {
  *
  * @example
  * ```ts
- * import { BinaryReader } from "@stdext/encoding/binary";
+ * import { BinaryReader } from "@stdx/encoding/binary";
  * import { assertEquals } from "@std/assert";
  *
  * const reader = new BinaryReader(new Uint8Array([0, 1, 2, 0, 104, 105, 0]));

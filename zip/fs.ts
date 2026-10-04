@@ -25,7 +25,7 @@ const PERMISSION_MASK = 0o777;
  *
  * @example
  * ```ts ignore
- * import { zipDir } from "@stdext/zip/fs";
+ * import { zipDir } from "@stdx/zip/fs";
  *
  * await zipDir("./dist", "./dist.zip");
  * ```
@@ -74,7 +74,7 @@ export async function zipDir(
  *
  * @example
  * ```ts ignore
- * import { unzipDir } from "@stdext/zip/fs";
+ * import { unzipDir } from "@stdx/zip/fs";
  *
  * await unzipDir("./dist.zip", "./dist");
  * ```

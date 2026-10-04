@@ -1,6 +1,6 @@
 // _wasm/xml_xml/src/lib.rs
 //
-// @stdext/xml — wasm bindings for the `uppsala` crate, producing trees that
+// @stdx/xml — wasm bindings for the `uppsala` crate, producing trees that
 // are drop-in compatible with @std/xml (https://jsr.io/@std/xml).
 //
 // Values cross the wasm boundary as plain JS values (serde-wasm-bindgen):

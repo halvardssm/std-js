@@ -41,7 +41,7 @@ export type CacheFileOptions = {
  *
  * @example
  * ```ts ignore
- * import { cacheFile } from "@stdext/fs/cache";
+ * import { cacheFile } from "@stdx/fs/cache";
  *
  * // Downloads the file on the first call, and reuses it afterwards.
  * const readme = await cacheFile(

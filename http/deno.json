@@ -1,6 +1,6 @@
 {
   "version": "0.1.0",
-  "name": "@stdext/http",
+  "name": "@stdx/http",
   "exports": {
     "./header": "./header.ts",
     "./method": "./method.ts"

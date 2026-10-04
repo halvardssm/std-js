@@ -67,7 +67,7 @@ function toDosDateTime(date: Date): { time: number; date: number } {
  *
  * @example
  * ```ts
- * import { zip } from "@stdext/zip/zip";
+ * import { zip } from "@stdx/zip/zip";
  * import { assertEquals } from "@std/assert";
  *
  * const archive = await zip([
@@ -185,7 +185,7 @@ export async function zip(entries: Iterable<ZipEntry>): Promise<Uint8Array> {
  *
  * @example
  * ```ts ignore
- * import { zipDir } from "@stdext/zip/zip";
+ * import { zipDir } from "@stdx/zip/zip";
  *
  * await zipDir("./dist", "./dist.zip");
  * ```

@@ -1,6 +1,6 @@
-# Deno Standard Library Extended
+# Deno Standard Library Extended (stdx)
 
-[![JSR @stdext](https://jsr.io/badges/@stdext)](https://jsr.io/@stdext)
+[![JSR @stdx](https://jsr.io/badges/@stdx)](https://jsr.io/@stdx)
 [![codecov](https://codecov.io/gh/halvardssm/std-js/graph/badge.svg?token=T1JEMGF8VW)](https://codecov.io/gh/halvardssm/std-js)
 [![ci](https://github.com/halvardssm/std-js/actions/workflows/ci.yml/badge.svg)](https://github.com/halvardssm/std-js/actions/workflows/ci.yml)
 
@@ -16,13 +16,13 @@ which are provided in the standard library of other languages.
 Add the JSR package.
 
 ```
-deno add @stdext/[package]
+deno add @stdx/[package]
 ```
 
 Example:
 
 ```
-deno add @stdext/encoding
+deno add @stdx/encoding
 ```
 
 ## Usage
@@ -30,7 +30,7 @@ deno add @stdext/encoding
 Import the module or sub-module.
 
 ```ts
-import { dump } from "@stdext/encoding/hex";
+import { dump } from "@stdx/encoding/hex";
 
 const buffer = new TextEncoder().encode(
   "The quick brown fox jumps over the lazy dog.",
@@ -43,40 +43,40 @@ console.log(dump(buffer));
 
 ## Packages
 
-- [assert](https://jsr.io/@stdext/assert): The assert package, contains
-  validators and assertions
-- [cli](https://jsr.io/@stdext/cli): The cli package contains a command
-  framework and helpers for building command line applications
-- [collections](https://jsr.io/@stdext/collections): The collections package
+- [assert](https://jsr.io/@stdx/assert): The assert package, contains validators
+  and assertions
+- [cli](https://jsr.io/@stdx/cli): The cli package contains a command framework
+  and helpers for building command line applications
+- [collections](https://jsr.io/@stdx/collections): The collections package
   contains commonly used utilities and structures
-- [crypto](https://jsr.io/@stdext/crypto): The crypto package contains utility
-  for crypto, hashing, HMAC and SCRAM authentication
-- [database](https://jsr.io/@stdext/database): The database package contains
+- [crypto](https://jsr.io/@stdx/crypto): The crypto package contains utility for
+  crypto, hashing, HMAC and SCRAM authentication
+- [database](https://jsr.io/@stdx/database): The database package contains
   interfaces and helpers for interacting with databases, and SQLite and Postgres
   drivers
-- [encoding](https://jsr.io/@stdext/encoding): The encoding package contains
+- [encoding](https://jsr.io/@stdx/encoding): The encoding package contains
   utility for text and binary encoding.
-- [event](https://jsr.io/@stdext/event): The event package contains extensions
-  for events
-- [ffi](https://jsr.io/@stdext/ffi): The FFI package contains helpers when using
+- [event](https://jsr.io/@stdx/event): The event package contains extensions for
+  events
+- [ffi](https://jsr.io/@stdx/ffi): The FFI package contains helpers when using
   FFI
-- [fs](https://jsr.io/@stdext/fs): The fs package contains helpers for the file
+- [fs](https://jsr.io/@stdx/fs): The fs package contains helpers for the file
   system
-- [http](https://jsr.io/@stdext/http): The http package contains utility for
+- [http](https://jsr.io/@stdx/http): The http package contains utility for
   fetching and http servers
-- [json](https://jsr.io/@stdext/json): The json package, contains helpers for
-  json parsing, querying (jsonpath) and processing
-- [lexer](https://jsr.io/@stdext/lexer): The lexer package contains general
+- [json](https://jsr.io/@stdx/json): The json package, contains helpers for json
+  parsing, querying (jsonpath) and processing
+- [lexer](https://jsr.io/@stdx/lexer): The lexer package contains general
   purpose lexers/tokenizers
-- [types](https://jsr.io/@stdext/types): The types package, contains general
+- [types](https://jsr.io/@stdx/types): The types package, contains general
   purpose type helpers
-- [validation](https://jsr.io/@stdext/validation): The validation package,
-  builds schemas that implement both Standard Schema and Standard JSON Schema,
-  with fully inferred types
-- [xml](https://jsr.io/@stdext/xml): The xml package provides XML parsing,
+- [validation](https://jsr.io/@stdx/validation): The validation package, builds
+  schemas that implement both Standard Schema and Standard JSON Schema, with
+  fully inferred types
+- [xml](https://jsr.io/@stdx/xml): The xml package provides XML parsing,
   serialization, and XSD validation, backed by a WebAssembly implementation
-- [zip](https://jsr.io/@stdext/zip): The zip package contains helpers for
-  creating and extracting zip archives
+- [zip](https://jsr.io/@stdx/zip): The zip package contains helpers for creating
+  and extracting zip archives
 
 ## Platform support
 

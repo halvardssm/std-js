@@ -26,11 +26,11 @@
  *    Standard-Schema-shaped `path` segments (element names + sibling
  *    indices) derived from the validator's line/column positions, plus
  *    std-style `line`/`column` when the message carries a position, so
- *    any Standard Schema consumer can use `@stdext/xml` schemas.
+ *    any Standard Schema consumer can use `@stdx/xml` schemas.
  *
  * @example
  * ```ts
- * import { XML } from "@stdext/xml";
+ * import { XML } from "@stdx/xml";
  * import { assertEquals } from "@std/assert";
  *
  * const doc = XML.parse(`<root><child name="value"/></root>`);
@@ -78,7 +78,7 @@ export type {
 // interfaces are NEVER redeclared here.
 export type { XmlValidationResult } from "./_wasm/xml_xml.mjs";
 
-// Re-export the spec types so consumers of @stdext/xml don't have to
+// Re-export the spec types so consumers of @stdx/xml don't have to
 // depend on @standard-schema/spec to spell the public surface.
 export type { StandardSchemaV1 } from "@standard-schema/spec";
 
@@ -297,7 +297,7 @@ export class XML implements XmlDocument {
  *
  * @example Usage
  * ```ts
- * import { XMLValidator } from "@stdext/xml";
+ * import { XMLValidator } from "@stdx/xml";
  * import { assert, assertThrows } from "@std/assert";
  *
  * using validator = new XMLValidator(`<xs:schema
@@ -420,7 +420,7 @@ export class XMLValidator {
  *
  * @example Usage
  * ```ts
- * import { xml } from "@stdext/xml";
+ * import { xml } from "@stdx/xml";
  * import { assert } from "@std/assert";
  *
  * const schema = xml(`<xs:schema
@@ -449,7 +449,7 @@ export function xml(
   return {
     "~standard": {
       version: 1,
-      vendor: "@stdext/xml",
+      vendor: "@stdx/xml",
       validate: (value: unknown): StandardSchemaV1.Result<XmlDocument> => {
         try {
           if (validator) {

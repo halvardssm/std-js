@@ -12,7 +12,7 @@ import { isNumber } from "./is_number.ts";
  *
  * @example
  * ```ts
- * import { isNumeric } from "@stdext/assert";
+ * import { isNumeric } from "@stdx/assert";
  * import { assert, assertFalse } from "@std/assert";
  *
  * assert(isNumeric(42));
@@ -33,7 +33,7 @@ export function isNumeric(value: unknown): value is number {
  *
  * @example
  * ```ts
- * import { assertIsNumeric } from "@stdext/assert";
+ * import { assertIsNumeric } from "@stdx/assert";
  * import { assertThrows } from "@std/assert";
  *
  * assertIsNumeric(42);

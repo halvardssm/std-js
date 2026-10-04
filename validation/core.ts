@@ -1,5 +1,5 @@
 /**
- * The core of `@stdext/validation`: {@linkcode createSchema}, the factory that
+ * The core of `@stdx/validation`: {@linkcode createSchema}, the factory that
  * builds a schema which is both a
  * {@link https://standardschema.dev | Standard Schema} and a
  * {@link https://standardschema.dev/#json-schema | Standard JSON Schema},
@@ -12,7 +12,7 @@
  *
  * @example
  * ```ts
- * import { createSchema } from "@stdext/validation";
+ * import { createSchema } from "@stdx/validation";
  * import { assertEquals } from "@std/assert";
  *
  * const port = createSchema("port", {
@@ -41,7 +41,7 @@ import type {
   StandardJSONSchemaV1,
   StandardSchemaV1,
 } from "@standard-schema/spec";
-import type { JSONSchema } from "@stdext/json/json-schema/2020-12";
+import type { JSONSchema } from "@stdx/json/json-schema/2020-12";
 import { validateAsync } from "./utils.ts";
 
 /**
@@ -67,7 +67,7 @@ import { validateAsync } from "./utils.ts";
  *
  * @example
  * ```ts
- * import { createSchema } from "@stdext/validation";
+ * import { createSchema } from "@stdx/validation";
  * import { assertEquals } from "@std/assert";
  *
  * const string = createSchema("string", {
@@ -107,7 +107,7 @@ export function createSchema<
     kind,
     "~standard": {
       version: 1,
-      vendor: "@stdext/validation",
+      vendor: "@stdx/validation",
       ...options,
     },
   } as Schema<TInput, InferValidateOutput<TResult>, TKind>;

@@ -65,8 +65,8 @@ function fromDosDateTime(date: number, time: number): Date {
  *
  * @example
  * ```ts
- * import { unzip } from "@stdext/zip/unzip";
- * import { zip } from "@stdext/zip/zip";
+ * import { unzip } from "@stdx/zip/unzip";
+ * import { zip } from "@stdx/zip/zip";
  * import { assertEquals } from "@std/assert";
  *
  * const archive = await zip([{ path: "hello.txt", data: "Hello, world!" }]);
@@ -196,7 +196,7 @@ export async function unzip(archive: Uint8Array): Promise<UnzipEntry[]> {
  *
  * @example
  * ```ts ignore
- * import { unzipDir } from "@stdext/zip/unzip";
+ * import { unzipDir } from "@stdx/zip/unzip";
  *
  * await unzipDir("./dist.zip", "./dist");
  * ```

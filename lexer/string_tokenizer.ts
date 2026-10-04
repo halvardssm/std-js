@@ -1,4 +1,4 @@
-import { isNumeric } from "@stdext/assert";
+import { isNumeric } from "@stdx/assert";
 
 /**
  * A token produced by {@linkcode StringTokenizer.tokenize}.
@@ -109,7 +109,7 @@ export type StringTokenizerOptions<Type = string, Value = string> = {
  *
  * @example
  * ```ts
- * import { StringTokenizer } from "@stdext/lexer/string_tokenizer";
+ * import { StringTokenizer } from "@stdx/lexer/string_tokenizer";
  * import { assertEquals } from "@std/assert";
  *
  * const t = new StringTokenizer({
@@ -140,7 +140,7 @@ export type StringTokenizerOptions<Type = string, Value = string> = {
  *
  * @example With a default handler
  * ```ts
- * import { StringTokenizer } from "@stdext/lexer/string_tokenizer";
+ * import { StringTokenizer } from "@stdx/lexer/string_tokenizer";
  * import { assertEquals } from "@std/assert";
  *
  * const t = new StringTokenizer({

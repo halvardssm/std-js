@@ -1,7 +1,7 @@
 # AGENTS.md
 
 An extension of the [Deno Standard Library](https://github.com/denoland/std),
-published on JSR under the `@stdext` scope.
+published on JSR under the `@stdx` scope.
 
 ## Repository layout
 
@@ -10,8 +10,8 @@ Each top-level directory (except `_tools`, `_wasm`, `coverage`) is one package:
 
 ```
 <package>/
-  deno.json   # name (@stdext/<package>), version, exports map
-  README.md    # package docs, follows the stdext template
+  deno.json   # name (@stdx/<package>), version, exports map
+  README.md    # package docs, follows the stdx template
   mod.ts       # root module, re-exports the package's public API
   *.test.ts    # colocated tests
   *.bench.ts   # optional benchmarks

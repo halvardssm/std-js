@@ -9,7 +9,7 @@ import {
   optional,
   shape,
   string,
-} from "@stdext/validation";
+} from "@stdx/validation";
 import type { Eventable } from "./events.ts";
 import type {
   Client,
@@ -140,7 +140,7 @@ function assert(
  *
  * @example
  * ```ts
- * import { isDialect } from "@stdext/database/sql";
+ * import { isDialect } from "@stdx/database/sql";
  * import { assert } from "@std/assert";
  *
  * assert(isDialect({
@@ -159,7 +159,7 @@ export function isDialect(value: unknown): value is Dialect {
  *
  * @example
  * ```ts
- * import { assertIsDialect } from "@stdext/database/sql";
+ * import { assertIsDialect } from "@stdx/database/sql";
  * import { assertThrows } from "@std/assert";
  * import { AssertionError } from "@std/assert";
  *
@@ -180,8 +180,8 @@ export function assertIsDialect(value: unknown): asserts value is Dialect {
  *
  * @example
  * ```ts
- * import { SqliteDriver } from "@stdext/database/drivers/sqlite";
- * import { isDriver } from "@stdext/database/sql";
+ * import { SqliteDriver } from "@stdx/database/drivers/sqlite";
+ * import { isDriver } from "@stdx/database/sql";
  * import { assert, assertFalse } from "@std/assert";
  *
  * assert(isDriver(new SqliteDriver()));
@@ -197,8 +197,8 @@ export function isDriver(value: unknown): value is Driver {
  *
  * @example
  * ```ts
- * import { SqliteDriver } from "@stdext/database/drivers/sqlite";
- * import { assertIsDriver } from "@stdext/database/sql";
+ * import { SqliteDriver } from "@stdx/database/drivers/sqlite";
+ * import { assertIsDriver } from "@stdx/database/sql";
  * import { assertThrows } from "@std/assert";
  * import { AssertionError } from "@std/assert";
  *
@@ -215,8 +215,8 @@ export function assertIsDriver(value: unknown): asserts value is Driver {
  *
  * @example
  * ```ts
- * import { SqliteDriver } from "@stdext/database/drivers/sqlite";
- * import { isDriverConnection } from "@stdext/database/sql";
+ * import { SqliteDriver } from "@stdx/database/drivers/sqlite";
+ * import { isDriverConnection } from "@stdx/database/sql";
  * import { assert, assertFalse } from "@std/assert";
  *
  * const driver = new SqliteDriver();
@@ -235,8 +235,8 @@ export function isDriverConnection(value: unknown): value is DriverConnection {
  *
  * @example
  * ```ts
- * import { SqliteDriver } from "@stdext/database/drivers/sqlite";
- * import { assertIsDriverConnection } from "@stdext/database/sql";
+ * import { SqliteDriver } from "@stdx/database/drivers/sqlite";
+ * import { assertIsDriverConnection } from "@stdx/database/sql";
  * import { assertThrows } from "@std/assert";
  * import { AssertionError } from "@std/assert";
  *
@@ -259,8 +259,8 @@ export function assertIsDriverConnection(
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
- * import { isConnectable } from "@stdext/database/sql";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
+ * import { isConnectable } from "@stdx/database/sql";
  * import { assert, assertFalse } from "@std/assert";
  *
  * assert(isConnectable(new SqliteClient(":memory:")));
@@ -269,8 +269,8 @@ export function assertIsDriverConnection(
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
- * import { isConnectable } from "@stdext/database/sql";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
+ * import { isConnectable } from "@stdx/database/sql";
  * import { assert, assertFalse } from "@std/assert";
  *
  * await using client = new SqliteClient(":memory:");
@@ -287,8 +287,8 @@ export function isConnectable(value: unknown): value is Connectable {
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
- * import { assertIsConnectable } from "@stdext/database/sql";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
+ * import { assertIsConnectable } from "@stdx/database/sql";
  * import { AssertionError, assertThrows } from "@std/assert";
  *
  * await using client = new SqliteClient(":memory:");
@@ -307,8 +307,8 @@ export function assertIsConnectable(
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
- * import { isPingable } from "@stdext/database/sql";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
+ * import { isPingable } from "@stdx/database/sql";
  * import { assert, assertFalse } from "@std/assert";
  *
  * await using client = new SqliteClient(":memory:");
@@ -325,8 +325,8 @@ export function isPingable(value: unknown): value is Pingable {
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
- * import { assertIsPingable } from "@stdext/database/sql";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
+ * import { assertIsPingable } from "@stdx/database/sql";
  * import { AssertionError, assertThrows } from "@std/assert";
  *
  * await using client = new SqliteClient(":memory:");
@@ -343,7 +343,7 @@ export function assertIsPingable(value: unknown): asserts value is Pingable {
  *
  * @example
  * ```ts
- * import { isQueryable } from "@stdext/database/sql";
+ * import { isQueryable } from "@stdx/database/sql";
  * import { assert, assertFalse } from "@std/assert";
  *
  * assert(isQueryable({ execute() {}, query() {}, executeScript() {} }));
@@ -359,8 +359,8 @@ export function isQueryable(value: unknown): value is Queryable {
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
- * import { assertIsQueryable } from "@stdext/database/sql";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
+ * import { assertIsQueryable } from "@stdx/database/sql";
  * import { AssertionError, assertThrows } from "@std/assert";
  *
  * await using client = new SqliteClient(":memory:");
@@ -377,8 +377,8 @@ export function assertIsQueryable(value: unknown): asserts value is Queryable {
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
- * import { isPreparable } from "@stdext/database/sql";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
+ * import { isPreparable } from "@stdx/database/sql";
  * import { assert, assertFalse } from "@std/assert";
  *
  * await using client = new SqliteClient(":memory:");
@@ -395,8 +395,8 @@ export function isPreparable(value: unknown): value is Preparable {
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
- * import { assertIsPreparable } from "@stdext/database/sql";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
+ * import { assertIsPreparable } from "@stdx/database/sql";
  * import { AssertionError, assertThrows } from "@std/assert";
  *
  * await using client = new SqliteClient(":memory:");
@@ -415,8 +415,8 @@ export function assertIsPreparable(
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
- * import { isTransactionable } from "@stdext/database/sql";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
+ * import { isTransactionable } from "@stdx/database/sql";
  * import { assert, assertFalse } from "@std/assert";
  *
  * await using client = new SqliteClient(":memory:");
@@ -433,8 +433,8 @@ export function isTransactionable(value: unknown): value is Transactionable {
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
- * import { assertIsTransactionable } from "@stdext/database/sql";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
+ * import { assertIsTransactionable } from "@stdx/database/sql";
  * import { AssertionError, assertThrows } from "@std/assert";
  *
  * await using client = new SqliteClient(":memory:");
@@ -453,8 +453,8 @@ export function assertIsTransactionable(
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
- * import { isDialectable } from "@stdext/database/sql";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
+ * import { isDialectable } from "@stdx/database/sql";
  * import { assert, assertFalse } from "@std/assert";
  *
  * await using client = new SqliteClient(":memory:");
@@ -471,8 +471,8 @@ export function isDialectable(value: unknown): value is Dialectable {
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
- * import { assertIsDialectable } from "@stdext/database/sql";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
+ * import { assertIsDialectable } from "@stdx/database/sql";
  * import { AssertionError, assertThrows } from "@std/assert";
  *
  * await using client = new SqliteClient(":memory:");
@@ -491,8 +491,8 @@ export function assertIsDialectable(
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
- * import { isEventable } from "@stdext/database/sql";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
+ * import { isEventable } from "@stdx/database/sql";
  * import { assert, assertFalse } from "@std/assert";
  *
  * await using client = new SqliteClient(":memory:");
@@ -509,8 +509,8 @@ export function isEventable(value: unknown): value is Eventable {
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
- * import { assertIsEventable } from "@stdext/database/sql";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
+ * import { assertIsEventable } from "@stdx/database/sql";
  * import { AssertionError, assertThrows } from "@std/assert";
  *
  * await using client = new SqliteClient(":memory:");
@@ -527,8 +527,8 @@ export function assertIsEventable(value: unknown): asserts value is Eventable {
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
- * import { isPoolable } from "@stdext/database/sql";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
+ * import { isPoolable } from "@stdx/database/sql";
  * import { assert, assertFalse } from "@std/assert";
  *
  * await using client = new SqliteClient(":memory:");
@@ -545,8 +545,8 @@ export function isPoolable(value: unknown): value is Poolable {
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
- * import { assertIsPoolable } from "@stdext/database/sql";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
+ * import { assertIsPoolable } from "@stdx/database/sql";
  * import { AssertionError, assertThrows } from "@std/assert";
  *
  * await using client = new SqliteClient(":memory:");
@@ -563,8 +563,8 @@ export function assertIsPoolable(value: unknown): asserts value is Poolable {
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
- * import { isTransaction } from "@stdext/database/sql";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
+ * import { isTransaction } from "@stdx/database/sql";
  * import { assert, assertFalse } from "@std/assert";
  *
  * await using client = new SqliteClient(":memory:");
@@ -582,8 +582,8 @@ export function isTransaction(value: unknown): value is Transaction {
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
- * import { assertIsTransaction } from "@stdext/database/sql";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
+ * import { assertIsTransaction } from "@stdx/database/sql";
  * import { AssertionError, assertThrows } from "@std/assert";
  *
  * await using client = new SqliteClient(":memory:");
@@ -603,8 +603,8 @@ export function assertIsTransaction(
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
- * import { isPreparedStatement } from "@stdext/database/sql";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
+ * import { isPreparedStatement } from "@stdx/database/sql";
  * import { assert, assertFalse } from "@std/assert";
  *
  * await using client = new SqliteClient(":memory:");
@@ -624,8 +624,8 @@ export function isPreparedStatement(
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
- * import { assertIsPreparedStatement } from "@stdext/database/sql";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
+ * import { assertIsPreparedStatement } from "@stdx/database/sql";
  * import { AssertionError, assertThrows } from "@std/assert";
  *
  * await using client = new SqliteClient(":memory:");
@@ -645,8 +645,8 @@ export function assertIsPreparedStatement(
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
- * import { isConnection } from "@stdext/database/sql";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
+ * import { isConnection } from "@stdx/database/sql";
  * import { assert, assertFalse } from "@std/assert";
  *
  * await using client = new SqliteClient(":memory:");
@@ -664,8 +664,8 @@ export function isConnection(value: unknown): value is Connection {
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
- * import { assertIsConnection } from "@stdext/database/sql";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
+ * import { assertIsConnection } from "@stdx/database/sql";
  * import { AssertionError, assertThrows } from "@std/assert";
  *
  * await using client = new SqliteClient(":memory:");
@@ -685,8 +685,8 @@ export function assertIsConnection(
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
- * import { isClient } from "@stdext/database/sql";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
+ * import { isClient } from "@stdx/database/sql";
  * import { assert, assertFalse } from "@std/assert";
  *
  * await using client = new SqliteClient(":memory:");
@@ -703,8 +703,8 @@ export function isClient(value: unknown): value is Client {
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
- * import { assertIsClient } from "@stdext/database/sql";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
+ * import { assertIsClient } from "@stdx/database/sql";
  * import { AssertionError, assertThrows } from "@std/assert";
  *
  * await using client = new SqliteClient(":memory:");

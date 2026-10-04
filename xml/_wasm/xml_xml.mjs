@@ -4,7 +4,7 @@
 // deno-fmt-ignore-file
 // @ts-self-types="./xml_xml.d.mts"
 
-// source-hash: 262982256bfc83888bf3474b945d8404f7e4bf3c
+// source-hash: 4b1658953e46182ad663d04ff9150ce9198345bf
 import * as imports from "./xml_xml.internal.mjs";
 const bytes = base64decode("\
 AGFzbQEAAAAB+gNGYAJ/fwBgAn9/AX9gAX8AYAN/f38Bf2ADf39/AGABfwF/YAR/f39/AGAFf39/f3\

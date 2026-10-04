@@ -137,7 +137,7 @@ Deno.test("every ready-made schema is a Standard Schema and a Standard JSON Sche
       assert(isStandardSchemaV1(schema));
       assert(isStandardJSONSchemaV1(schema));
       assertEquals(schema["~standard"].version, 1);
-      assertEquals(schema["~standard"].vendor, "@stdext/validation");
+      assertEquals(schema["~standard"].vendor, "@stdx/validation");
 
       // both directions give a JSON Schema object, without throwing
       for (const io of ["input", "output"] as const) {

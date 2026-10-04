@@ -1,4 +1,4 @@
-# @stdext/http
+# @stdx/http
 
 Extends [@std/http](https://jsr.io/@std/http)
 

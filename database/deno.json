@@ -1,6 +1,6 @@
 {
   "version": "0.1.0",
-  "name": "@stdext/database",
+  "name": "@stdx/database",
   "exports": {
     "./sql": "./sql/mod.ts",
     "./sql/testing": "./sql/testing.ts",

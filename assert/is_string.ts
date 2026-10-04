@@ -11,7 +11,7 @@ import { AssertionError } from "@std/assert";
  *
  * @example
  * ```ts
- * import { isString } from "@stdext/assert";
+ * import { isString } from "@stdx/assert";
  * import { assert, assertFalse } from "@std/assert";
  *
  * assert(isString("hello"));
@@ -32,7 +32,7 @@ export function isString(value: unknown): value is string {
  *
  * @example
  * ```ts
- * import { assertIsString } from "@stdext/assert";
+ * import { assertIsString } from "@stdx/assert";
  * import { assertThrows } from "@std/assert";
  *
  * assertIsString("hello");

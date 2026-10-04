@@ -13,8 +13,8 @@ import {
  *
  * @example
  * ```ts
- * import type { SqliteClientOptions } from "@stdext/database/drivers/sqlite";
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
+ * import type { SqliteClientOptions } from "@stdx/database/drivers/sqlite";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
  *
  * const options: SqliteClientOptions = {
  *   connectionOptions: { readOnly: true },
@@ -42,7 +42,7 @@ export interface SqliteClientOptions
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
  *
  * await using client = new SqliteClient(":memory:");
  * await client.execute("CREATE TABLE users (id INTEGER, name TEXT)");

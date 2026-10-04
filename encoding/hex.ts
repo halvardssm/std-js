@@ -3,7 +3,7 @@
  *
  * @example
  * ```ts
- * import { dump } from "@stdext/encoding/hex";
+ * import { dump } from "@stdx/encoding/hex";
  * import { assertEquals } from "@std/assert";
  *
  * const buffer = new TextEncoder().encode("Hello world!");
@@ -27,7 +27,7 @@
  *
  * @example
  * ```ts
- * import { dump } from "@stdext/encoding/hex";
+ * import { dump } from "@stdx/encoding/hex";
  *
  * const buffer = new TextEncoder().encode("The quick brown fox jumps over the lazy dog.");
  * console.log(dump(buffer));

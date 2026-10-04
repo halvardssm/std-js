@@ -9,7 +9,7 @@
  * @module
  */
 
-import type { JSONSchema } from "@stdext/json/json-schema/2020-12";
+import type { JSONSchema } from "@stdx/json/json-schema/2020-12";
 import type { Issue } from "./core.ts";
 import { isStringFormat, matchesFormat, type StringFormat } from "./formats.ts";
 

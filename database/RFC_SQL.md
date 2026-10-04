@@ -1,4 +1,4 @@
-# RFC: @stdext/database/sql - Standardized SQL Database Interface Specification
+# RFC: @stdx/database/sql - Standardized SQL Database Interface Specification
 
 This RFC proposes a standardized interface for SQL-like database drivers.
 
@@ -24,7 +24,7 @@ query builders.
 
 The specification is shown using TypeScript. The interfaces, the standard
 implementation of the client level, helper utilities and conformance test suites
-are implemented in the [`@stdext/database`](https://jsr.io/@stdext/database)
+are implemented in the [`@stdx/database`](https://jsr.io/@stdx/database)
 package, published on [JSR](https://jsr.io/). Drivers do not need to import the
 types to be compliant, as long as they follow the specification, but are
 encouraged to.
@@ -238,8 +238,8 @@ This RFC is intended for:
    - The **client level** is the user facing interface: pooling, nested
      transactions, SQL templates, lazy results, prepared statement caching,
      events and options. It is implemented once, generically on top of any
-     driver, by the standard implementation in `@stdext/database/sql`. Drivers
-     do not implement it, so its behavior is the same for every database.
+     driver, by the standard implementation in `@stdx/database/sql`. Drivers do
+     not implement it, so its behavior is the same for every database.
 2. **Async only.** All methods resolve to a `Promise`, except the client level
    `query`, which returns a lazy result whose consuming methods resolve to
    promises. Synchronous databases implement the driver level by wrapping their
@@ -279,7 +279,7 @@ The specification defines:
 applications, migration tools, query builders
                     │  Client level: Client, Connection, Transaction,
                     │  PreparedStatement, ResultIterableContext
-         SqlClient (standard implementation, @stdext/database/sql)
+         SqlClient (standard implementation, @stdx/database/sql)
                     │  Driver level: Driver, DriverConnection, DriverRows,
                     │  DriverStatement, DriverTransaction, Dialect
     drivers: SQLite, Postgres, MySQL, ... (node:sqlite, bun:sqlite, ...)
@@ -598,7 +598,7 @@ interface DriverSavepoint extends AsyncDisposable {
 ### Client Level
 
 The client level is the user facing interface. The standard implementation in
-`@stdext/database/sql` implements it on top of any driver:
+`@stdx/database/sql` implements it on top of any driver:
 
 ```ts ignore
 const client = new SqlClient(new SqliteDriver(), ":memory:", options);
@@ -905,7 +905,7 @@ The driver level maps closely onto the database APIs of the JavaScript runtimes:
 
 ### Conformance
 
-The `@stdext/database/sql/testing` entrypoint contains two conformance suites:
+The `@stdx/database/sql/testing` entrypoint contains two conformance suites:
 
 - `testDriver(t, driver, url, sql)` tests the driver level, so that a library
   that only implements a driver can verify it.

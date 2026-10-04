@@ -1,5 +1,5 @@
 /**
- * The `@stdext/validation` package: schemas that implement both
+ * The `@stdx/validation` package: schemas that implement both
  * {@link https://standardschema.dev | Standard Schema} and
  * {@link https://standardschema.dev/#json-schema | Standard JSON Schema}.
  *
@@ -31,7 +31,7 @@
  *   string,
  *   toJSONSchema,
  *   validate,
- * } from "@stdext/validation";
+ * } from "@stdx/validation";
  * import { assertEquals } from "@std/assert";
  *
  * // a schema of your own

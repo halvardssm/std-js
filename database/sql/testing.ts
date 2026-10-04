@@ -44,8 +44,8 @@ import type { ClientEventTarget, Eventable } from "./events.ts";
  *
  * @example
  * ```ts
- * import type { Factory } from "@stdext/database/sql/testing";
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
+ * import type { Factory } from "@stdx/database/sql/testing";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
  *
  * // A fresh client for every test step.
  * const create: Factory<SqliteClient> = () => new SqliteClient(":memory:");
@@ -61,8 +61,8 @@ export type Factory<T> = () => T | Promise<T>;
  *
  * @example
  * ```ts
- * import { sql } from "@stdext/database/sql";
- * import type { TestSql } from "@stdext/database/sql/testing";
+ * import { sql } from "@stdx/database/sql";
+ * import type { TestSql } from "@stdx/database/sql/testing";
  *
  * // The statements of the database dialect under test.
  * const sqlite: TestSql = {
@@ -150,7 +150,7 @@ async function assertWaitsFor(
  *
  * @example
  * ```ts ignore
- * import { testConnectable } from "@stdext/database/sql/testing";
+ * import { testConnectable } from "@stdx/database/sql/testing";
  * import { MyClient } from "./my_client.ts";
  *
  * Deno.test("MyClient connectable", async (t) => {
@@ -211,7 +211,7 @@ export async function testConnectable(
  *
  * @example
  * ```ts ignore
- * import { testPingable } from "@stdext/database/sql/testing";
+ * import { testPingable } from "@stdx/database/sql/testing";
  * import { MyClient } from "./my_client.ts";
  *
  * Deno.test("MyClient pingable", async (t) => {
@@ -256,7 +256,7 @@ export async function testPingable(
  *
  * @example
  * ```ts ignore
- * import { testQueryable } from "@stdext/database/sql/testing";
+ * import { testQueryable } from "@stdx/database/sql/testing";
  * import { MyClient } from "./my_client.ts";
  *
  * Deno.test("MyClient queryable", async (t) => {
@@ -492,7 +492,7 @@ export async function testQueryable(
  *
  * @example
  * ```ts ignore
- * import { testPreparable } from "@stdext/database/sql/testing";
+ * import { testPreparable } from "@stdx/database/sql/testing";
  * import { MyClient } from "./my_client.ts";
  *
  * Deno.test("MyClient preparable", async (t) => {
@@ -591,7 +591,7 @@ export async function testPreparable(
  *
  * @example
  * ```ts ignore
- * import { testTransactionable } from "@stdext/database/sql/testing";
+ * import { testTransactionable } from "@stdx/database/sql/testing";
  * import { MyClient } from "./my_client.ts";
  *
  * Deno.test("MyClient transactionable", async (t) => {
@@ -778,7 +778,7 @@ export async function testTransactionable(
  *
  * @example
  * ```ts ignore
- * import { testEventable } from "@stdext/database/sql/testing";
+ * import { testEventable } from "@stdx/database/sql/testing";
  * import { MyClient } from "./my_client.ts";
  *
  * Deno.test("MyClient eventable", async (t) => {
@@ -821,7 +821,7 @@ export async function testEventable(
  *
  * @example
  * ```ts ignore
- * import { testPoolable } from "@stdext/database/sql/testing";
+ * import { testPoolable } from "@stdx/database/sql/testing";
  * import { MyClient } from "./my_client.ts";
  *
  * Deno.test("MyClient poolable", async (t) => {
@@ -902,7 +902,7 @@ export async function testPoolable(
  *
  * @example
  * ```ts ignore
- * import { testPool } from "@stdext/database/sql/testing";
+ * import { testPool } from "@stdx/database/sql/testing";
  * import { MyClient } from "./my_client.ts";
  *
  * Deno.test("MyClient pool", async (t) => {
@@ -1028,7 +1028,7 @@ export async function testPool(
  *
  * @example
  * ```ts ignore
- * import { testConnection } from "@stdext/database/sql/testing";
+ * import { testConnection } from "@stdx/database/sql/testing";
  * import { MyClient } from "./my_client.ts";
  *
  * Deno.test("MyClient connection", async (t) => {
@@ -1097,8 +1097,8 @@ export async function testConnection(
  *
  * @example
  * ```ts ignore
- * import { SqlClient } from "@stdext/database/sql";
- * import { testClient } from "@stdext/database/sql/testing";
+ * import { SqlClient } from "@stdx/database/sql";
+ * import { testClient } from "@stdx/database/sql/testing";
  *
  * Deno.test("client conformance", async (t) => {
  *   await testClient(t, (options) => new SqlClient(driver, url, options), sql);
@@ -1219,7 +1219,7 @@ export async function testClient(
  *
  * @example
  * ```ts ignore
- * import { testDriver } from "@stdext/database/sql/testing";
+ * import { testDriver } from "@stdx/database/sql/testing";
  *
  * Deno.test("driver conformance", async (t) => {
  *   await testDriver(t, new MyDriver(), url, sql);

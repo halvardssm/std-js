@@ -1,4 +1,4 @@
-# @stdext/cli
+# @stdx/cli
 
 Extends [@std/cli](https://jsr.io/@std/cli)
 
@@ -10,7 +10,7 @@ The cli package contains helpers for building command line applications.
 arguments given to `run` are typed from the definition.
 
 ```ts ignore
-import { defineCommand, runCommand } from "@stdext/cli";
+import { defineCommand, runCommand } from "@stdx/cli";
 
 const serve = defineCommand({
   name: "serve",
@@ -87,7 +87,7 @@ flags in `required`, and in `default`, are not `undefined` in the type of the
 result.
 
 ```ts
-import { parseArgs } from "@stdext/cli/parse-args";
+import { parseArgs } from "@stdx/cli/parse-args";
 
 const args = parseArgs(["--name", "foo"], {
   string: ["name"],

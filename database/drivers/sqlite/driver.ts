@@ -29,7 +29,7 @@ import {
  *
  * @example
  * ```ts
- * import { SqliteDriver } from "@stdext/database/drivers/sqlite";
+ * import { SqliteDriver } from "@stdx/database/drivers/sqlite";
  *
  * const driver = new SqliteDriver();
  * await using connection = await driver.connect(":memory:", {
@@ -67,7 +67,7 @@ export interface SqliteConnectionOptions extends ConnectionOptions {
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
  *
  * await using client = new SqliteClient(":memory:");
  * // An immediate transaction takes its write lock right away.
@@ -139,7 +139,7 @@ function wrapError(
  *
  * @example
  * ```ts
- * import { sqliteDialect } from "@stdext/database/drivers/sqlite";
+ * import { sqliteDialect } from "@stdx/database/drivers/sqlite";
  *
  * console.log(sqliteDialect.name); // "sqlite"
  * console.log(sqliteDialect.placeholder(0)); // "?"
@@ -166,7 +166,7 @@ export const sqliteDialect: Dialect = {
  *
  * @example
  * ```ts
- * import { SqliteDriver } from "@stdext/database/drivers/sqlite";
+ * import { SqliteDriver } from "@stdx/database/drivers/sqlite";
  *
  * const driver = new SqliteDriver();
  * await using connection = await driver.connect(":memory:");
@@ -217,7 +217,7 @@ export class SqliteDriver
  *
  * @example
  * ```ts
- * import { SqliteDriver } from "@stdext/database/drivers/sqlite";
+ * import { SqliteDriver } from "@stdx/database/drivers/sqlite";
  *
  * const driver = new SqliteDriver();
  * await using connection = await driver.connect(":memory:");

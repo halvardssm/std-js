@@ -6,7 +6,7 @@
  *
  * @example
  * ```ts
- * import type { JSONSchema } from "@stdext/json/json-schema/2020-12";
+ * import type { JSONSchema } from "@stdx/json/json-schema/2020-12";
  *
  * const schema: JSONSchema = {
  *   $schema: "https://json-schema.org/draft/2020-12/schema",

@@ -20,7 +20,7 @@
  *
  * @example
  * ```ts
- * import { CustomEvent } from "@stdext/event";
+ * import { CustomEvent } from "@stdx/event";
  *
  * const event = new CustomEvent<"notify", { message: string }>("notify", {
  *   detail: { message: "hi" },
@@ -60,7 +60,7 @@ export class CustomEvent<T extends string = string, D = any>
  *
  * @example
  * ```ts
- * import { CustomEvent, CustomEventTarget } from "@stdext/event";
+ * import { CustomEvent, CustomEventTarget } from "@stdx/event";
  *
  * type MyEvents = "notify";
  * interface NotifyEvent extends CustomEvent<MyEvents, { message: string }> {}

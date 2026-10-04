@@ -3,7 +3,7 @@
  *
  * @example
  * ```ts
- * import { hmac } from "@stdext/crypto/hmac";
+ * import { hmac } from "@stdx/crypto/hmac";
  * import { assertEquals } from "@std/assert";
  *
  * const mac = await hmac("SHA-256", "key", "The quick brown fox jumps over the lazy dog");
@@ -37,7 +37,7 @@ function toBufferSource(value: BufferSource | string): BufferSource {
  *
  * @example
  * ```ts
- * import { hmac } from "@stdext/crypto/hmac";
+ * import { hmac } from "@stdx/crypto/hmac";
  * import { assertEquals } from "@std/assert";
  *
  * const mac = await hmac("SHA-1", new Uint8Array(20), "data");

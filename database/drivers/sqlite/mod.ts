@@ -1,6 +1,6 @@
 /**
  * A SQLite driver implementing the
- * {@link https://jsr.io/@stdext/database/doc/sql | @stdext/database/sql}
+ * {@link https://jsr.io/@stdx/database/doc/sql | @stdx/database/sql}
  * specification, backed by the built-in `node:sqlite` module.
  *
  * The {@linkcode SqliteDriver} implements the driver level: a `Dialect` and
@@ -11,7 +11,7 @@
  *
  * @example
  * ```ts
- * import { SqliteClient } from "@stdext/database/drivers/sqlite";
+ * import { SqliteClient } from "@stdx/database/drivers/sqlite";
  *
  * await using client = new SqliteClient(":memory:");
  * console.log(await client.query("SELECT 1 + 1 AS solution").toRecords());

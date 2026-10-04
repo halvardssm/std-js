@@ -10,7 +10,7 @@ import { QueryError } from "./errors.ts";
  *
  * @example
  * ```ts
- * import type { Row } from "@stdext/database/sql";
+ * import type { Row } from "@stdx/database/sql";
  *
  * const row: Row = {
  *   columns: ["id", "name"],
@@ -47,7 +47,7 @@ export interface Row {
  *
  * @example
  * ```ts
- * import { getObjectFromRow } from "@stdext/database/sql";
+ * import { getObjectFromRow } from "@stdx/database/sql";
  * import { assertEquals } from "@std/assert";
  *
  * assertEquals(
@@ -74,7 +74,7 @@ export function getObjectFromRow(row: Row): Record<string, unknown> {
  *
  * @example
  * ```ts
- * import type { ResultSource } from "@stdext/database/sql";
+ * import type { ResultSource } from "@stdx/database/sql";
  *
  * const source: ResultSource = {
  *   // The columns are known before the first row.
@@ -119,7 +119,7 @@ export interface ResultSource {
  *
  * @example
  * ```ts
- * import { createResultIterableContext } from "@stdext/database/sql";
+ * import { createResultIterableContext } from "@stdx/database/sql";
  * import { assertEquals } from "@std/assert";
  *
  * async function* rows() {

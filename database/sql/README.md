@@ -1,4 +1,4 @@
-# @stdext/database/sql
+# @stdx/database/sql
 
 The SQL package contains a standard interface for SQL based databases.
 
@@ -9,7 +9,7 @@ in [RFC_SQL.md](../RFC_SQL.md).
 The goal for this package is to have a standard interface for SQL-like database
 clients that can be used in Deno, Node and other JS runtimes. Applications use a
 driver with its preconfigured client, such as
-[`@stdext/database/drivers/sqlite`](../README.md); this entrypoint is meant for
+[`@stdx/database/drivers/sqlite`](../README.md); this entrypoint is meant for
 driver authors and for applications that wire up a driver with the standard
 client themselves.
 
@@ -56,7 +56,7 @@ The examples use the SQLite driver, but every driver implementing the interfaces
 is used the same way:
 
 ```ts
-import { SqliteClient } from "@stdext/database/drivers/sqlite";
+import { SqliteClient } from "@stdx/database/drivers/sqlite";
 
 await using client = new SqliteClient(":memory:");
 await client.execute("CREATE TABLE users (id INTEGER, name TEXT)");
@@ -89,8 +89,8 @@ The placeholder style of the parameters (`?`, `$1`, `:name`, ...) and the
 mapping of values depend on the driver.
 
 ```ts
-import { sql } from "@stdext/database/sql";
-import { SqliteClient } from "@stdext/database/drivers/sqlite";
+import { sql } from "@stdx/database/sql";
+import { SqliteClient } from "@stdx/database/drivers/sqlite";
 
 await using client = new SqliteClient(":memory:");
 await client.execute("CREATE TABLE users (id INTEGER, name TEXT)");
@@ -117,7 +117,7 @@ and releases the underlying connection.
 Prepared statements are created with `prepare` (`Preparable`):
 
 ```ts
-import { SqliteClient } from "@stdext/database/drivers/sqlite";
+import { SqliteClient } from "@stdx/database/drivers/sqlite";
 
 await using client = new SqliteClient(":memory:");
 await client.execute("CREATE TABLE users (id INTEGER, name TEXT)");
@@ -132,7 +132,7 @@ Transactions are created with `beginTransaction` or the `transaction` wrapper
 (`Transactionable`):
 
 ```ts
-import { SqliteClient } from "@stdext/database/drivers/sqlite";
+import { SqliteClient } from "@stdx/database/drivers/sqlite";
 
 await using client = new SqliteClient(":memory:");
 await client.execute("CREATE TABLE users (id INTEGER, name TEXT)");
@@ -143,7 +143,7 @@ await tx.commit();
 ```
 
 ```ts
-import { SqliteClient } from "@stdext/database/drivers/sqlite";
+import { SqliteClient } from "@stdx/database/drivers/sqlite";
 
 await using client = new SqliteClient(":memory:");
 await client.execute("CREATE TABLE users (id INTEGER, name TEXT)");
@@ -182,7 +182,7 @@ is finished or the prepared statement is deallocated. A connection can also be
 held manually:
 
 ```ts
-import { SqliteClient } from "@stdext/database/drivers/sqlite";
+import { SqliteClient } from "@stdx/database/drivers/sqlite";
 
 await using client = new SqliteClient(":memory:");
 await client.execute("CREATE TABLE users (id INTEGER, name TEXT)");
@@ -215,8 +215,8 @@ need to be implemented: the standard `SqlClient` works on top of any driver, and
 a driver usually exports a preconfigured client bound to it:
 
 ```ts ignore
-import type { ClientOptions } from "@stdext/database/sql";
-import { SqlClient } from "@stdext/database/sql";
+import type { ClientOptions } from "@stdx/database/sql";
+import { SqlClient } from "@stdx/database/sql";
 
 export class MyDriver implements Driver {
   /* connect, and run statements on a single connection */
@@ -240,12 +240,12 @@ Helper utilities for driver authors are available in [utils.ts](./utils.ts) and
 
 ### Testing
 
-The `@stdext/database/sql/testing` entrypoint contains two conformance suites. A
+The `@stdx/database/sql/testing` entrypoint contains two conformance suites. A
 driver that passes the driver suite, and whose client passes the client suite,
 is compliant with the specification:
 
 ```ts ignore
-import { testClient, testDriver } from "@stdext/database/sql/testing";
+import { testClient, testDriver } from "@stdx/database/sql/testing";
 
 Deno.test("MyDriver conformance", async (t) => {
   await testDriver(t, new MyDriver(), url, sql);

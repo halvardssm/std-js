@@ -1,4 +1,4 @@
-# @stdext/fs
+# @stdx/fs
 
 Extends [@std/fs](https://jsr.io/@std/fs)
 
