@@ -1,5 +1,18 @@
 ### 2026.10.04
 
+#### @stdext/cli 0.0.1 (patch)
+
+- feat(cli): added further options to command
+- feat(cli): added command
+- feat(cli): Added cli module with parseArgs
+
+#### @stdext/zip 0.0.1 (patch)
+
+- feat(zip): add zip and unzip for archives and directories
+- fix(zip): replace with std
+
+### 2026.10.04
+
 #### @stdext/collections 0.0.6 (patch)
 
 - feat(collections)!: fix DeferredStack release, add clear and abortable pop
