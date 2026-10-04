@@ -1,60 +1,43 @@
+[settings]
+# Run tasks one at a time, so that the output is readable and the cargo and
+# deno processes do not compete for the machine.
+jobs = 1
+
 [tools]
 deno = "latest"
 rust = { version = "latest", components = ["rustfmt"], targets = [
   "wasm32-unknown-unknown",
 ] }
 
-[settings]
-jobs = 1
+# --- Checks -----------------------------------------------------------------
 
 [tasks.check]
 description = "Format check, lint, and type-check"
 depends = ["format:check", "lint"]
-run = "deno check **/*.ts"
+# The glob is quoted, so that deno expands it. The shell only matches one level.
+run = 'deno check "**/*.ts"'
 
 [tasks."check:pre-commit"]
-description = "Fast checks to run before a commit: format check, lint, and type-check"
+description = "Checks to run before a commit: check, wasm parity, tests, and a dry run publish of uncommitted changes"
 depends = ["check", "build:wasm:check", "test", "publish:dry:dirty"]
 
 [tasks."check:pre-push"]
-description = "Full checks to run before a push: pre-commit checks, wasm parity, and tests"
-depends = ["check:pre-commit", "build:wasm:check", "test", "publish:dry"]
+description = "Checks to run before a push: the pre-commit checks, and a dry run publish of committed changes"
+depends = ["check:pre-commit", "publish:dry"]
 
 [tasks.lint]
 description = "Lint the TypeScript code"
 run = "deno lint"
 
-[tasks.test]
-description = "Run the full test suite with coverage"
-env = { RUST_BACKTRACE = "1" }
-run = "deno test --unstable-http --unstable-webgpu --allow-all --parallel --coverage --trace-leaks"
-
-[tasks."test:inspect"]
-description = "Run the test suite with the inspector enabled"
-env = { RUST_BACKTRACE = "1" }
-run = "deno test --unstable-http --unstable-webgpu --allow-all --parallel --coverage --trace-leaks --inspect-wait"
-
-[tasks."cov:gen"]
-description = "Generate lcov report from the coverage data"
-run = "deno coverage coverage --lcov --output=cov.lcov"
-
-[tasks."build:wasm"]
-description = "Build the wasm crates into each package's _wasm/"
-run = "deno run --allow-read --allow-run _tools/build_wasm.ts"
-
-[tasks."build:wasm:check"]
-description = "Verify committed wasm matches the Rust sources"
-depends = [{ task = "build:wasm", args = ["--check"] }]
+# --- Formatting -------------------------------------------------------------
 
 [tasks.format]
 description = "Format JS/TS and Rust code"
-depends = ["format:wasm"]
-run = "deno fmt"
+run = ["deno fmt", { task = "format:wasm" }]
 
 [tasks."format:check"]
 description = "Check JS/TS and Rust formatting"
-depends = ["format:wasm:check"]
-run = "deno fmt --check"
+run = ["deno fmt --check", { task = "format:wasm:check" }]
 
 [tasks."format:wasm"]
 description = "Format the Rust code"
@@ -68,8 +51,34 @@ run = "cargo fmt --all -- --check"
 
 [tasks.fix]
 description = "Format (JS + Rust) and auto-fix lint rules"
-depends = ["format"]
-run = "deno lint --fix"
+run = [{ task = "format" }, "deno lint --fix"]
+
+# --- Tests ------------------------------------------------------------------
+
+[tasks.test]
+description = "Run the full test suite with coverage. Extra arguments are passed to deno test"
+env = { RUST_BACKTRACE = "1" }
+run = "deno test --unstable-http --unstable-webgpu --allow-all --parallel --coverage --trace-leaks"
+
+[tasks."test:inspect"]
+description = "Run the test suite with the inspector enabled"
+run = [{ task = "test", args = ["--inspect-wait"] }]
+
+[tasks."cov:gen"]
+description = "Generate lcov report from the coverage data"
+run = "deno coverage coverage --lcov --output=cov.lcov"
+
+# --- Wasm -------------------------------------------------------------------
+
+[tasks."build:wasm"]
+description = "Build the wasm crates into each package's _wasm/. Extra arguments are passed to the build script"
+run = "deno run --allow-read --allow-run _tools/build_wasm.ts"
+
+[tasks."build:wasm:check"]
+description = "Verify committed wasm matches the Rust sources"
+run = [{ task = "build:wasm", args = ["--check"] }]
+
+# --- Publishing -------------------------------------------------------------
 
 [tasks.publish]
 description = "Publish the workspace packages to JSR"
@@ -77,9 +86,9 @@ confirm = "Publish all workspace packages to JSR?"
 run = "deno publish"
 
 [tasks."publish:dry"]
-description = "Check that the workspace packages can be published to JSR"
+description = "Check that the workspace packages can be published to JSR. Extra arguments are passed to deno publish"
 run = "deno publish --dry-run"
 
 [tasks."publish:dry:dirty"]
-description = "Check that the workspace packages can be published to JSR"
-run = "deno publish --dry-run --allow-dirty"
+description = "Like publish:dry, for a working tree with uncommitted changes"
+run = [{ task = "publish:dry", args = ["--allow-dirty"] }]
