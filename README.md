@@ -1,11 +1,11 @@
 # Deno Standard Library Extended
 
 [![JSR @stdext](https://jsr.io/badges/@stdext)](https://jsr.io/@stdext)
-[![codecov](https://codecov.io/gh/halvardssm/deno_stdext/graph/badge.svg?token=T1JEMGF8VW)](https://codecov.io/gh/halvardssm/deno_stdext)
-[![ci](https://github.com/halvardssm/deno_stdext/actions/workflows/ci.yml/badge.svg)](https://github.com/halvardssm/deno_stdext/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/halvardssm/std-js/graph/badge.svg?token=T1JEMGF8VW)](https://codecov.io/gh/halvardssm/std-js)
+[![ci](https://github.com/halvardssm/std-js/actions/workflows/ci.yml/badge.svg)](https://github.com/halvardssm/std-js/actions/workflows/ci.yml)
 
 An extension of the
-[Deno Standard Library](https://github.com/denoland/deno_std).
+[Deno Standard Library](https://github.com/denoland/std).
 
 Multiple languages such as Rust, Go and PHP offer a standard library, which
 allows the reduction of third-party libraries. This project is used to extend
@@ -74,13 +74,15 @@ console.log(dump(buffer));
   with fully inferred types
 - [xml](https://jsr.io/@stdext/xml): The xml package provides XML parsing,
   serialization, and XSD validation, backed by a WebAssembly implementation
+- [zip](https://jsr.io/@stdext/zip): The zip package contains helpers for
+  creating and extracting zip archives
 
 ## Platform support
 
 The packages are primarily developed and tested on macOS and Linux. Windows
 support is not guaranteed, and packages may not work as expected on Windows. If
 you encounter an issue on Windows, please
-[report it](https://github.com/halvardssm/deno_stdext/issues).
+[report it](https://github.com/halvardssm/std-js/issues).
 
 ## Versioning
 
@@ -125,7 +127,7 @@ more details.
 ## Deprecation Policy
 
 We follow the
-[Deno STD Deprecation Policy](https://github.com/denoland/deno_std?tab=readme-ov-file#deprecation-policy).
+[Deno STD Deprecation Policy](https://github.com/denoland/std?tab=readme-ov-file#deprecation-policy).
 
 When functionalities are adopted either by JavaScript language APIs, new Web
 Standard APIs or Deno STD, we mark the functions as deprecated, and will remove
@@ -147,9 +149,9 @@ the license allows for it.
 To bump versions and publish the packages to JSR, do the following:
 
 1. Trigger the manual GitHub action
-   [version bump](https://github.com/halvardssm/stdext/actions/workflows/version_bump.yml).
+   [version bump](https://github.com/halvardssm/std-js/actions/workflows/version_bump.yml).
 2. Check the created PR, verify the changes, and merge.
-3. Create a [new release](https://github.com/halvardssm/stdext/releases/new),
+3. Create a [new release](https://github.com/halvardssm/std-js/releases/new),
    with the tag name `release-[date]` (e.g. `release-2024.12.29`) and auto
    generate release notes.
 

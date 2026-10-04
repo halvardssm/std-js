@@ -1,7 +1,7 @@
 # AGENTS.md
 
 An extension of the
-[Deno Standard Library](https://github.com/denoland/deno_std), published on JSR
+[Deno Standard Library](https://github.com/denoland/std), published on JSR
 under the `@stdext` scope.
 
 ## Repository layout
