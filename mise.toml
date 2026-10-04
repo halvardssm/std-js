@@ -4,10 +4,21 @@ rust = { version = "latest", components = ["rustfmt"], targets = [
   "wasm32-unknown-unknown",
 ] }
 
+[settings]
+jobs = 1
+
 [tasks.check]
 description = "Format check, lint, and type-check"
 depends = ["format:check", "lint"]
 run = "deno check **/*.ts"
+
+[tasks."check:pre-commit"]
+description = "Fast checks to run before a commit: format check, lint, and type-check"
+depends = ["check", "build:wasm:check", "test", "publish:dry:dirty"]
+
+[tasks."check:pre-push"]
+description = "Full checks to run before a push: pre-commit checks, wasm parity, and tests"
+depends = ["check:pre-commit", "build:wasm:check", "test", "publish:dry"]
 
 [tasks.lint]
 description = "Lint the TypeScript code"
@@ -59,3 +70,16 @@ run = "cargo fmt --all -- --check"
 description = "Format (JS + Rust) and auto-fix lint rules"
 depends = ["format"]
 run = "deno lint --fix"
+
+[tasks.publish]
+description = "Publish the workspace packages to JSR"
+confirm = "Publish all workspace packages to JSR?"
+run = "deno publish"
+
+[tasks."publish:dry"]
+description = "Check that the workspace packages can be published to JSR"
+run = "deno publish --dry-run"
+
+[tasks."publish:dry:dirty"]
+description = "Check that the workspace packages can be published to JSR"
+run = "deno publish --dry-run --allow-dirty"
