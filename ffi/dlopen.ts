@@ -1,3 +1,10 @@
+/**
+ * Load dynamic libraries over FFI, including libraries downloaded from remote
+ * URLs and cached locally.
+ *
+ * @module
+ */
+
 import { ensureDir, exists } from "@std/fs";
 import { cacheFile, type CacheFileOptions, denoCacheDir } from "@stdx/fs";
 import { dirname, join, resolve } from "@std/path";

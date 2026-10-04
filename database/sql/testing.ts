@@ -1,3 +1,10 @@
+/**
+ * Reusable test suites that verify a SQL driver implements the interfaces from
+ * `@stdx/database/sql`.
+ *
+ * @module
+ */
+
 import {
   assert,
   assertEquals,

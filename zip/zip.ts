@@ -1,3 +1,9 @@
+/**
+ * Create zip archives, in memory or from a directory.
+ *
+ * @module
+ */
+
 import { concat } from "@std/bytes";
 import { walk } from "@std/fs";
 import { relative, resolve, SEPARATOR } from "@std/path";

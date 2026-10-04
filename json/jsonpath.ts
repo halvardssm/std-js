@@ -1,3 +1,9 @@
+/**
+ * Query JSON values with JSONPath expressions.
+ *
+ * @module
+ */
+
 import type { JsonValue } from "@std/json";
 import {
   JSONPath as WasmJSONPath,

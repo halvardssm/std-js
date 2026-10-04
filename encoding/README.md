@@ -28,3 +28,11 @@ reader.float64("little"); // 1.5
 ### Hex
 
 The hex module contains helpers for hex-encoded data such as hexdump.
+
+```ts
+import { dump } from "@stdx/encoding/hex";
+
+const buffer = new TextEncoder().encode("Hello world!");
+console.log(dump(buffer));
+// 00000000  48 65 6c 6c 6f 20 77 6f  72 6c 64 21              |Hello world!|
+```

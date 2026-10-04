@@ -1,3 +1,9 @@
+/**
+ * Type guard and assertion for plain `Record<string, unknown>` values.
+ *
+ * @module
+ */
+
 import { AssertionError } from "@std/assert";
 import { isObject } from "./is_object.ts";
 

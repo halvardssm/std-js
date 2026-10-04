@@ -1,3 +1,10 @@
+/**
+ * Utilities for generating random secrets, such as those used for one-time
+ * passwords.
+ *
+ * @module
+ */
+
 import { encodeBase32 } from "@std/encoding/base32";
 
 /**

@@ -1,4 +1,11 @@
 /**
+ * A stack of reusable elements that hands them out through promises, useful for
+ * pools of resources such as connections.
+ *
+ * @module
+ */
+
+/**
  * DeferredStackOptions
  *
  * Options for DeferredStack

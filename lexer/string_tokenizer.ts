@@ -1,3 +1,10 @@
+/**
+ * A configurable tokenizer that splits strings into tokens using key matchers
+ * and handlers.
+ *
+ * @module
+ */
+
 import { isNumeric } from "@stdx/assert";
 
 /**

@@ -1,7 +1,7 @@
 {
   "version": "0.1.1",
   "name": "@stdx/json",
-  "description": "Helpers for JSON parsing, querying (JSONPath) and processing, extending @std/json.",
+  "description": "Helpers for JSON parsing, querying (JSONPath), JSON Schema and processing, extending @std/json.",
   "exports": {
     ".": "./mod.ts",
     "./jsonpath": "./jsonpath.ts",

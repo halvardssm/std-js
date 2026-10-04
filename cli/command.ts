@@ -1,3 +1,9 @@
+/**
+ * Declarative command definitions with typed options, arguments and context.
+ *
+ * @module
+ */
+
 import { parseArgs } from "@std/cli/parse-args";
 import { closestString } from "@std/text/closest-string";
 import { levenshteinDistance } from "@std/text/levenshtein-distance";

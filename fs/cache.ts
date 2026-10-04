@@ -1,3 +1,9 @@
+/**
+ * Download remote files into a local cache, and locate Deno's cache directory.
+ *
+ * @module
+ */
+
 import { ensureDir, exists } from "@std/fs";
 import { dirname, join, resolve } from "@std/path";
 

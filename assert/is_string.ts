@@ -1,3 +1,9 @@
+/**
+ * Type guard and assertion for `string` values.
+ *
+ * @module
+ */
+
 import { AssertionError } from "@std/assert";
 
 /**

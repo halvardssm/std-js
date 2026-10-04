@@ -1,3 +1,9 @@
+/**
+ * A typed wrapper around `@std/cli` argument parsing.
+ *
+ * @module
+ */
+
 import {
   type Args,
   parseArgs as stdParseArgs,

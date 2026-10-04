@@ -1,3 +1,9 @@
+/**
+ * Extract zip archives, in memory or to a directory.
+ *
+ * @module
+ */
+
 import { ensureDir } from "@std/fs";
 import { dirname, isAbsolute, join, resolve, SEPARATOR } from "@std/path";
 import {

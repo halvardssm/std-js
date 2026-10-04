@@ -5,7 +5,7 @@ The types package, contains general purpose type helpers.
 ## Examples
 
 ```ts
-import { ValueOf } from "jsr:@stdx/types";
+import { ValueOf } from "@stdx/types";
 
 const SOME_MAP = {
   a: "b",
