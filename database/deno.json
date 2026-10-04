@@ -1,6 +1,7 @@
 {
   "version": "0.1.0",
   "name": "@stdx/database",
+  "description": "A standard interface for SQL databases, with SQLite drivers.",
   "exports": {
     "./sql": "./sql/mod.ts",
     "./sql/testing": "./sql/testing.ts",

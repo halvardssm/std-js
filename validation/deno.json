@@ -1,6 +1,7 @@
 {
   "version": "0.1.2",
   "name": "@stdx/validation",
+  "description": "Standard Schema and Standard JSON Schema compliant utilities, schemas, and validator.",
   "exports": {
     ".": "./mod.ts"
   }

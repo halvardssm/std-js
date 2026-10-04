@@ -1,6 +1,7 @@
 {
   "version": "0.1.0",
   "name": "@stdx/zip",
+  "description": "Helpers for creating and extracting zip archives.",
   "exports": {
     ".": "./mod.ts",
     "./zip": "./zip.ts",

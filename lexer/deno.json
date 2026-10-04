@@ -1,6 +1,7 @@
 {
   "version": "0.1.0",
   "name": "@stdx/lexer",
+  "description": "General purpose lexers and tokenizers.",
   "exports": {
     ".": "./mod.ts",
     "./string_tokenizer": "./string_tokenizer.ts"

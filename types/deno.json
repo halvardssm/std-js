@@ -1,6 +1,7 @@
 {
   "version": "0.1.1",
   "name": "@stdx/types",
+  "description": "General purpose type helpers.",
   "exports": {
     ".": "./mod.ts"
   }

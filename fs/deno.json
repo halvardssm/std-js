@@ -1,6 +1,7 @@
 {
   "version": "0.1.0",
   "name": "@stdx/fs",
+  "description": "Helpers for the file system such as file cache, extending @std/fs.",
   "exports": {
     ".": "./mod.ts",
     "./cache": "./cache.ts"

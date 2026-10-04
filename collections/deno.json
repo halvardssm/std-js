@@ -1,6 +1,7 @@
 {
   "version": "0.1.0",
   "name": "@stdx/collections",
+  "description": "Commonly used utilities and data structures.",
   "exports": {
     ".": "./mod.ts",
     "./deferred-stack": "./deferred_stack.ts"

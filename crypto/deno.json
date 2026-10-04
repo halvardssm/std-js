@@ -1,6 +1,7 @@
 {
   "version": "0.2.0",
   "name": "@stdx/crypto",
+  "description": "Password hashing (argon2, bcrypt, scrypt), hmac, hotp, totp, scram and secret generator. Extending @std/crypto.",
   "exports": {
     "./hash": "./hash.ts",
     "./hash/argon2": "./hash/argon2.ts",

@@ -1,6 +1,7 @@
 {
   "version": "0.1.1",
   "name": "@stdx/encoding",
+  "description": "Helpers for text, hex and binary encoding, extending @std/encoding.",
   "exports": {
     "./binary": "./binary.ts",
     "./hex": "./hex.ts"

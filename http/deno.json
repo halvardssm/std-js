@@ -1,6 +1,7 @@
 {
   "version": "0.1.0",
   "name": "@stdx/http",
+  "description": "Utilities for fetch and HTTP, extending @std/http.",
   "exports": {
     "./header": "./header.ts",
     "./method": "./method.ts"

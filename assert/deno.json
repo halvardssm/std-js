@@ -1,6 +1,7 @@
 {
   "version": "0.1.1",
   "name": "@stdx/assert",
+  "description": "Assertion and validation helpers extending @std/assert.",
   "exports": {
     ".": "./mod.ts",
     "./is_number": "./is_number.ts",
