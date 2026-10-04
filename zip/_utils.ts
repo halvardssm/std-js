@@ -1,3 +1,5 @@
+import { toBytes } from "@std/streams/to-bytes";
+
 export const LOCAL_SIGNATURE = 0x04034b50;
 export const CENTRAL_SIGNATURE = 0x02014b50;
 export const END_SIGNATURE = 0x06054b50;
@@ -26,6 +28,5 @@ export async function transform(
   stream: CompressionStream | DecompressionStream,
 ): Promise<Uint8Array> {
   const source = new Blob([data as BlobPart]).stream();
-  const result = await new Response(source.pipeThrough(stream)).arrayBuffer();
-  return new Uint8Array(result);
+  return await toBytes(source.pipeThrough(stream));
 }
