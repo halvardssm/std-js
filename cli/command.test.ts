@@ -4,7 +4,6 @@ import {
   runCommand,
   type RunOptions,
   UsageError,
-  versions,
 } from "./command.ts";
 
 Deno.test("defineCommand returns the definition", () => {
@@ -179,18 +178,6 @@ Deno.test("defineCommand validates the definition", async (t) => {
       assertThrows(fn, TypeError, message);
     });
   }
-});
-
-Deno.test("versions", () => {
-  const leaf = defineCommand({ name: "leaf", version: "3.0.0" });
-  const middle = defineCommand({ name: "mid", commands: [leaf] });
-  const root = defineCommand({ name: "root", version: "1.0.0" });
-  assertEquals(versions([root]), ["root 1.0.0"]);
-  assertEquals(versions([root, middle, leaf]), [
-    "root 1.0.0",
-    "root mid leaf 3.0.0",
-  ]);
-  assertEquals(versions([middle]), []);
 });
 
 type Result = { code: number; out: string[]; err: string[] };
@@ -405,6 +392,16 @@ Deno.test("runCommand usage errors", async (t) => {
         "Unknown command 'unrelated'",
         {},
         "Run 'tool --help' for usage.",
+      ),
+  );
+  await t.step(
+    "unknown nested command",
+    () =>
+      expectUsage(
+        ["group", "unrelated"],
+        "Unknown command 'unrelated'",
+        {},
+        "Run 'tool group --help' for usage.",
       ),
   );
   await t.step(
@@ -687,6 +684,14 @@ Deno.test("runCommand help and version", async (t) => {
     assertEquals((await run(cli, ["serve", "-V"])).out, result.out);
   });
 
+  await t.step("the output is written with only the line", async () => {
+    const calls: unknown[][] = [];
+    await runCommand(cli, ["serve", "-V"], {
+      stdout: (...args: unknown[]) => void calls.push(args),
+    });
+    assertEquals(calls, [["tool 1.2.3"], ["tool serve 2.0.0"]]);
+  });
+
   await t.step("a subcommand without a version shows its parents", async () => {
     assertEquals((await run(cli, ["group", "leaf", "-V"])).out, ["tool 1.2.3"]);
   });
@@ -720,6 +725,90 @@ Deno.test("runCommand help and version", async (t) => {
       (await run(noVersion, ["--help"])).out[0]!.includes("--version"),
       false,
     );
+  });
+});
+
+Deno.test("runCommand helpOnEmpty", async (t) => {
+  const ran: string[] = [];
+  const tool = defineCommand({
+    name: "tool",
+    helpOnEmpty: true,
+    options: { name: { type: "string", required: true } },
+    args: [{ name: "file", required: true }],
+    run: ({ stdout }) => {
+      ran.push("tool");
+      stdout("ran");
+    },
+  });
+
+  await t.step("shows the help without arguments", async () => {
+    const result = await run(tool, []);
+    assertEquals(result.code, 0);
+    assertEquals(result.err, []);
+    assertEquals(result.out.length, 1);
+    assertEquals(result.out[0]!.startsWith("Usage: tool"), true);
+    assertEquals(ran, []);
+  });
+
+  await t.step("uses the help renderer", async () => {
+    const result = await run(tool, [], {}, { help: () => "custom" });
+    assertEquals(result.out, ["custom"]);
+  });
+
+  await t.step("runs, and checks, when something is provided", async () => {
+    assertEquals((await run(tool, ["--name", "n", "f"])).out, ["ran"]);
+    assertEquals((await run(tool, ["f"])).code, 2);
+    assertEquals((await run(tool, ["--name", "n"])).code, 2);
+    assertEquals((await run(tool, ["--"])).code, 2);
+  });
+
+  await t.step("applies to the command that is called", async () => {
+    const group = defineCommand({
+      name: "group",
+      helpOnEmpty: true,
+      commands: [
+        defineCommand({
+          name: "leaf",
+          args: [{ name: "file", required: true }],
+          run: () => {},
+        }),
+        tool,
+      ],
+    });
+    const root = defineCommand({ name: "root", commands: [group] });
+
+    const help = await run(root, ["group"]);
+    assertEquals([help.code, help.out[0]!.startsWith("Usage: root group")], [
+      0,
+      true,
+    ]);
+    // Without the option, a command fails on what is missing.
+    assertEquals((await run(root, [])).err[0], "Error: Missing command");
+    assertEquals(
+      (await run(root, ["group", "leaf"])).err[0],
+      "Error: Missing required argument <file>",
+    );
+    // `tool` has the option, and shows its own help.
+    assertEquals(
+      (await run(root, ["group", "tool"])).out[0]!.startsWith(
+        "Usage: root group tool",
+      ),
+      true,
+    );
+  });
+
+  await t.step("is off by default", async () => {
+    const plain = defineCommand({
+      name: "plain",
+      args: [{ name: "file", required: true }],
+      run: () => {},
+    });
+    assertEquals((await run(plain, [])).code, 2);
+    const noArguments = defineCommand({
+      name: "x",
+      run: ({ stdout }) => stdout("ran"),
+    });
+    assertEquals((await run(noArguments, [])).out, ["ran"]);
   });
 });
 

@@ -64,6 +64,10 @@ mytool serve 2.1.0
   commands, one per line, e.g. `mytool 1.0.0` and `mytool serve 2.1.0`. Any
   command can have a `version`, and commands without one are left out. Replace
   the help with the `help` option of `runCommand`.
+- **Help when empty:** set `helpOnEmpty: true` on a command to show its help,
+  and succeed, when it is called without any arguments or flags. This takes the
+  place of running the command, or failing on a missing required argument, or on
+  `Missing command` for a command with subcommands.
 - **Suggestions:** an unknown command or `--option` is reported with the closest
   known one, e.g. `Unknown command 'serv'. Did you mean 'serve'?`, when it is
   within two edits. Configure it with the `suggest` option of `runCommand`:

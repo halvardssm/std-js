@@ -107,6 +107,12 @@ export type CommandDefinition<
   options?: TOptions;
   /** The positional arguments of the command */
   args?: TArguments;
+  /**
+   * Shows the help, and succeeds, when the command is called without any
+   * arguments or flags, instead of running it or failing on what is missing.
+   * A command with subcommands fails with `Missing command` otherwise.
+   */
+  helpOnEmpty?: boolean;
   /** The subcommands, which are chosen by the first argument */
   commands?: ReadonlyArray<AnyCommand>;
   /**
@@ -127,9 +133,6 @@ export type Command<
 /** A command with any options and arguments, e.g. to list subcommands */
 // deno-lint-ignore no-explicit-any
 export type AnyCommand = Command<any, any>;
-
-/** Names that are used by the generated help and version */
-export const RESERVED = { help: ["help", "h"], version: ["version", "V"] };
 
 /**
  * Defines a command, and checks the definition.
@@ -172,13 +175,13 @@ export function defineCommand<
 >(
   definition: CommandDefinition<TOptions, TArguments>,
 ): Command<TOptions, TArguments> {
-  const { name, options = {}, args = [], commands = [] } = definition;
+  const { name, args = [], commands = [] } = definition;
 
   if (!name || /\s/.test(name) || name.startsWith("-")) {
     throw new TypeError(`Invalid command name '${name}'`);
   }
 
-  const taken = new Set([...RESERVED.help, ...RESERVED.version]);
+  const taken = new Set([HELP.long, HELP.short, VERSION.long, VERSION.short]);
   const claim = (flag: string, option: string) => {
     if (taken.has(flag)) {
       throw new TypeError(
@@ -187,11 +190,7 @@ export function defineCommand<
     }
     taken.add(flag);
   };
-  for (
-    const [option, { alias }] of Object.entries(options) as Array<
-      [string, Option]
-    >
-  ) {
+  for (const [option, { alias }] of optionsOf(definition)) {
     claim(toKebabCase(option), option);
     if (alias !== undefined) {
       if (alias.length !== 1) {
@@ -228,25 +227,9 @@ export function defineCommand<
   return definition;
 }
 
-/**
- * Lists the versions of the commands from the root to a command, as lines like
- * `tool serve 1.0.0`. Commands without a version are left out.
- *
- * @param path the commands from the root to a command
- * @returns the lines, from the root to the command
- *
- * @example
- * ```ts
- * import { defineCommand, versions } from "@stdext/cli/command";
- * import { assertEquals } from "@std/assert";
- *
- * const serve = defineCommand({ name: "serve", version: "2.0.0" });
- * const cli = defineCommand({ name: "tool", version: "1.0.0" });
- *
- * assertEquals(versions([cli, serve]), ["tool 1.0.0", "tool serve 2.0.0"]);
- * ```
- */
-export function versions(path: ReadonlyArray<AnyCommand>): string[] {
+// Lists the versions of the commands from the root to a command, as lines like
+// `tool serve 1.0.0`. Commands without a version are left out.
+function versions(path: ReadonlyArray<AnyCommand>): string[] {
   return path.flatMap((command, index) =>
     command.version
       ? [
@@ -266,8 +249,7 @@ export function versions(path: ReadonlyArray<AnyCommand>): string[] {
  *
  * @example
  * ```ts
- * import { defineCommand } from "@stdext/cli/command";
- * import { renderHelp } from "@stdext/cli/command";
+ * import { defineCommand, renderHelp } from "@stdext/cli/command";
  * import { assert } from "@std/assert";
  *
  * const cli = defineCommand({ name: "tool", description: "Does things" });
@@ -286,7 +268,7 @@ export function renderHelp(path: ReadonlyArray<AnyCommand>): string {
   ].filter(Boolean).join(" - ");
   if (title) sections.push(title);
 
-  const args = (command.args ?? []) as ReadonlyArray<Argument>;
+  const args = argsOf(command);
   const commands = command.commands ?? [];
   const usage = [
     names,
@@ -311,10 +293,7 @@ export function renderHelp(path: ReadonlyArray<AnyCommand>): string {
     );
   }
 
-  const options = Object.entries((command.options ?? {}) as Options) as Array<
-    [string, Option]
-  >;
-  const rows = options.map(([name, option]): [string, string] => {
+  const rows = optionsOf(command).map(([name, option]): [string, string] => {
     const flag = `${option.alias ? `-${option.alias}, ` : "    "}--${
       toKebabCase(name)
     }${option.type === "string" ? " <value>" : ""}`;
@@ -326,23 +305,13 @@ export function renderHelp(path: ReadonlyArray<AnyCommand>): string {
     ].filter(Boolean).join(" ");
     return [flag, notes];
   });
-  rows.push([`-${RESERVED.help[1]}, --${RESERVED.help[0]}`, "Show this help"]);
+  rows.push([`-${HELP.short}, --${HELP.long}`, "Show this help"]);
   if (versions(path).length > 0) {
-    rows.push([
-      `-${RESERVED.version[1]}, --${RESERVED.version[0]}`,
-      "Show the version",
-    ]);
+    rows.push([`-${VERSION.short}, --${VERSION.long}`, "Show the version"]);
   }
   sections.push(`Options:\n${table(rows)}`);
 
   return sections.join("\n\n");
-}
-
-function table(rows: Array<[string, string]>): string {
-  const width = Math.max(...rows.map(([left]) => left.length));
-  return rows.map(([left, right]) =>
-    `  ${left.padEnd(width)}${right ? `  ${right}` : ""}`.trimEnd()
-  ).join("\n");
 }
 
 /**
@@ -378,6 +347,8 @@ export type RunOptions = {
   help?: (path: ReadonlyArray<AnyCommand>) => string;
 };
 
+const HELP = { long: "help", short: "h" };
+const VERSION = { long: "version", short: "V" };
 const DEFAULT_MAX_DISTANCE = 2;
 const NOT_PASSED = Symbol("not passed");
 const TRUE = ["1", "true", "yes", "on"];
@@ -395,7 +366,8 @@ const FALSE = ["0", "false", "no", "off"];
  * is near enough, see the `suggest` option.
  *
  * Usage errors, like an unknown flag, are written to stderr with the exit code
- * `2`, or the `usageExitCode` option. Other errors thrown by the command are not caught.
+ * `2`, or the `usageExitCode` option. Other errors thrown by the command are not
+ * caught.
  *
  * @param command the root command
  * @param args the arguments, usually `Deno.args`
@@ -404,8 +376,7 @@ const FALSE = ["0", "false", "no", "off"];
  *
  * @example
  * ```ts
- * import { defineCommand } from "@stdext/cli/command";
- * import { runCommand } from "@stdext/cli/command";
+ * import { defineCommand, runCommand } from "@stdext/cli/command";
  * import { assertEquals } from "@std/assert";
  *
  * const cli = defineCommand({
@@ -445,39 +416,23 @@ export async function runCommand(
       : closest(input, candidates, maxDistance);
 
   const path: AnyCommand[] = [command];
-  let tokens = [...args];
   try {
-    for (;;) {
-      const current = path[path.length - 1]!;
-      const name = tokens[0];
-      if (!current.commands?.length || name === undefined) break;
-      if (name.startsWith("-")) break;
-      const next = current.commands.find((c) => c.name === name);
-      if (!next) {
-        const match = suggest(name, current.commands.map((c) => c.name));
-        throw new UsageError(
-          `Unknown command '${name}'${
-            match ? `. Did you mean '${match}'?` : ""
-          }`,
-        );
-      }
-      path.push(next);
-      tokens = tokens.slice(1);
-    }
+    const tokens = resolveCommand(path, args, suggest);
     const current = path[path.length - 1]!;
 
-    const flagTokens = tokens.slice(
-      0,
-      tokens.includes("--") ? tokens.indexOf("--") : undefined,
-    );
-    const isFlag = (names: string[]) =>
-      flagTokens.some((t) => t === `--${names[0]}` || t === `-${names[1]}`);
-    if (isFlag(RESERVED.help)) {
+    const end = tokens.indexOf("--");
+    const flagTokens = end < 0 ? tokens : tokens.slice(0, end);
+    if (hasFlag(flagTokens, HELP)) {
       stdout(help(path));
       return 0;
     }
-    if (isFlag(RESERVED.version) && versions(path).length > 0) {
-      versions(path).forEach(stdout);
+    if (current.helpOnEmpty && tokens.length === 0) {
+      stdout(help(path));
+      return 0;
+    }
+    const versionLines = versions(path);
+    if (versionLines.length > 0 && hasFlag(flagTokens, VERSION)) {
+      for (const line of versionLines) stdout(line);
       return 0;
     }
 
@@ -506,15 +461,55 @@ export async function runCommand(
   }
 }
 
+// Follows the leading arguments down the subcommands, adding them to the path
+// of commands from the root, and returns the arguments that are left. The path
+// is given, so that it is complete for the error when a command is not known.
+function resolveCommand(
+  path: AnyCommand[],
+  args: readonly string[],
+  suggest: (input: string, candidates: string[]) => string | undefined,
+): string[] {
+  let tokens = [...args];
+  for (;;) {
+    const current = path[path.length - 1]!;
+    const name = tokens[0];
+    if (!current.commands?.length || name === undefined) break;
+    if (name.startsWith("-")) break;
+    const next = current.commands.find((c) => c.name === name);
+    if (!next) {
+      const match = suggest(name, current.commands.map((c) => c.name));
+      throw new UsageError(
+        `Unknown command '${name}'${match ? `. Did you mean '${match}'?` : ""}`,
+      );
+    }
+    path.push(next);
+    tokens = tokens.slice(1);
+  }
+  return tokens;
+}
+
+function hasFlag(
+  tokens: string[],
+  { long, short }: { long: string; short: string },
+): boolean {
+  return tokens.some((token) => token === `--${long}` || token === `-${short}`);
+}
+
+function optionsOf(command: AnyCommand): Array<[string, Option]> {
+  return Object.entries((command.options ?? {}) as Options);
+}
+
+function argsOf(command: AnyCommand): ReadonlyArray<Argument> {
+  return (command.args ?? []) as ReadonlyArray<Argument>;
+}
+
 function parse(
   command: AnyCommand,
   tokens: string[],
   env: (name: string) => string | undefined,
   suggest: (input: string, candidates: string[]) => string | undefined,
 ) {
-  const options = Object.entries((command.options ?? {}) as Options) as Array<
-    [string, Option]
-  >;
+  const options = optionsOf(command);
   const byType = (type: Option["type"]) =>
     options.filter(([, o]) => o.type === type).map(([name]) =>
       toKebabCase(name)
@@ -544,7 +539,7 @@ function parse(
   if (unknownFlags.length > 0) {
     const names = [
       ...options.map(([name]) => toKebabCase(name)),
-      RESERVED.help[0]!,
+      HELP.long,
     ];
     const described = unknownFlags.map((flag) => {
       const match = flag.startsWith("--")
@@ -561,8 +556,8 @@ function parse(
 
   const flags: Record<string, unknown> = {};
   for (const [name, option] of options) {
-    const flag = `--${toKebabCase(name)}`;
-    let value = (parsed as Record<string, unknown>)[toKebabCase(name)];
+    const flag = toKebabCase(name);
+    let value = (parsed as Record<string, unknown>)[flag];
     if (value === NOT_PASSED) {
       const fromEnv = option.env ? env(option.env) : undefined;
       if (fromEnv) {
@@ -576,7 +571,7 @@ function parse(
     }
     if (value === undefined && option.type === "string" && option.required) {
       throw new UsageError(
-        `Missing required option ${flag}${
+        `Missing required option --${flag}${
           option.env ? ` (or environment variable ${option.env})` : ""
         }`,
       );
@@ -592,20 +587,16 @@ function assign(
   positionals: string[],
 ): Record<string, unknown> {
   const args: Record<string, unknown> = {};
-  const definitions = (command.args ?? []) as ReadonlyArray<Argument>;
+  const definitions = argsOf(command);
 
   definitions.forEach(({ name, required, variadic }, index) => {
-    if (variadic) {
-      args[name] = positionals.slice(index);
-      if (required && positionals.length <= index) {
-        throw new UsageError(`Missing required argument <${name}>`);
-      }
-    } else {
-      args[name] = positionals[index];
-      if (required && args[name] === undefined) {
-        throw new UsageError(`Missing required argument <${name}>`);
-      }
+    const missing = variadic
+      ? positionals.length <= index
+      : positionals[index] === undefined;
+    if (required && missing) {
+      throw new UsageError(`Missing required argument <${name}>`);
     }
+    args[name] = variadic ? positionals.slice(index) : positionals[index];
   });
 
   const accepted = definitions.some((a) => a.variadic)
@@ -649,4 +640,11 @@ function readEnv(name: string): string | undefined {
     if (error instanceof Deno.errors.NotCapable) return undefined;
     throw error;
   }
+}
+
+function table(rows: Array<[string, string]>): string {
+  const width = Math.max(...rows.map(([left]) => left.length));
+  return rows.map(([left, right]) =>
+    `  ${left.padEnd(width)}${right ? `  ${right}` : ""}`.trimEnd()
+  ).join("\n");
 }
