@@ -9,9 +9,9 @@ import {
 import { join } from "@std/path";
 
 const TEST_FILE_URL =
-  "https://raw.githubusercontent.com/halvardssm/stdext/refs/tags/0.0.1/README.md";
+  "https://raw.githubusercontent.com/halvardssm/std-js/refs/tags/0.0.1/README.md";
 const TEST_ZIP_URL =
-  "https://github.com/halvardssm/stdext/archive/refs/tags/0.0.1.zip";
+  "https://github.com/halvardssm/std-js/archive/refs/tags/0.0.1.zip";
 
 // `Deno.build` is read-only in the typings, and the tests mock the os
 // detection by replacing it.
@@ -78,7 +78,7 @@ Deno.test("cacheRemoteFile", async (t) => {
     const result = await cacheRemoteFile({
       url: TEST_ZIP_URL,
       type: "zip",
-      archivePath: "stdext-0.0.1/README.md",
+      archivePath: "std-js-0.0.1/README.md",
     }, {
       path: testCacheDir,
       cacheControl: "reload",
@@ -97,7 +97,7 @@ Deno.test("cacheRemoteFile", async (t) => {
     const result = await cacheRemoteFile({
       url: TEST_ZIP_URL,
       type: "zip",
-      archivePath: "stdext-0.0.1/README.md",
+      archivePath: "std-js-0.0.1/README.md",
     }, {
       path: testCacheDir,
     });
@@ -117,14 +117,14 @@ Deno.test("cacheRemoteFile", async (t) => {
     const first = await cacheRemoteFile({
       url: TEST_ZIP_URL,
       type: "zip",
-      archivePath: "stdext-0.0.1/README.md",
+      archivePath: "std-js-0.0.1/README.md",
     }, {
       path: testCacheDir,
     });
     const second = await cacheRemoteFile({
       url: TEST_ZIP_URL,
       type: "zip",
-      archivePath: "stdext-0.0.1/README.md",
+      archivePath: "std-js-0.0.1/README.md",
     }, {
       path: testCacheDir,
     });
@@ -213,12 +213,12 @@ Deno.test("getCachePath", async (t) => {
 
 Deno.test("urlToPathSegments", () => {
   const url = new URL(
-    "https://user:pass@sub.github.com:123/halvardssm/stdext/blob/0.0.1/README.md?t=a&b=2#asdf",
+    "https://user:pass@sub.github.com:123/halvardssm/std-js/blob/0.0.1/README.md?t=a&b=2#asdf",
   );
   const result = urlToPathSegments(url);
   assertEquals(
     result,
-    "https/sub.github.com/halvardssm/stdext/blob/0.0.1/README.md",
+    "https/sub.github.com/halvardssm/std-js/blob/0.0.1/README.md",
   );
 });
 

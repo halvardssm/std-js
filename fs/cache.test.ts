@@ -4,7 +4,7 @@ import { exists } from "@std/fs";
 import { join } from "@std/path";
 
 const TEST_FILE_URL =
-  "https://raw.githubusercontent.com/halvardssm/stdext/refs/tags/0.0.1/README.md";
+  "https://raw.githubusercontent.com/halvardssm/std-js/refs/tags/0.0.1/README.md";
 
 // `Deno.build` is read-only in the typings, and the tests mock the os
 // detection by replacing it.
@@ -273,7 +273,7 @@ Deno.test("cacheFile", async (t) => {
     "throws error when remote file cannot be fetched",
     async () => {
       const invalidUrl =
-        "https://raw.githubusercontent.com/halvardssm/stdext/refs/tags/0.0.1/NONEXISTENT.md";
+        "https://raw.githubusercontent.com/halvardssm/std-js/refs/tags/0.0.1/NONEXISTENT.md";
       const invalidPath = join(testCacheDir, "NONEXISTENT.md");
 
       await assertRejects(

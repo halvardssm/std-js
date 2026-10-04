@@ -1,6 +1,7 @@
 import { ensureDir, exists } from "@std/fs";
 import { cacheFile, type CacheFileOptions, denoCacheDir } from "@stdext/fs";
 import { dirname, join, resolve } from "@std/path";
+import { unzipDir } from "@stdext/zip/unzip";
 
 /**
  * Options for dlopen function
@@ -170,7 +171,7 @@ export async function cacheRemoteFile(
             e.name !== "NotFound" && console.warn(e.message)
           );
       }
-      await unzip(absoluteFilePath, unarchivedPath);
+      await unzipDir(absoluteFilePath, unarchivedPath);
     }
     absoluteFilePath = join(unarchivedPath, fileOptions.archivePath!);
     const fileExistsInArchive = await exists(absoluteFilePath);
@@ -222,18 +223,4 @@ export function urlToPathSegments(url: URL): string {
  */
 export function withoutExt(path: string | URL): string {
   return path.toString().replace(/\.+\w+$/, "");
-}
-
-async function unzip(src: string, dest: string): Promise<void> {
-  const cmd = new Deno.Command("unzip", {
-    args: [src, "-d", dest],
-  });
-
-  const output = await cmd.output();
-
-  if (!output.success) {
-    throw new Error(
-      `Failed to unzip:\n${new TextDecoder().decode(output.stderr)}`,
-    );
-  }
 }
