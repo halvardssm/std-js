@@ -78,7 +78,7 @@ Deno.test("cacheRemoteFile", async (t) => {
     const result = await cacheRemoteFile({
       url: TEST_ZIP_URL,
       type: "zip",
-      archivePath: "stdext-0.0.1/README.md",
+      archivePath: "std-js-0.0.1/README.md",
     }, {
       path: testCacheDir,
       cacheControl: "reload",
@@ -97,7 +97,7 @@ Deno.test("cacheRemoteFile", async (t) => {
     const result = await cacheRemoteFile({
       url: TEST_ZIP_URL,
       type: "zip",
-      archivePath: "stdext-0.0.1/README.md",
+      archivePath: "std-js-0.0.1/README.md",
     }, {
       path: testCacheDir,
     });
@@ -117,14 +117,14 @@ Deno.test("cacheRemoteFile", async (t) => {
     const first = await cacheRemoteFile({
       url: TEST_ZIP_URL,
       type: "zip",
-      archivePath: "stdext-0.0.1/README.md",
+      archivePath: "std-js-0.0.1/README.md",
     }, {
       path: testCacheDir,
     });
     const second = await cacheRemoteFile({
       url: TEST_ZIP_URL,
       type: "zip",
-      archivePath: "stdext-0.0.1/README.md",
+      archivePath: "std-js-0.0.1/README.md",
     }, {
       path: testCacheDir,
     });
