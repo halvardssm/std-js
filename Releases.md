@@ -1,19 +1,17 @@
 ### 2026.10.04
 
-#### @stdext/cli 0.0.1 (patch)
+#### @stdext/assert 0.1.1 (patch)
+
+- fix(assert): Added message as option argument to asserts, and added object
+  asserts
+
+#### @stdext/cli 0.0.2 (patch)
 
 - feat(cli): added further options to command
 - feat(cli): added command
 - feat(cli): Added cli module with parseArgs
 
-#### @stdext/zip 0.0.1 (patch)
-
-- feat(zip): add zip and unzip for archives and directories
-- fix(zip): replace with std
-
-### 2026.10.04
-
-#### @stdext/collections 0.0.6 (patch)
+#### @stdext/collections 0.1.0 (minor)
 
 - feat(collections)!: fix DeferredStack release, add clear and abortable pop
 - feat(collections): add deferred stack
@@ -26,7 +24,7 @@
 - fix(crypto): Fixed errors due to changes in deno types
 - chore(crypto): change ts-ignore to ts-expect-error
 
-#### @stdext/database 0.0.1 (patch)
+#### @stdext/database 0.1.0 (minor)
 
 - feat(database): added docs and examples
 - feat(database)!: refactored code
@@ -47,15 +45,15 @@
 
 - feat(encoding): add binary reader and writer
 
-#### @stdext/event 0.1.0 (minor)
+#### @stdext/event 0.1.1 (patch)
 
 - feat(event): added docs and tests
 
-#### @stdext/ffi 0.0.1 (patch)
+#### @stdext/ffi 0.0.2 (patch)
 
 - feat(ffi): added docs and tests
 
-#### @stdext/fs 0.0.1 (patch)
+#### @stdext/fs 0.0.2 (patch)
 
 - feat(fs): added docs and tests
 
@@ -71,7 +69,7 @@
   type helpers
 - feat(types): added type and improved documentation
 
-#### @stdext/validation 0.1.1 (minor)
+#### @stdext/validation 0.1.2 (patch)
 
 - feat(validation): added more helpers
 - feat(validation): refactor validation
@@ -82,6 +80,11 @@
 - feat(validation): added validation namespace, and standard compliant validator
 - fix(validation): Improved docs and tests
 - chore(validation): Added jsdoc and improved readme - thanks AI
+
+#### @stdext/zip 0.0.2 (patch)
+
+- feat(zip): add zip and unzip for archives and directories
+- fix(zip): replace with std
 
 ### 2026.10.03
 
