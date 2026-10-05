@@ -4,6 +4,10 @@
 [![codecov](https://codecov.io/gh/halvardssm/std-js/graph/badge.svg?token=T1JEMGF8VW)](https://codecov.io/gh/halvardssm/std-js)
 [![ci](https://github.com/halvardssm/std-js/actions/workflows/ci.yml/badge.svg)](https://github.com/halvardssm/std-js/actions/workflows/ci.yml)
 
+> 🚨 The packages have moved from the `@stdext` scope to
+> [`@stdx`](https://jsr.io/@stdx). The `@stdext` scope is deprecated, see the
+> [deprecation document](./DEPRECATIONS.md#stdext-scope) for how to migrate.
+
 An extension of the [Deno Standard Library](https://github.com/denoland/std).
 
 Multiple languages such as Rust, Go and PHP offer a standard library, which
