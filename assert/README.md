@@ -1,5 +1,10 @@
 # @stdx/assert
 
+[![JSR](https://jsr.io/badges/@stdx/assert)](https://jsr.io/@stdx/assert)
+[![JSR Score](https://jsr.io/badges/@stdx/assert/score)](https://jsr.io/@stdx/assert)
+[![Weekly downloads](https://jsr.io/badges/@stdx/assert/weekly-downloads)](https://jsr.io/@stdx/assert)
+[![Total downloads](https://jsr.io/badges/@stdx/assert/total-downloads)](https://jsr.io/@stdx/assert)
+
 Extends [@std/assert](https://jsr.io/@std/assert)
 
 The assert package contains type guards and assertions for narrowing unknown

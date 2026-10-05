@@ -1,5 +1,10 @@
 # @stdx/database
 
+[![JSR](https://jsr.io/badges/@stdx/database)](https://jsr.io/@stdx/database)
+[![JSR Score](https://jsr.io/badges/@stdx/database/score)](https://jsr.io/@stdx/database)
+[![Weekly downloads](https://jsr.io/badges/@stdx/database/weekly-downloads)](https://jsr.io/@stdx/database)
+[![Total downloads](https://jsr.io/badges/@stdx/database/total-downloads)](https://jsr.io/@stdx/database)
+
 The database package contains a standard interface for SQL databases, and
 drivers implementing it for SQLite and Postgres. It draws inspiration from
 [go std/database](https://pkg.go.dev/database).

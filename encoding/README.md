@@ -1,5 +1,10 @@
 # @stdx/encoding
 
+[![JSR](https://jsr.io/badges/@stdx/encoding)](https://jsr.io/@stdx/encoding)
+[![JSR Score](https://jsr.io/badges/@stdx/encoding/score)](https://jsr.io/@stdx/encoding)
+[![Weekly downloads](https://jsr.io/badges/@stdx/encoding/weekly-downloads)](https://jsr.io/@stdx/encoding)
+[![Total downloads](https://jsr.io/badges/@stdx/encoding/total-downloads)](https://jsr.io/@stdx/encoding)
+
 Extends [@std/encoding](https://jsr.io/@std/encoding)
 
 The encoding package contains helpers for text and binary encoding.

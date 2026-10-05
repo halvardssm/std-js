@@ -1,5 +1,10 @@
 # @stdx/json
 
+[![JSR](https://jsr.io/badges/@stdx/json)](https://jsr.io/@stdx/json)
+[![JSR Score](https://jsr.io/badges/@stdx/json/score)](https://jsr.io/@stdx/json)
+[![Weekly downloads](https://jsr.io/badges/@stdx/json/weekly-downloads)](https://jsr.io/@stdx/json)
+[![Total downloads](https://jsr.io/badges/@stdx/json/total-downloads)](https://jsr.io/@stdx/json)
+
 Extends [@std/json](https://jsr.io/@std/json)
 
 The json package, contains helpers for json parsing, querying (jsonpath) and

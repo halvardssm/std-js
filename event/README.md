@@ -1,5 +1,10 @@
 # @stdx/event
 
+[![JSR](https://jsr.io/badges/@stdx/event)](https://jsr.io/@stdx/event)
+[![JSR Score](https://jsr.io/badges/@stdx/event/score)](https://jsr.io/@stdx/event)
+[![Weekly downloads](https://jsr.io/badges/@stdx/event/weekly-downloads)](https://jsr.io/@stdx/event)
+[![Total downloads](https://jsr.io/badges/@stdx/event/total-downloads)](https://jsr.io/@stdx/event)
+
 Extends [@std/event](https://jsr.io/@std/event)
 
 The event package contains typed extensions of the Web Event APIs: a

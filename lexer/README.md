@@ -1,5 +1,10 @@
 # @stdx/lexer
 
+[![JSR](https://jsr.io/badges/@stdx/lexer)](https://jsr.io/@stdx/lexer)
+[![JSR Score](https://jsr.io/badges/@stdx/lexer/score)](https://jsr.io/@stdx/lexer)
+[![Weekly downloads](https://jsr.io/badges/@stdx/lexer/weekly-downloads)](https://jsr.io/@stdx/lexer)
+[![Total downloads](https://jsr.io/badges/@stdx/lexer/total-downloads)](https://jsr.io/@stdx/lexer)
+
 The lexer package contains general purpose lexers/tokenizers.
 
 ## Example

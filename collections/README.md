@@ -1,5 +1,10 @@
 # @stdx/collections
 
+[![JSR](https://jsr.io/badges/@stdx/collections)](https://jsr.io/@stdx/collections)
+[![JSR Score](https://jsr.io/badges/@stdx/collections/score)](https://jsr.io/@stdx/collections)
+[![Weekly downloads](https://jsr.io/badges/@stdx/collections/weekly-downloads)](https://jsr.io/@stdx/collections)
+[![Total downloads](https://jsr.io/badges/@stdx/collections/total-downloads)](https://jsr.io/@stdx/collections)
+
 The collections package contains commonly used utilities and structures.
 
 ## Entrypoints

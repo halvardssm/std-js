@@ -1,5 +1,10 @@
 # @stdx/xml
 
+[![JSR](https://jsr.io/badges/@stdx/xml)](https://jsr.io/@stdx/xml)
+[![JSR Score](https://jsr.io/badges/@stdx/xml/score)](https://jsr.io/@stdx/xml)
+[![Weekly downloads](https://jsr.io/badges/@stdx/xml/weekly-downloads)](https://jsr.io/@stdx/xml)
+[![Total downloads](https://jsr.io/badges/@stdx/xml/total-downloads)](https://jsr.io/@stdx/xml)
+
 Extends [@std/xml](https://jsr.io/@std/xml)
 
 The xml package provides XML parsing, serialization, and XSD validation, backed

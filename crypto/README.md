@@ -1,5 +1,10 @@
 # @stdx/crypto
 
+[![JSR](https://jsr.io/badges/@stdx/crypto)](https://jsr.io/@stdx/crypto)
+[![JSR Score](https://jsr.io/badges/@stdx/crypto/score)](https://jsr.io/@stdx/crypto)
+[![Weekly downloads](https://jsr.io/badges/@stdx/crypto/weekly-downloads)](https://jsr.io/@stdx/crypto)
+[![Total downloads](https://jsr.io/badges/@stdx/crypto/total-downloads)](https://jsr.io/@stdx/crypto)
+
 Extends [@std/crypto](https://jsr.io/@std/crypto)
 
 The Crypto package contains utilities for password hashing, message

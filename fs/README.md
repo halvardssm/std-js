@@ -1,5 +1,10 @@
 # @stdx/fs
 
+[![JSR](https://jsr.io/badges/@stdx/fs)](https://jsr.io/@stdx/fs)
+[![JSR Score](https://jsr.io/badges/@stdx/fs/score)](https://jsr.io/@stdx/fs)
+[![Weekly downloads](https://jsr.io/badges/@stdx/fs/weekly-downloads)](https://jsr.io/@stdx/fs)
+[![Total downloads](https://jsr.io/badges/@stdx/fs/total-downloads)](https://jsr.io/@stdx/fs)
+
 Extends [@std/fs](https://jsr.io/@std/fs)
 
 The fs package contains helpers for the file system.

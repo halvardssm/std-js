@@ -1,5 +1,10 @@
 # @stdx/cli
 
+[![JSR](https://jsr.io/badges/@stdx/cli)](https://jsr.io/@stdx/cli)
+[![JSR Score](https://jsr.io/badges/@stdx/cli/score)](https://jsr.io/@stdx/cli)
+[![Weekly downloads](https://jsr.io/badges/@stdx/cli/weekly-downloads)](https://jsr.io/@stdx/cli)
+[![Total downloads](https://jsr.io/badges/@stdx/cli/total-downloads)](https://jsr.io/@stdx/cli)
+
 Extends [@std/cli](https://jsr.io/@std/cli)
 
 The cli package contains helpers for building command line applications.

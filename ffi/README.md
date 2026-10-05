@@ -1,5 +1,10 @@
 # @stdx/ffi
 
+[![JSR](https://jsr.io/badges/@stdx/ffi)](https://jsr.io/@stdx/ffi)
+[![JSR Score](https://jsr.io/badges/@stdx/ffi/score)](https://jsr.io/@stdx/ffi)
+[![Weekly downloads](https://jsr.io/badges/@stdx/ffi/weekly-downloads)](https://jsr.io/@stdx/ffi)
+[![Total downloads](https://jsr.io/badges/@stdx/ffi/total-downloads)](https://jsr.io/@stdx/ffi)
+
 The FFI package contains helpers when using FFI.
 
 ## Entrypoints

@@ -1,5 +1,10 @@
 # @stdx/zip
 
+[![JSR](https://jsr.io/badges/@stdx/zip)](https://jsr.io/@stdx/zip)
+[![JSR Score](https://jsr.io/badges/@stdx/zip/score)](https://jsr.io/@stdx/zip)
+[![Weekly downloads](https://jsr.io/badges/@stdx/zip/weekly-downloads)](https://jsr.io/@stdx/zip)
+[![Total downloads](https://jsr.io/badges/@stdx/zip/total-downloads)](https://jsr.io/@stdx/zip)
+
 The zip package contains helpers for creating and extracting zip archives, with
 no dependencies other than the Deno runtime.
 

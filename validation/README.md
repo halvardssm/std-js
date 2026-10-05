@@ -1,5 +1,10 @@
 # @stdx/validation
 
+[![JSR](https://jsr.io/badges/@stdx/validation)](https://jsr.io/@stdx/validation)
+[![JSR Score](https://jsr.io/badges/@stdx/validation/score)](https://jsr.io/@stdx/validation)
+[![Weekly downloads](https://jsr.io/badges/@stdx/validation/weekly-downloads)](https://jsr.io/@stdx/validation)
+[![Total downloads](https://jsr.io/badges/@stdx/validation/total-downloads)](https://jsr.io/@stdx/validation)
+
 Schemas that implement both [Standard Schema](https://standardschema.dev/) and
 [Standard JSON Schema](https://standardschema.dev/#json-schema), and a small,
 fully typed factory to build them.

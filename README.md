@@ -43,40 +43,45 @@ console.log(dump(buffer));
 
 ## Packages
 
-- [assert](https://jsr.io/@stdx/assert): The assert package, contains validators
-  and assertions
-- [cli](https://jsr.io/@stdx/cli): The cli package contains a command framework
-  and helpers for building command line applications
-- [collections](https://jsr.io/@stdx/collections): The collections package
-  contains commonly used utilities and structures
-- [crypto](https://jsr.io/@stdx/crypto): The crypto package contains utility for
-  crypto, hashing, HMAC and SCRAM authentication
-- [database](https://jsr.io/@stdx/database): The database package contains
-  interfaces and helpers for interacting with databases, and SQLite and Postgres
-  drivers
-- [encoding](https://jsr.io/@stdx/encoding): The encoding package contains
-  utility for text and binary encoding.
-- [event](https://jsr.io/@stdx/event): The event package contains extensions for
-  events
-- [ffi](https://jsr.io/@stdx/ffi): The FFI package contains helpers when using
-  FFI
-- [fs](https://jsr.io/@stdx/fs): The fs package contains helpers for the file
-  system
-- [http](https://jsr.io/@stdx/http): The http package contains utility for
-  fetching and http servers
-- [json](https://jsr.io/@stdx/json): The json package, contains helpers for json
-  parsing, querying (jsonpath) and processing
-- [lexer](https://jsr.io/@stdx/lexer): The lexer package contains general
-  purpose lexers/tokenizers
-- [types](https://jsr.io/@stdx/types): The types package, contains general
-  purpose type helpers
-- [validation](https://jsr.io/@stdx/validation): The validation package, builds
-  schemas that implement both Standard Schema and Standard JSON Schema, with
-  fully inferred types
-- [xml](https://jsr.io/@stdx/xml): The xml package provides XML parsing,
-  serialization, and XSD validation, backed by a WebAssembly implementation
-- [zip](https://jsr.io/@stdx/zip): The zip package contains helpers for creating
-  and extracting zip archives
+| Package                                         | Description                                                                                                                    |
+| ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| [assert](https://jsr.io/@stdx/assert)           | The assert package, contains validators and assertions                                                                         |
+| [cli](https://jsr.io/@stdx/cli)                 | The cli package contains a command framework and helpers for building command line applications                                |
+| [collections](https://jsr.io/@stdx/collections) | The collections package contains commonly used utilities and structures                                                        |
+| [crypto](https://jsr.io/@stdx/crypto)           | The crypto package contains utility for crypto, hashing, HMAC and SCRAM authentication                                         |
+| [database](https://jsr.io/@stdx/database)       | The database package contains interfaces and helpers for interacting with databases, and SQLite and Postgres drivers           |
+| [encoding](https://jsr.io/@stdx/encoding)       | The encoding package contains utility for text and binary encoding                                                             |
+| [event](https://jsr.io/@stdx/event)             | The event package contains extensions for events                                                                               |
+| [ffi](https://jsr.io/@stdx/ffi)                 | The FFI package contains helpers when using FFI                                                                                |
+| [fs](https://jsr.io/@stdx/fs)                   | The fs package contains helpers for the file system                                                                            |
+| [http](https://jsr.io/@stdx/http)               | The http package contains utility for fetching and http servers                                                                |
+| [json](https://jsr.io/@stdx/json)               | The json package, contains helpers for json parsing, querying (jsonpath) and processing                                        |
+| [lexer](https://jsr.io/@stdx/lexer)             | The lexer package contains general purpose lexers/tokenizers                                                                   |
+| [types](https://jsr.io/@stdx/types)             | The types package, contains general purpose type helpers                                                                       |
+| [validation](https://jsr.io/@stdx/validation)   | The validation package, builds schemas that implement both Standard Schema and Standard JSON Schema, with fully inferred types |
+| [xml](https://jsr.io/@stdx/xml)                 | The xml package provides XML parsing, serialization, and XSD validation, backed by a WebAssembly implementation                |
+| [zip](https://jsr.io/@stdx/zip)                 | The zip package contains helpers for creating and extracting zip archives                                                      |
+
+## Package status
+
+| Package                                         | Version                                                                             | JSR Score                                                                                       | Weekly downloads                                                                                                  | Total downloads                                                                                                 |
+| ----------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| [assert](https://jsr.io/@stdx/assert)           | [![JSR](https://jsr.io/badges/@stdx/assert)](https://jsr.io/@stdx/assert)           | [![JSR Score](https://jsr.io/badges/@stdx/assert/score)](https://jsr.io/@stdx/assert)           | [![Weekly downloads](https://jsr.io/badges/@stdx/assert/weekly-downloads)](https://jsr.io/@stdx/assert)           | [![Total downloads](https://jsr.io/badges/@stdx/assert/total-downloads)](https://jsr.io/@stdx/assert)           |
+| [cli](https://jsr.io/@stdx/cli)                 | [![JSR](https://jsr.io/badges/@stdx/cli)](https://jsr.io/@stdx/cli)                 | [![JSR Score](https://jsr.io/badges/@stdx/cli/score)](https://jsr.io/@stdx/cli)                 | [![Weekly downloads](https://jsr.io/badges/@stdx/cli/weekly-downloads)](https://jsr.io/@stdx/cli)                 | [![Total downloads](https://jsr.io/badges/@stdx/cli/total-downloads)](https://jsr.io/@stdx/cli)                 |
+| [collections](https://jsr.io/@stdx/collections) | [![JSR](https://jsr.io/badges/@stdx/collections)](https://jsr.io/@stdx/collections) | [![JSR Score](https://jsr.io/badges/@stdx/collections/score)](https://jsr.io/@stdx/collections) | [![Weekly downloads](https://jsr.io/badges/@stdx/collections/weekly-downloads)](https://jsr.io/@stdx/collections) | [![Total downloads](https://jsr.io/badges/@stdx/collections/total-downloads)](https://jsr.io/@stdx/collections) |
+| [crypto](https://jsr.io/@stdx/crypto)           | [![JSR](https://jsr.io/badges/@stdx/crypto)](https://jsr.io/@stdx/crypto)           | [![JSR Score](https://jsr.io/badges/@stdx/crypto/score)](https://jsr.io/@stdx/crypto)           | [![Weekly downloads](https://jsr.io/badges/@stdx/crypto/weekly-downloads)](https://jsr.io/@stdx/crypto)           | [![Total downloads](https://jsr.io/badges/@stdx/crypto/total-downloads)](https://jsr.io/@stdx/crypto)           |
+| [database](https://jsr.io/@stdx/database)       | [![JSR](https://jsr.io/badges/@stdx/database)](https://jsr.io/@stdx/database)       | [![JSR Score](https://jsr.io/badges/@stdx/database/score)](https://jsr.io/@stdx/database)       | [![Weekly downloads](https://jsr.io/badges/@stdx/database/weekly-downloads)](https://jsr.io/@stdx/database)       | [![Total downloads](https://jsr.io/badges/@stdx/database/total-downloads)](https://jsr.io/@stdx/database)       |
+| [encoding](https://jsr.io/@stdx/encoding)       | [![JSR](https://jsr.io/badges/@stdx/encoding)](https://jsr.io/@stdx/encoding)       | [![JSR Score](https://jsr.io/badges/@stdx/encoding/score)](https://jsr.io/@stdx/encoding)       | [![Weekly downloads](https://jsr.io/badges/@stdx/encoding/weekly-downloads)](https://jsr.io/@stdx/encoding)       | [![Total downloads](https://jsr.io/badges/@stdx/encoding/total-downloads)](https://jsr.io/@stdx/encoding)       |
+| [event](https://jsr.io/@stdx/event)             | [![JSR](https://jsr.io/badges/@stdx/event)](https://jsr.io/@stdx/event)             | [![JSR Score](https://jsr.io/badges/@stdx/event/score)](https://jsr.io/@stdx/event)             | [![Weekly downloads](https://jsr.io/badges/@stdx/event/weekly-downloads)](https://jsr.io/@stdx/event)             | [![Total downloads](https://jsr.io/badges/@stdx/event/total-downloads)](https://jsr.io/@stdx/event)             |
+| [ffi](https://jsr.io/@stdx/ffi)                 | [![JSR](https://jsr.io/badges/@stdx/ffi)](https://jsr.io/@stdx/ffi)                 | [![JSR Score](https://jsr.io/badges/@stdx/ffi/score)](https://jsr.io/@stdx/ffi)                 | [![Weekly downloads](https://jsr.io/badges/@stdx/ffi/weekly-downloads)](https://jsr.io/@stdx/ffi)                 | [![Total downloads](https://jsr.io/badges/@stdx/ffi/total-downloads)](https://jsr.io/@stdx/ffi)                 |
+| [fs](https://jsr.io/@stdx/fs)                   | [![JSR](https://jsr.io/badges/@stdx/fs)](https://jsr.io/@stdx/fs)                   | [![JSR Score](https://jsr.io/badges/@stdx/fs/score)](https://jsr.io/@stdx/fs)                   | [![Weekly downloads](https://jsr.io/badges/@stdx/fs/weekly-downloads)](https://jsr.io/@stdx/fs)                   | [![Total downloads](https://jsr.io/badges/@stdx/fs/total-downloads)](https://jsr.io/@stdx/fs)                   |
+| [http](https://jsr.io/@stdx/http)               | [![JSR](https://jsr.io/badges/@stdx/http)](https://jsr.io/@stdx/http)               | [![JSR Score](https://jsr.io/badges/@stdx/http/score)](https://jsr.io/@stdx/http)               | [![Weekly downloads](https://jsr.io/badges/@stdx/http/weekly-downloads)](https://jsr.io/@stdx/http)               | [![Total downloads](https://jsr.io/badges/@stdx/http/total-downloads)](https://jsr.io/@stdx/http)               |
+| [json](https://jsr.io/@stdx/json)               | [![JSR](https://jsr.io/badges/@stdx/json)](https://jsr.io/@stdx/json)               | [![JSR Score](https://jsr.io/badges/@stdx/json/score)](https://jsr.io/@stdx/json)               | [![Weekly downloads](https://jsr.io/badges/@stdx/json/weekly-downloads)](https://jsr.io/@stdx/json)               | [![Total downloads](https://jsr.io/badges/@stdx/json/total-downloads)](https://jsr.io/@stdx/json)               |
+| [lexer](https://jsr.io/@stdx/lexer)             | [![JSR](https://jsr.io/badges/@stdx/lexer)](https://jsr.io/@stdx/lexer)             | [![JSR Score](https://jsr.io/badges/@stdx/lexer/score)](https://jsr.io/@stdx/lexer)             | [![Weekly downloads](https://jsr.io/badges/@stdx/lexer/weekly-downloads)](https://jsr.io/@stdx/lexer)             | [![Total downloads](https://jsr.io/badges/@stdx/lexer/total-downloads)](https://jsr.io/@stdx/lexer)             |
+| [types](https://jsr.io/@stdx/types)             | [![JSR](https://jsr.io/badges/@stdx/types)](https://jsr.io/@stdx/types)             | [![JSR Score](https://jsr.io/badges/@stdx/types/score)](https://jsr.io/@stdx/types)             | [![Weekly downloads](https://jsr.io/badges/@stdx/types/weekly-downloads)](https://jsr.io/@stdx/types)             | [![Total downloads](https://jsr.io/badges/@stdx/types/total-downloads)](https://jsr.io/@stdx/types)             |
+| [validation](https://jsr.io/@stdx/validation)   | [![JSR](https://jsr.io/badges/@stdx/validation)](https://jsr.io/@stdx/validation)   | [![JSR Score](https://jsr.io/badges/@stdx/validation/score)](https://jsr.io/@stdx/validation)   | [![Weekly downloads](https://jsr.io/badges/@stdx/validation/weekly-downloads)](https://jsr.io/@stdx/validation)   | [![Total downloads](https://jsr.io/badges/@stdx/validation/total-downloads)](https://jsr.io/@stdx/validation)   |
+| [xml](https://jsr.io/@stdx/xml)                 | [![JSR](https://jsr.io/badges/@stdx/xml)](https://jsr.io/@stdx/xml)                 | [![JSR Score](https://jsr.io/badges/@stdx/xml/score)](https://jsr.io/@stdx/xml)                 | [![Weekly downloads](https://jsr.io/badges/@stdx/xml/weekly-downloads)](https://jsr.io/@stdx/xml)                 | [![Total downloads](https://jsr.io/badges/@stdx/xml/total-downloads)](https://jsr.io/@stdx/xml)                 |
+| [zip](https://jsr.io/@stdx/zip)                 | [![JSR](https://jsr.io/badges/@stdx/zip)](https://jsr.io/@stdx/zip)                 | [![JSR Score](https://jsr.io/badges/@stdx/zip/score)](https://jsr.io/@stdx/zip)                 | [![Weekly downloads](https://jsr.io/badges/@stdx/zip/weekly-downloads)](https://jsr.io/@stdx/zip)                 | [![Total downloads](https://jsr.io/badges/@stdx/zip/total-downloads)](https://jsr.io/@stdx/zip)                 |
 
 ## Platform support
 
