@@ -59,6 +59,11 @@ export type CacheOptions = CacheFileOptions & {
 /**
  * Dynamically loads a library depending on OS and cache remote files
  *
+ * Deno only: `Deno.dlopen` is not provided by `@deno/shim-deno`, so using
+ * this in Node.js needs a custom `Deno.dlopen` shim, for example one backed
+ * by koffi, in addition to exposing the `Deno` export of `@deno/shim-deno`
+ * as a global.
+ *
  * @param symbols the foreign library interface symbols
  * @param options {@link DlopenOptions} dlopen options
  * @returns a promise that resolves to a {@link DynamicLibrary} object
@@ -113,6 +118,9 @@ export async function dlopen<const S extends Deno.ForeignLibraryInterface>(
 /**
  * Gets the appropriate file options for the current OS and architecture
  *
+ * Requires the Deno namespace: in Node.js, install `@deno/shim-deno` and
+ * expose its `Deno` export as a global before importing this module.
+ *
  * @param options {@link FilenameOptions} filename options for different platforms
  * @returns the file options for the current platform
  * @throws {TypeError} when file options for current OS/architecture are not provided
@@ -135,6 +143,9 @@ export function getFileOptions(options: FilenameOptions): FileOptions {
  * Archives (`type: "zip"`) are extracted, and the file at
  * {@linkcode FileOptions.archivePath} within the extraction is returned. The
  * archive is extracted once and reused, and extracted again on `"reload"`.
+ *
+ * Requires the Deno namespace: in Node.js, install `@deno/shim-deno` and
+ * expose its `Deno` export as a global before importing this module.
  *
  * @param fileOptions {@linkcode FileOptions} file options
  * @param cacheOptions {@linkcode CacheOptions} cache options
@@ -194,6 +205,10 @@ export async function cacheRemoteFile(
 
 /**
  * Gets the cache path for dlopen files
+ *
+ * Requires the Deno namespace when no custom `path` is given: in Node.js,
+ * install `@deno/shim-deno` and expose its `Deno` export as a global
+ * before importing this module.
  *
  * @param path optional custom cache path
  * @returns the cache path

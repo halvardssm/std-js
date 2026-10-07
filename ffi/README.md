@@ -45,3 +45,68 @@ dylib.close();
 
 It throws if no file is configured for the current operating system and
 architecture.
+
+## Node.js compatibility
+
+`urlToPathSegments` and `withoutExt` are pure and run in any runtime.
+`getFileOptions`, `cacheRemoteFile` and `getCachePath` access the file system
+and environment through the Deno namespace, and work in Node.js when
+[`@deno/shim-deno`](https://github.com/denoland/node_shims) is installed from
+npm and exposed as a global before the module is imported:
+
+```ts
+// entry file, before importing @stdx/ffi
+import { Deno } from "@deno/shim-deno";
+
+globalThis.Deno = Deno;
+```
+
+`dlopen` additionally calls `Deno.dlopen`, which `@deno/shim-deno` does not
+provide. Using it in Node.js requires a custom `Deno.dlopen` shim as well, for
+example one backed by [koffi](https://www.npmjs.com/package/koffi):
+
+```ts ignore
+// entry file, before importing @stdx/ffi
+import koffi from "koffi";
+import { fileURLToPath } from "node:url";
+import { Deno } from "@deno/shim-deno";
+
+// Minimal Deno.dlopen shim backed by koffi, covering the numeric FFI types
+// and opaque pointers
+const types = {
+  void: "void",
+  u8: "uint8",
+  i8: "int8",
+  u16: "uint16",
+  i16: "int16",
+  u32: "uint32",
+  i32: "int32",
+  u64: "uint64",
+  i64: "int64",
+  f32: "float",
+  f64: "double",
+  pointer: "void *",
+};
+
+function dlopen(
+  libFile: string,
+  symbols: Record<string, { parameters?: string[]; result?: string }>,
+) {
+  const lib = koffi.load(
+    libFile.startsWith("file:") ? fileURLToPath(libFile) : libFile,
+  );
+  const functions = Object.fromEntries(
+    Object.entries(symbols).map(([name, def]) => [
+      name,
+      lib.func(
+        name,
+        types[def.result ?? "void"],
+        (def.parameters ?? []).map((t) => types[t]),
+      ),
+    ]),
+  );
+  return { symbols: functions, close: () => lib.unload() };
+}
+
+globalThis.Deno = { ...Deno, dlopen };
+```
