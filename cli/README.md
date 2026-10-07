@@ -100,3 +100,18 @@ const args = parseArgs(["--name", "foo"], {
 });
 const name: string = args.name;
 ```
+
+## Node.js compatibility
+
+`parseArgs`, `defineCommand` and `renderHelp` are pure and run in any runtime.
+`runCommand` reads environment variables for options with an `env` name through
+the Deno namespace. In Node.js, either pass an `env` option to `runCommand`, or
+install [`@deno/shim-deno`](https://github.com/denoland/node_shims) from npm and
+expose it as a global before the module is imported:
+
+```ts
+// entry file, before importing @stdx/cli
+import { Deno } from "@deno/shim-deno";
+
+globalThis.Deno = Deno;
+```

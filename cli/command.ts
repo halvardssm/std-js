@@ -375,6 +375,11 @@ const FALSE = ["0", "false", "no", "off"];
  * `2`, or the `usageExitCode` option. Other errors thrown by the command are not
  * caught.
  *
+ * The environment variable fallback of options with an `env` name requires
+ * the Deno namespace: in Node.js, pass an `env` option, or install
+ * `@deno/shim-deno` and expose its `Deno` export as a global before
+ * importing this module.
+ *
  * @param command the root command
  * @param args the arguments, usually `Deno.args`
  * @param options the {@linkcode RunOptions}
