@@ -1,6 +1,12 @@
 import { assertEquals, assertThrows } from "@std/assert";
+import { serve as circularServe } from "./testdata/circular_command.ts";
 import {
+  type CommandContext,
+  defineArguments,
   defineCommand,
+  defineFlags,
+  type Flags,
+  renderHelp,
   runCommand,
   type RunOptions,
   UsageError,
@@ -14,7 +20,7 @@ Deno.test("defineCommand returns the definition", () => {
 Deno.test("defineCommand infers flags and arguments", () => {
   defineCommand({
     name: "tool",
-    options: {
+    flags: {
       plain: { type: "string" },
       required: { type: "string", required: true },
       optional: { type: "string", required: false },
@@ -77,8 +83,7 @@ Deno.test("defineCommand validates the definition", async (t) => {
     ],
     [
       "reserved option",
-      () =>
-        defineCommand({ name: "a", options: { help: { type: "boolean" } } }),
+      () => defineCommand({ name: "a", flags: { help: { type: "boolean" } } }),
       "reserved",
     ],
     [
@@ -86,7 +91,7 @@ Deno.test("defineCommand validates the definition", async (t) => {
       () =>
         defineCommand({
           name: "a",
-          options: { x: { type: "boolean", alias: "h" } },
+          flags: { x: { type: "boolean", alias: "h" } },
         }),
       "reserved",
     ],
@@ -95,7 +100,7 @@ Deno.test("defineCommand validates the definition", async (t) => {
       () =>
         defineCommand({
           name: "a",
-          options: { x: { type: "boolean", alias: "V" } },
+          flags: { x: { type: "boolean", alias: "V" } },
         }),
       "reserved",
     ],
@@ -104,7 +109,7 @@ Deno.test("defineCommand validates the definition", async (t) => {
       () =>
         defineCommand({
           name: "a",
-          options: {
+          flags: {
             x: { type: "boolean", alias: "a" },
             y: { type: "boolean", alias: "a" },
           },
@@ -116,7 +121,7 @@ Deno.test("defineCommand validates the definition", async (t) => {
       () =>
         defineCommand({
           name: "a",
-          options: {
+          flags: {
             dryRun: { type: "boolean" },
             "dry-run": { type: "boolean" },
           },
@@ -128,7 +133,7 @@ Deno.test("defineCommand validates the definition", async (t) => {
       () =>
         defineCommand({
           name: "a",
-          options: { x: { type: "boolean", alias: "ab" } },
+          flags: { x: { type: "boolean", alias: "ab" } },
         }),
       "not one character",
     ],
@@ -203,7 +208,7 @@ const serve = defineCommand({
   name: "serve",
   version: "2.0.0",
   description: "Start the server",
-  options: {
+  flags: {
     port: { type: "string", alias: "p", default: "8000", env: "PORT" },
     config: { type: "string", required: true, env: "CONFIG" },
     dryRun: { type: "boolean", alias: "d", env: "DRY_RUN" },
@@ -229,7 +234,7 @@ const cli = defineCommand({
       })],
     }),
     defineCommand({ name: "code", run: () => 7 }),
-    defineCommand({ name: "async", run: async () => {}, options: {} }),
+    defineCommand({ name: "async", run: async () => {}, flags: {} }),
     defineCommand({ name: "empty" }),
   ],
 });
@@ -363,7 +368,7 @@ Deno.test("runCommand flags", async (t) => {
     assertEquals(parsed(await run(cli, base)).flags.dryRun, false);
     const withDefault = defineCommand({
       name: "x",
-      options: { on: { type: "boolean", default: true } },
+      flags: { on: { type: "boolean", default: true } },
       run: ({ flags, stdout }) => stdout(String(flags.on)),
     });
     assertEquals((await run(withDefault, [])).out, ["true"]);
@@ -429,17 +434,17 @@ Deno.test("runCommand usage errors", async (t) => {
     () =>
       expectUsage(
         ["serve", "d"],
-        "Missing required option --config (or environment variable CONFIG)",
+        "Missing required flag --config (or environment variable CONFIG)",
       ),
   );
   await t.step("missing required option without env", async () => {
     const command = defineCommand({
       name: "x",
-      options: { token: { type: "string", required: true } },
+      flags: { token: { type: "string", required: true } },
       run: () => {},
     });
     const result = await run(command, []);
-    assertEquals(result.err[0], "Error: Missing required option --token");
+    assertEquals(result.err[0], "Error: Missing required flag --token");
   });
   await t.step(
     "missing argument",
@@ -466,7 +471,7 @@ Deno.test("runCommand usage errors", async (t) => {
     () =>
       expectUsage(
         ["serve", "d", "--config", "c", "--zzzzzz=1", "-z"],
-        "Unknown options: --zzzzzz, -z",
+        "Unknown flags: --zzzzzz, -z",
       ),
   );
   await t.step(
@@ -474,7 +479,7 @@ Deno.test("runCommand usage errors", async (t) => {
     () =>
       expectUsage(
         ["serve", "d", "--config", "c", "--zzzzzz"],
-        "Unknown option: --zzzzzz",
+        "Unknown flag: --zzzzzz",
       ),
   );
   await t.step("unexpected argument", async () => {
@@ -561,7 +566,7 @@ Deno.test("runCommand suggestions", async (t) => {
     ]);
     assertEquals(
       result.err[0],
-      "Error: Unknown option: --prot (did you mean --port?)",
+      "Error: Unknown flag: --prot (did you mean --port?)",
     );
   });
 
@@ -577,7 +582,7 @@ Deno.test("runCommand suggestions", async (t) => {
     ]);
     assertEquals(
       result.err[0],
-      "Error: Unknown options: --dryrun (did you mean --dry-run?), --zzzzzz, -x",
+      "Error: Unknown flags: --dryrun (did you mean --dry-run?), --zzzzzz, -x",
     );
   });
 
@@ -585,15 +590,15 @@ Deno.test("runCommand suggestions", async (t) => {
     const result = await run(cli, ["serve", "--hepl"]);
     assertEquals(
       result.err[0],
-      "Error: Unknown option: --hepl (did you mean --help?)",
+      "Error: Unknown flag: --hepl (did you mean --help?)",
     );
   });
 
-  await t.step("a command without options", async () => {
+  await t.step("a command without flags", async () => {
     const result = await run(defineCommand({ name: "x", run: () => {} }), [
       "--nope",
     ]);
-    assertEquals(result.err[0], "Error: Unknown option: --nope");
+    assertEquals(result.err[0], "Error: Unknown flag: --nope");
   });
 
   await t.step("can be turned off", async () => {
@@ -607,7 +612,7 @@ Deno.test("runCommand suggestions", async (t) => {
       {},
       { suggest: false },
     );
-    assertEquals(result.err[0], "Error: Unknown option: --prot");
+    assertEquals(result.err[0], "Error: Unknown flag: --prot");
   });
 
   await t.step("the distance can be changed", async () => {
@@ -733,7 +738,7 @@ Deno.test("runCommand helpOnEmpty", async (t) => {
   const tool = defineCommand({
     name: "tool",
     helpOnEmpty: true,
-    options: { name: { type: "string", required: true } },
+    flags: { name: { type: "string", required: true } },
     args: [{ name: "file", required: true }],
     run: ({ stdout }) => {
       ran.push("tool");
@@ -815,7 +820,7 @@ Deno.test("runCommand helpOnEmpty", async (t) => {
 Deno.test("runCommand reads the environment", async (t) => {
   const command = defineCommand({
     name: "x",
-    options: { v: { type: "string", env: "STDX_CLI_TEST_VAR" } },
+    flags: { v: { type: "string", env: "STDX_CLI_TEST_VAR" } },
     run: ({ flags, stdout }) => stdout(String(flags.v)),
   });
 
@@ -837,7 +842,7 @@ Deno.test("runCommand reads the environment", async (t) => {
     }";
       const command = defineCommand({
         name: "x",
-        options: { v: { type: "string", env: "STDX_CLI_TEST_VAR" } },
+        flags: { v: { type: "string", env: "STDX_CLI_TEST_VAR" } },
         run: ({ flags, stdout }) => stdout(String(flags.v)),
       });
       Deno.exit(await runCommand(command, []));
@@ -851,4 +856,280 @@ Deno.test("runCommand reads the environment", async (t) => {
     assertEquals(new TextDecoder().decode(output.stderr), "");
     assertEquals(new TextDecoder().decode(output.stdout), "undefined\n");
   });
+});
+
+Deno.test("runCommandExit exits the process with the exit code", async (t) => {
+  const spawn = (args: string[], run: string) => {
+    const script = `
+      import { defineCommand, runCommandExit } from "${
+      import.meta.resolve("./command.ts")
+    }";
+      const command = defineCommand({ name: "x", run: ${run} });
+      await runCommandExit(command, ${JSON.stringify(args)});
+    `;
+    return new Deno.Command(Deno.execPath(), {
+      args: ["eval", "--no-prompt", script],
+      cwd: new URL("../", import.meta.url),
+      stdout: "piped",
+      stderr: "piped",
+    }).output();
+  };
+
+  await t.step("0 when the command succeeds", async () => {
+    const output = await spawn([], `({ stdout }) => stdout("done")`);
+    assertEquals(output.code, 0);
+    assertEquals(new TextDecoder().decode(output.stdout), "done\n");
+  });
+
+  await t.step("the exit code returned by the run function", async () => {
+    const output = await spawn([], `() => 3`);
+    assertEquals(output.code, 3);
+  });
+
+  await t.step("the usage exit code on a usage error", async () => {
+    const output = await spawn(["--unknown"], `() => 0`);
+    assertEquals(output.code, 2);
+    assertEquals(
+      new TextDecoder().decode(output.stderr).includes("unknown"),
+      true,
+    );
+  });
+});
+
+Deno.test("renderHelp shows the examples at the bottom", () => {
+  const cli = defineCommand({
+    name: "tool",
+    examples: [
+      "tool --name Alice ./dist",
+      "  tool --name Alice ./dist  ",
+      "tool --name Bob ./dist",
+    ],
+  });
+
+  const help = renderHelp([cli]);
+  assertEquals(
+    help.slice(help.indexOf("Examples:")),
+    "Examples:\n  tool --name Alice ./dist\n  tool --name Bob ./dist",
+  );
+});
+
+Deno.test("renderHelp derives the examples with a function", () => {
+  const shared = {
+    name: { type: "string", examples: ["Alice", "Bob"] },
+    verbose: { type: "boolean" },
+  } as const satisfies Flags;
+
+  const cli = defineCommand({
+    name: "tool",
+    flags: shared,
+    args: [{ name: "dir", examples: ["./dist"] }],
+    examples: ({ flags: { name, verbose }, args }) => [
+      `tool --name ${name[0]} ${args[0]!.examples[0]}`,
+      `tool --name ${name[1]} --${verbose[0] ?? "verbose"}`,
+    ],
+  });
+
+  const help = renderHelp([cli]);
+  assertEquals(
+    help.slice(help.indexOf("Examples:")),
+    "Examples:\n  tool --name Alice ./dist\n  tool --name Bob --verbose",
+  );
+});
+
+Deno.test("renderHelp shows option and argument examples", () => {
+  const cli = defineCommand({
+    name: "tool",
+    flags: { name: { type: "string", examples: ["Alice", "Bob"] } },
+    args: [{ name: "dir", examples: ["./dist"] }],
+  });
+
+  const help = renderHelp([cli]);
+  assertEquals(help.includes("e.g. Alice, Bob"), true);
+  assertEquals(help.includes("e.g. ./dist"), true);
+  assertEquals(help.includes("Examples:"), false);
+});
+
+Deno.test("renderHelp shows no examples section without examples", () => {
+  const cli = defineCommand({
+    name: "tool",
+    flags: { name: { type: "string" } },
+  });
+
+  assertEquals(renderHelp([cli]).includes("Examples:"), false);
+});
+
+Deno.test("defineCommand types given flags and args as present", () => {
+  const serve = defineCommand({
+    name: "serve",
+    flags: { port: { type: "string", default: "8080" } },
+    args: [{ name: "dir", required: true }],
+  });
+
+  // These accesses only type check when `flags` and `args` are not
+  // optional on the command.
+  assertEquals(serve.flags.port.type, "string");
+  assertEquals(serve.args[0]!.name, "dir");
+});
+
+Deno.test("defineCommand keeps absent flags and args optional", () => {
+  const cli = defineCommand({ name: "tool" });
+
+  assertEquals(cli.flags, undefined);
+  assertEquals(cli.args, undefined);
+});
+
+Deno.test("commands share their types with imported run functions", async () => {
+  const lines: string[] = [];
+  const code = await runCommand(circularServe, ["--name", "world", "."], {
+    stdout: (line) => lines.push(line),
+  });
+
+  assertEquals([code, lines], [0, ["world false ."]]);
+});
+
+Deno.test("defineFlags and defineArguments keep their types", () => {
+  const serveFlags = defineFlags({
+    port: { type: "string", default: "8080" },
+    verbose: { type: "boolean" },
+  });
+  const serveArgs = defineArguments([{ name: "dir", required: true }]);
+
+  const command = defineCommand({
+    name: "serve",
+    flags: serveFlags,
+    args: serveArgs,
+    run({ flags, args, stdout }) {
+      const port: string = flags.port;
+      const verbose: boolean = flags.verbose;
+      const dir: string = args.dir;
+      stdout(`${port} ${verbose} ${dir}`);
+    },
+  });
+
+  assertEquals(serveFlags.port.default, "8080");
+  assertEquals(serveArgs[0]!.name, "dir");
+  assertEquals(command.flags.port.type, "string");
+});
+
+Deno.test("CommandContext infers the context of the run function", () => {
+  const cli = defineCommand({
+    name: "greet",
+    flags: { name: { type: "string", default: "world" } },
+    run: (context) => context.flags.name.length,
+  });
+
+  // The flags are typed like in the run function
+  type GreetContext = CommandContext<typeof cli>;
+  const flags: GreetContext["flags"] = { name: "world" };
+
+  assertEquals(flags.name, "world");
+});
+
+Deno.test("runCommand accepts global flags of the parents", async (t) => {
+  const build = defineCommand({
+    name: "build",
+    flags: { level: { type: "string", default: "9" } },
+    run: ({ flags, stdout }) => stdout(JSON.stringify(flags)),
+  });
+  const serve = defineCommand({
+    name: "serve",
+    commands: [build],
+    run: ({ flags, stdout }) => stdout(JSON.stringify(flags)),
+  });
+  const cli = defineCommand({
+    name: "tool",
+    flags: {
+      verbose: { type: "boolean", global: true },
+      level: { type: "string", default: "1", global: true, env: "LEVEL" },
+      config: { type: "string" },
+    },
+    commands: [serve],
+  });
+
+  // Runs the command and returns its exit code and the parsed flags
+  const run = (...args: string[]) => {
+    const lines: string[] = [];
+    return runCommand(cli, args, {
+      stdout: (line) => {
+        lines.push(line);
+      },
+    })
+      .then((code): [number, Record<string, unknown>] => [
+        code,
+        JSON.parse(lines[0]!),
+      ]);
+  };
+
+  await t.step("after the subcommand names", async () => {
+    assertEquals(await run("serve", "--verbose"), [
+      0,
+      { verbose: true, level: "1" },
+    ]);
+    assertEquals(await run("serve", "build", "--verbose"), [
+      0,
+      { verbose: true, level: "9" },
+    ]);
+  });
+
+  await t.step("before the subcommand names", async () => {
+    assertEquals(await run("--verbose", "serve"), [
+      0,
+      { verbose: true, level: "1" },
+    ]);
+    assertEquals(await run("--verbose", "serve", "build", "--level", "3"), [
+      0,
+      { verbose: true, level: "3" },
+    ]);
+    assertEquals(await run("--level=3", "serve", "--verbose"), [
+      0,
+      { verbose: true, level: "3" },
+    ]);
+  });
+
+  await t.step("the flag of the command wins on a name conflict", async () => {
+    assertEquals(await run("serve", "build"), [
+      0,
+      { verbose: false, level: "9" },
+    ]);
+  });
+
+  await t.step("flags that are not global are not inherited", async () => {
+    const err: string[] = [];
+    const code = await runCommand(cli, ["serve", "--config", "x"], {
+      stdout: () => {},
+      stderr: (line) => err.push(line),
+    });
+    assertEquals([code, err[0]!], [2, "Error: Unknown flag: --config"]);
+  });
+
+  await t.step("the environment variable of an inherited global", async () => {
+    const lines: string[] = [];
+    const code = await runCommand(cli, ["serve"], {
+      stdout: (line) => {
+        lines.push(line);
+      },
+      env: (name) => name === "LEVEL" ? "5" : undefined,
+    });
+    assertEquals([code, JSON.parse(lines[0]!)], [
+      0,
+      { verbose: false, level: "5" },
+    ]);
+  });
+});
+
+Deno.test("renderHelp shows inherited global flags", () => {
+  const serve = defineCommand({ name: "serve", run: () => {} });
+  const cli = defineCommand({
+    name: "tool",
+    flags: {
+      verbose: { type: "boolean", global: true, description: "Say more" },
+      config: { type: "string" },
+    },
+    commands: [serve],
+  });
+
+  const help = renderHelp([cli, serve]);
+  assertEquals(help.includes("--verbose"), true);
+  assertEquals(help.includes("(global)"), true);
+  assertEquals(renderHelp([cli]).includes("(global)"), false);
 });

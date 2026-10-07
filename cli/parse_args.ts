@@ -18,11 +18,18 @@ import type {
   Values,
 } from "./_types.ts";
 
-type AsUnion<TValue> = TValue extends ReadonlyArray<infer TItem> ? TItem
+/**
+ * The items of an array type, or the type itself when it is not an array,
+ * which is how the alias and flag lists of {@linkcode parseArgs} are read.
+ */
+export type AsUnion<TValue> = TValue extends ReadonlyArray<infer TItem> ? TItem
   : TValue;
 
-// The flags, and everything they are an alias of or have as an alias.
-type WithAliases<TFlags extends string, TAliases> = TAliases extends
+/**
+ * The flags, and everything they are an alias of or have as an alias, which
+ * is a flag of the result of {@linkcode parseArgs}.
+ */
+export type WithAliases<TFlags extends string, TAliases> = TAliases extends
   Record<string, unknown> ?
     | TFlags
     | {
@@ -33,7 +40,11 @@ type WithAliases<TFlags extends string, TAliases> = TAliases extends
     }[keyof TAliases & string]
   : TFlags;
 
-type FlagsOf<TDefaults, TRequired, TAliases> = Extract<
+/**
+ * The flags of the result of {@linkcode parseArgs}: the ones in `defaults`,
+ * in `required`, and everything the ones in `alias` point at.
+ */
+export type FlagsOf<TDefaults, TRequired, TAliases> = Extract<
   WithAliases<
     | (TDefaults extends Record<string, unknown> ? keyof TDefaults & string
       : never)
@@ -43,8 +54,12 @@ type FlagsOf<TDefaults, TRequired, TAliases> = Extract<
   string
 >;
 
-// The result, where the given flags are not `undefined`.
-type WithFlags<TResult, TFlags extends string> = string extends TFlags ? TResult
+/**
+ * The result of {@linkcode parseArgs}, where the given flags, see
+ * {@linkcode FlagsOf}, are not `undefined`.
+ */
+export type WithFlags<TResult, TFlags extends string> = string extends TFlags
+  ? TResult
   :
     & {
       [TKey in keyof TResult as TKey extends TFlags ? never : TKey]:

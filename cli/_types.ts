@@ -1,16 +1,8 @@
 // Copyright 2018-2026 the Deno authors. MIT license.
 // Types copied from `@std/cli/parse-args`, where they are internal and not
 // exported. They are needed to infer the result of `parseArgs` from its options
-// the same way as `@std/cli` does.
-
-/** Combines recursively all intersection types and returns a new single type.
- * @internal
- */
-type Id<TRecord> = TRecord extends Record<string, unknown>
-  ? TRecord extends infer InferredRecord
-    ? { [Key in keyof InferredRecord]: Id<InferredRecord[Key]> }
-  : never
-  : TRecord;
+// the same way as `@std/cli` does. The types of the `default` option are
+// left out: its `ParseOptions` is used directly instead.
 
 /** Converts a union type `A | B | C` into an intersection type `A & B & C`.
  * @internal
@@ -119,27 +111,6 @@ type SpreadDefaults<TArgs, TDefaults> = TDefaults extends undefined ? TArgs
           : unknown;
       }
   : never;
-
-/**
- * Defines the Record for the `default` option to add
- * auto-suggestion support for IDE's.
- * @internal
- */
-type Defaults<TBooleans extends BooleanType, TStrings extends StringType> = Id<
-  UnionToIntersection<
-    & Record<string, unknown>
-    // Dedotted auto suggestions: { foo: { bar: unknown } }
-    & MapTypes<TStrings, unknown>
-    & MapTypes<TBooleans, unknown>
-    // Flat auto suggestions: { "foo.bar": unknown }
-    & MapDefaults<TBooleans>
-    & MapDefaults<TStrings>
-  >
->;
-
-type MapDefaults<TArgNames extends ArgType> = Partial<
-  Record<TArgNames extends string ? TArgNames : string, unknown>
->;
 
 type RecursiveRequired<TRecord> = TRecord extends Record<string, unknown> ? {
     [Key in keyof TRecord]-?: RecursiveRequired<TRecord[Key]>;
