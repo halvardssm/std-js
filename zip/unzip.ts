@@ -195,6 +195,9 @@ export async function unzip(archive: Uint8Array): Promise<UnzipEntry[]> {
  * symbolic links, are rejected. Unix permissions and symbolic links are
  * restored, except on Windows where symbolic links are written as files.
  *
+ * Requires the Deno namespace: in Node.js, install `@deno/shim-deno` and
+ * expose its `Deno` export as a global before importing this module.
+ *
  * @param source the path of the archive file
  * @param destination the directory to extract into
  * @throws {TypeError} when the archive is invalid, or an entry is outside of

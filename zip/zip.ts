@@ -186,6 +186,9 @@ export async function zip(entries: Iterable<ZipEntry>): Promise<Uint8Array> {
  * The contents of the directory are added with paths relative to it, including
  * empty directories and, on Unix, permissions. Symbolic links are skipped.
  *
+ * Requires the Deno namespace: in Node.js, install `@deno/shim-deno` and
+ * expose its `Deno` export as a global before importing this module.
+ *
  * @param source the directory to zip
  * @param destination the path of the archive file to write
  *
