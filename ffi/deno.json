@@ -1,5 +1,5 @@
 {
-  "version": "0.1.1",
+  "version": "0.1.2",
   "name": "@stdx/ffi",
   "description": "Helpers for working with FFI, such as dlopen with caching.",
   "exports": {
