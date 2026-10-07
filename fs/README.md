@@ -39,3 +39,17 @@ await cacheFile("https://example.com/README.md", "./cache/README.md", {
 
 const denoDir = await denoCacheDir({ ensure: true });
 ```
+
+## Node.js compatibility
+
+All exports (`cacheFile`, `denoCacheDir` and `homeDir`) access the file system
+and environment through the Deno namespace. They work in Node.js when
+[`@deno/shim-deno`](https://github.com/denoland/node_shims) is installed from
+npm and exposed as a global before the module is imported:
+
+```ts
+// entry file, before importing @stdx/fs
+import { Deno } from "@deno/shim-deno";
+
+globalThis.Deno = Deno;
+```

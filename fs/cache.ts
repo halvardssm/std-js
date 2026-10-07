@@ -40,6 +40,9 @@ export type CacheFileOptions = {
  * With the default cache control, the file is only downloaded when it does
  * not exist locally yet.
  *
+ * Requires the Deno namespace: in Node.js, install `@deno/shim-deno` and
+ * expose its `Deno` export as a global before importing this module.
+ *
  * @param url the URL to download the file from
  * @param path the local path to cache the file
  * @param options {@link CacheFileOptions} cache file options
@@ -108,6 +111,9 @@ export async function cacheFile(
  * - `$HOME/.cache/deno` on other systems, or `$XDG_CACHE_HOME/deno` when
  *   `HOME` is not set
  *
+ * Requires the Deno namespace: in Node.js, install `@deno/shim-deno` and
+ * expose its `Deno` export as a global before importing this module.
+ *
  * @param options {@link DenoCacheDirOptions} deno cache directory options
  * @returns the path to the deno cache directory
  */
@@ -154,6 +160,9 @@ export async function denoCacheDir(
  * and otherwise the `HOME` environment variable, falling back to
  * `XDG_CACHE_HOME` when `HOME` is not set, so that the cache directory can
  * still be resolved.
+ *
+ * Requires the Deno namespace: in Node.js, install `@deno/shim-deno` and
+ * expose its `Deno` export as a global before importing this module.
  *
  * @returns the path to the user's home directory
  * @throws {TypeError} when home directory cannot be determined
